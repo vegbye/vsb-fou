@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>vsb-spk-kladd</module>
+        <module>vsb-fou-kladd</module>
     </modules>
 
 </project>
