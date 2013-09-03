@@ -8,6 +8,10 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>sb1-lip-research-common</module>
+        <module>sb1-lip-research-rest-jersey</module>
+        <module>sb1-lip-research-rest-spring</module>
+        <module>sb1-lip-research-ws-cxf</module>
         <module>vsb-fou-kladd</module>
     </modules>
 
