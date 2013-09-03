@@ -30,5 +30,7 @@ public class BrukAvList {
         }
         List list2 = new ArrayList(list);
         System.out.println("like ? " + list.equals(list2));
+
+        System.out.println("Heia!");
     }
 }
