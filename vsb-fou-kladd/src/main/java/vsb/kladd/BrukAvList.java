@@ -32,5 +32,7 @@ public class BrukAvList {
         System.out.println("like ? " + list.equals(list2));
 
         System.out.println("Heia!");
+
+        new KlasseSomIkkeFins();
     }
 }
