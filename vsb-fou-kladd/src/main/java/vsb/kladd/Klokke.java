@@ -37,6 +37,7 @@ public class Klokke {
     }
 
     public void print() {
+        System.out.println("hei");
         System.out.println("\n\n##################");
         System.out.println(this);
         System.out.println("\n\n##################");
