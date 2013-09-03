@@ -1,6 +1,5 @@
 package sb1.lip.research.ws.cxf.server;
 
-import org.apache.cxf.jaxws.spring.EndpointDefinitionParser;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,7 +19,7 @@ public class MainCtxResearchServerTest {
 
         FileSystemXmlApplicationContext cxfCtx = new FileSystemXmlApplicationContext(new String[]{"src/main/webapp/WEB-INF/cxf-servlet.xml"}, parentCtx);
 
-        assertThat(cxfCtx.getBean("endpointHelloWorldCxfWS"), instanceOf(EndpointDefinitionParser.SpringEndpointImpl.class));
+        assertThat(cxfCtx.getBean("endpointHelloWorldCxfWS"), instanceOf(javax.xml.ws.Endpoint.class));
         assertThat(cxfCtx.getBean("helloWorldCxfWS"), instanceOf(HelloWorldCxfWS.class));
     }
 
