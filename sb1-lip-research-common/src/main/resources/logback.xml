@@ -1,0 +1,26 @@
+<configuration scan="true" scanPeriod="10 seconds" debug="false">
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>###%d{ISO8601}### %-5p L[%logger{100}]: %m%n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <logger name="sb1" level="INFO"/>
+
+    <logger name="org" level="INFO"/>
+    <logger name="net" level="INFO"/>
+
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.apache.cxf" level="INFO"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
