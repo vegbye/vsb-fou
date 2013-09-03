@@ -7,6 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <description>Bygge pom for min FoU</description>
+
     <modules>
         <module>sb1-lip-research-common</module>
         <module>sb1-lip-research-rest-jersey</module>
