@@ -10,10 +10,10 @@
     <description>Bygge pom for min FoU</description>
 
     <modules>
-        <module>sb1-lip-research-common</module>
-        <module>sb1-lip-research-rest-jersey</module>
-        <module>sb1-lip-research-rest-spring</module>
-        <module>sb1-lip-research-ws-cxf</module>
+        <module>vsb-fou-common</module>
+        <module>vsb-fou-rest-jersey</module>
+        <module>vsb-fou-rest-spring</module>
+        <module>vsb-fou-ws-cxf</module>
         <module>vsb-fou-kladd</module>
     </modules>
 
