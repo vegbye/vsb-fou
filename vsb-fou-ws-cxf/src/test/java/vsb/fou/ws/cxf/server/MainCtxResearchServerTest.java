@@ -1,4 +1,4 @@
-package sb1.lip.research.ws.cxf.server;
+package vsb.fou.ws.cxf.server;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

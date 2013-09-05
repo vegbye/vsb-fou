@@ -1,4 +1,4 @@
-package sb1.lip.research.ws.cxf.client;
+package vsb.fou.ws.cxf.client;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

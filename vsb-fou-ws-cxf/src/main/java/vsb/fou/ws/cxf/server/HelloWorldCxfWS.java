@@ -1,4 +1,4 @@
-package sb1.lip.research.ws.cxf.server;
+package vsb.fou.ws.cxf.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
