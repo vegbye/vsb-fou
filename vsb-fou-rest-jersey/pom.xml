@@ -9,7 +9,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
+        <!--<jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>-->
+        <jetty.webapps.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
         <!-- lib versjoner -->
@@ -175,11 +176,23 @@
             <artifactId>javax.ws.rs-api</artifactId>
             <version>${javax.ws.rs.version}</version>
         </dependency>
+        <!-- === Jersey core === -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
             <version>${jersey.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <!-- === Jersey containers === -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet-core</artifactId>
@@ -205,21 +218,28 @@
             <artifactId>jersey-container-simple-http</artifactId>
             <version>${jersey.version}</version>
         </dependency>
+        <!-- === Jersey media === -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+        <!-- === Jersey extension === -->
         <dependency>
             <groupId>org.glassfish.jersey.ext</groupId>
             <artifactId>jersey-spring3</artifactId>
             <version>${jersey.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.codehaus.jackson</groupId>-->
+        <!--<artifactId>jackson-core-asl</artifactId>-->
+        <!--<version>${jackson.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.codehaus.jackson</groupId>-->
+        <!--<artifactId>jackson-mapper-asl</artifactId>-->
+        <!--<version>${jackson.version}</version>-->
+        <!--</dependency>-->
         <!-- ================ provided deps ================ -->
         <!--<dependency>-->
         <!--<groupId>javax.servlet</groupId>-->
