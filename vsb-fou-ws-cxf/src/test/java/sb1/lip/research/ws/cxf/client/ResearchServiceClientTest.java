@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sb1.lip.research.common.DemandsRunningJettyServerTestCategory;
 import sb1.lip.research.service._2013._08.PingRequest;
 import sb1.lip.research.service._2013._08.PingResponse;
 import sb1.lip.research.service._2013._08.ResearchPortType;
+import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 
 import javax.annotation.Resource;
 

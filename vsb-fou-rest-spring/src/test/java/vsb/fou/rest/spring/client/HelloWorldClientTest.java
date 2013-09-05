@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sb1.lip.research.common.DemandsRunningJettyServerTestCategory;
+import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 import vsb.fou.rest.spring.api.HelloWorldRequest;
 import vsb.fou.rest.spring.api.HelloWorldResponse;
 import vsb.fou.rest.spring.api.Metadata;

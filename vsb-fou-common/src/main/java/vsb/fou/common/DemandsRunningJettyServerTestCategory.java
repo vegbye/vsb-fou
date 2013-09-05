@@ -1,4 +1,4 @@
-package sb1.lip.research.common;
+package vsb.fou.common;
 
 /**
  * @author Vegard S. Bye

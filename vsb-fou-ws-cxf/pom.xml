@@ -238,7 +238,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludedGroups>
-                                sb1.lip.research.common.DemandsRunningJettyServerTestCategory
+                                vsb.fou.common.DemandsRunningJettyServerTestCategory
                             </excludedGroups>
                         </configuration>
                     </plugin>
@@ -257,7 +257,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <groups>
-                                sb1.lip.research.common.DemandsRunningJettyServerTestCategory
+                                vsb.fou.common.DemandsRunningJettyServerTestCategory
                             </groups>
                         </configuration>
                     </plugin>
@@ -276,7 +276,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludedGroups>
-                                sb1.lip.research.common.DemandsRunningJettyServerTestCategory
+                                vsb.fou.common.DemandsRunningJettyServerTestCategory
                             </excludedGroups>
                         </configuration>
                     </plugin>

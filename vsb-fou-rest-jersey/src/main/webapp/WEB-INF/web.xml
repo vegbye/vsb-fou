@@ -10,7 +10,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>sb1.lip.research.rest.jersey.server.MainCtxResearchServer</param-value>
+        <param-value>vsb.fou.rest.jersey.server.MainCtxResearchServer</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -23,7 +23,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>sb1.lip.research.rest.jersey.server.HelloWorldApplication</param-value>
+            <param-value>vsb.fou.rest.jersey.server.HelloWorldApplication</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
