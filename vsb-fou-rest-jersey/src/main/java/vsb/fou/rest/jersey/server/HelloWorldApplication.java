@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.jersey.server;
+package vsb.fou.rest.jersey.server;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;

@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.jersey.client;
+package vsb.fou.rest.jersey.client;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.core.io.ClassPathResource;
  * @author Vegard S. Bye
  */
 @Configuration
-@ComponentScan("sb1.lip.research.rest.jersey.client")
+@ComponentScan("vsb.fou.rest.jersey.client")
 public class MainCtxResearchClient {
 
     @Bean

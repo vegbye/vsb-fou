@@ -1,11 +1,11 @@
-package sb1.lip.research.rest.jersey.server;
+package vsb.fou.rest.jersey.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import sb1.lip.research.rest.jersey.api.HelloWorldRequest;
-import sb1.lip.research.rest.jersey.api.HelloWorldResponse;
-import sb1.lip.research.rest.jersey.api.Metadata;
+import vsb.fou.rest.jersey.api.HelloWorldRequest;
+import vsb.fou.rest.jersey.api.HelloWorldResponse;
+import vsb.fou.rest.jersey.api.Metadata;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

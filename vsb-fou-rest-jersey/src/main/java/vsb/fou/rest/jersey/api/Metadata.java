@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.jersey.api;
+package vsb.fou.rest.jersey.api;
 
 /**
  * @author Vegard S. Bye

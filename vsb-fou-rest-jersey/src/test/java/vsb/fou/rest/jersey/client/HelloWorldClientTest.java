@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.jersey.client;
+package vsb.fou.rest.jersey.client;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import sb1.lip.research.common.DemandsRunningJettyServerTestCategory;
-import sb1.lip.research.rest.jersey.api.HelloWorldRequest;
-import sb1.lip.research.rest.jersey.api.HelloWorldResponse;
-import sb1.lip.research.rest.jersey.api.Metadata;
-import sb1.lip.research.rest.jersey.server.HelloWorldJerseyREST;
+import vsb.fou.rest.jersey.api.HelloWorldRequest;
+import vsb.fou.rest.jersey.api.HelloWorldResponse;
+import vsb.fou.rest.jersey.api.Metadata;
+import vsb.fou.rest.jersey.server.HelloWorldJerseyREST;
 
 import javax.annotation.Resource;
 import java.util.Date;

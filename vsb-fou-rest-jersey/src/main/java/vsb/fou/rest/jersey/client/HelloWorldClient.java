@@ -1,11 +1,11 @@
-package sb1.lip.research.rest.jersey.client;
+package vsb.fou.rest.jersey.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import sb1.lip.research.rest.jersey.api.HelloWorldRequest;
-import sb1.lip.research.rest.jersey.api.HelloWorldResponse;
+import vsb.fou.rest.jersey.api.HelloWorldRequest;
+import vsb.fou.rest.jersey.api.HelloWorldResponse;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;

@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.jersey.api;
+package vsb.fou.rest.jersey.api;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Vegard S. Bye
  */
 @XmlRootElement
-public class HelloWorldRequest {
+public class HelloWorldResponse {
 
     @XmlElement
     public Metadata metadata;
     @XmlElement
-    public String msg;
+    public String result;
 
     @Override
     public String toString() {
-        return "HelloWorldRequest{" +
+        return "HelloWorldResponse{" +
                 "metadata=" + metadata +
-                ", msg='" + msg + '\'' +
+                ", result='" + result + '\'' +
                 '}';
     }
 }
