@@ -11,7 +11,7 @@
         </filter>
     </appender>
 
-    <logger name="sb1" level="INFO"/>
+    <logger name="vsb" level="INFO"/>
 
     <logger name="org" level="INFO"/>
     <logger name="net" level="INFO"/>

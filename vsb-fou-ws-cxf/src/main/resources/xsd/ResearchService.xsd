@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://service.research.lip.sb1/2013/08/"
+           targetNamespace="http://service.fou.vsb/2013/08/"
            elementFormDefault="qualified"
            attributeFormDefault="unqualified" version="1">
 

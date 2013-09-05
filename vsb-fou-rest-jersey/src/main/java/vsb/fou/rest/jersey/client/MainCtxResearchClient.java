@@ -16,7 +16,7 @@ public class MainCtxResearchClient {
     @Bean
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
-        bean.setLocation(new ClassPathResource("sb1-lip-research-client.properties"));
+        bean.setLocation(new ClassPathResource("vsb-fou-client.properties"));
         bean.setIgnoreResourceNotFound(false);
         return bean;
     }

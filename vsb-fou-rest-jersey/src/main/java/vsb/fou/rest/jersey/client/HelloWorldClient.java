@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 public class HelloWorldClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClient.class);
-    @Value("${sb1.lip.research.rest.baseurl}")
+    @Value("${vsb.fou.rest.baseurl}")
     private String baseUrl;
 
     public HelloWorldResponse getHelloWorld() {

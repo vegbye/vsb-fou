@@ -81,15 +81,14 @@
                 <version>1.3.1</version>
                 <executions>
                     <execution>
-                        <id>enforce-sb1-integration-rules</id>
+                        <id>enforce-vsb-rules</id>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
                         <configuration>
                             <rules>
                                 <requirePluginVersions>
-                                    <message>SB1 LIP Research best-practice is to always define plugin versions!
-                                    </message>
+                                    <message>Vegard sine regler.</message>
                                     <banLatest>true</banLatest>
                                     <banRelease>true</banRelease>
                                     <banSnapshots>true</banSnapshots>

@@ -11,14 +11,14 @@ import org.springframework.core.io.ClassPathResource;
  * @author Vegard S. Bye
  */
 @Configuration
-@ComponentScan("sb1.lip.research.cxf.client")
+@ComponentScan("vsb.fou.ws.cxf.client")
 @ImportResource("classpath:/cxf-client.xml")
 public class MainCtxResearchClient {
 
     @Bean
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
-        bean.setLocation(new ClassPathResource("sb1-lip-research-client.properties"));
+        bean.setLocation(new ClassPathResource("vsb-fou-client.properties"));
         bean.setIgnoreResourceNotFound(false);
         return bean;
     }

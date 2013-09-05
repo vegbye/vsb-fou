@@ -3,9 +3,9 @@ package vsb.fou.ws.cxf.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import sb1.lip.research.service._2013._08.PingRequest;
-import sb1.lip.research.service._2013._08.PingResponse;
-import sb1.lip.research.service._2013._08.ResearchPortType;
+import vsb.fou.service._2013._08.PingRequest;
+import vsb.fou.service._2013._08.PingResponse;
+import vsb.fou.service._2013._08.ResearchPortType;
 
 import javax.jws.WebService;
 import java.util.Date;

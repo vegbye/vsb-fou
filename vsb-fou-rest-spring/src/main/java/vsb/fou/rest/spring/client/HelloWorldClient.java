@@ -17,7 +17,7 @@ public class HelloWorldClient {
 
     @Resource
     private RestTemplate restTemplate;
-    @Value("${sb1.lip.research.rest.baseurl}")
+    @Value("${vsb.fou.rest.baseurl}")
     private String restUrl;
 
     public String doExeute(String id) {

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<wsdl:definitions xmlns:tns="http://service.research.lip.sb1/2013/08/"
+<wsdl:definitions xmlns:tns="http://service.fou.vsb/2013/08/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="http://service.research.lip.sb1/2013/08/">
+                  targetNamespace="http://service.fou.vsb/2013/08/">
 
     <wsdl:types>
         <xsd:schema>
-            <xsd:import namespace="http://service.research.lip.sb1/2013/08/"
+            <xsd:import namespace="http://service.fou.vsb/2013/08/"
                         schemaLocation="../xsd/ResearchService.xsd"/>
         </xsd:schema>
     </wsdl:types>
