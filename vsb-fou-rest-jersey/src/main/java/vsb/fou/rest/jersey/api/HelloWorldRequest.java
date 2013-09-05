@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class HelloWorldRequest {
 
-    @XmlElement
-    public Metadata metadata;
+    //    @XmlElement
+//    public Metadata metadata;
     @XmlElement
     public String msg;
 
     @Override
     public String toString() {
         return "HelloWorldRequest{" +
-                "metadata=" + metadata +
+//                "metadata=" + metadata +
                 ", msg='" + msg + '\'' +
                 '}';
     }

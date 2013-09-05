@@ -7,7 +7,11 @@ import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -25,7 +29,8 @@ public class HelloWorldJerseyREST {
     private HelloWorldService helloWorldService;
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Path("hente")
+    @Produces(MediaType.APPLICATION_JSON)
     public HelloWorldResponse getHello() {
         REQUEST_LOGGER.info("GET hello!");
 
@@ -44,14 +49,15 @@ public class HelloWorldJerseyREST {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
+    @Path("poste")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public HelloWorldResponse postHello(HelloWorldRequest request) {
         REQUEST_LOGGER.info("POST hello:" + request);
         HelloWorldResponse response = new HelloWorldResponse();
         response.metadata = new Metadata();
         response.metadata.setSenderId(this.getClass().getSimpleName());
-        response.metadata.setMessageId(request.metadata.getMessageId());
+//        response.metadata.setMessageId(request.metadata.getMessageId());
         try {
             response.result = helloWorldService.sayHello("POST");
         } catch (Exception e) {

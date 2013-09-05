@@ -38,8 +38,8 @@ public class HelloWorldClient {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld");
 
-        Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_XML);
-        Response response = webTarget.request(MediaType.APPLICATION_XML).post(entity, Response.class);
+        Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_JSON);
+        Response response = webTarget.request(MediaType.APPLICATION_JSON).post(entity, Response.class);
 
         checkResponseForErrors(response);
         return response.readEntity(HelloWorldResponse.class);
