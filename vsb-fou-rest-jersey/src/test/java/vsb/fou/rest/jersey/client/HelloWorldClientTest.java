@@ -10,14 +10,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
+import vsb.fou.rest.jersey.api.Metadata;
 import vsb.fou.rest.jersey.server.HelloWorldJerseyREST;
 
 import javax.annotation.Resource;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -47,9 +46,9 @@ public class HelloWorldClientTest {
     @Test
     public void test_postHello() {
         HelloWorldRequest request = new HelloWorldRequest();
-//        request.metadata = new Metadata();
-//        request.metadata.setSenderId(this.getClass().getSimpleName());
-//        request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        request.metadata = new Metadata();
+        request.metadata.setSenderId(this.getClass().getSimpleName());
+        request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         request.msg = "Hei paa deg:" + new Date();
         HelloWorldResponse response = helloWorldClient.postHelloWorld(request);
         LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
@@ -58,7 +57,7 @@ public class HelloWorldClientTest {
 
         assertThat(response.metadata, notNullValue());
         assertThat(response.metadata.getMessageId(), notNullValue());
-//        assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
+        assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
         assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
         assertThat(response.result, containsString("Hello 'POST'"));
     }

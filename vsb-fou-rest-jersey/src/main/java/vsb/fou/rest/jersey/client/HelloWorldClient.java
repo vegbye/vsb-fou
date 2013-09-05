@@ -26,7 +26,7 @@ public class HelloWorldClient {
 
     public HelloWorldResponse getHelloWorld() {
         Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld");
+        WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/hente");
         Response response = webTarget.request().get();
         LOGGER.info("response.getEntity() = " + response.getEntity());
         checkResponseForErrors(response);
@@ -35,7 +35,7 @@ public class HelloWorldClient {
 
     public HelloWorldResponse postHelloWorld(HelloWorldRequest request) {
         Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld");
+        WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/poste");
 
         Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_JSON);
         Response response = webTarget.request(MediaType.APPLICATION_JSON).post(entity, Response.class);

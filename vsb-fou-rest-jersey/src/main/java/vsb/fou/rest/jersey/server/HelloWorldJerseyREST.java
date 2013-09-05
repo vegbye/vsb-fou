@@ -7,11 +7,7 @@ import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -57,7 +53,7 @@ public class HelloWorldJerseyREST {
         HelloWorldResponse response = new HelloWorldResponse();
         response.metadata = new Metadata();
         response.metadata.setSenderId(this.getClass().getSimpleName());
-//        response.metadata.setMessageId(request.metadata.getMessageId());
+        response.metadata.setMessageId(request.metadata.getMessageId());
         try {
             response.result = helloWorldService.sayHello("POST");
         } catch (Exception e) {
