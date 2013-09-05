@@ -47,7 +47,7 @@
     <wsdl:service name="ResearchService">
         <wsdl:port name="ResearchServicePort" binding="tns:ResearchBinding">
             <!-- svcutil.exe krever at location er fylt ut -->
-            <soap:address location="http://localhost:8080/lip-Research/ping-mock"/>
+            <soap:address location="http://localhost:8080/vsb-fou/ping-mock"/>
         </wsdl:port>
     </wsdl:service>
 

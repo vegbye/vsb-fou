@@ -11,7 +11,7 @@
     <properties>
         <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lip.research.jdk.version>1.6</lip.research.jdk.version>
+        <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <asm.version>4.1</asm.version>
         <cglib.version>2.2.2</cglib.version>
@@ -70,8 +70,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>${lip.research.jdk.version}</source>
-                    <target>${lip.research.jdk.version}</target>
+                    <source>${vsb.fou.jdk.version}</source>
+                    <target>${vsb.fou.jdk.version}</target>
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
                     <fork>true</fork>
@@ -103,7 +103,7 @@
                                     <version>3.0</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>${lip.research.jdk.version}</version>
+                                    <version>${vsb.fou.jdk.version}</version>
                                 </requireJavaVersion>
                                 <!--<DependencyConvergence/>-->
                             </rules>
