@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.spring.server;
+package vsb.fou.rest.spring.server;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

@@ -1,12 +1,12 @@
-package sb1.lip.research.rest.spring.server;
+package vsb.fou.rest.spring.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sb1.lip.research.rest.spring.api.HelloWorldRequest;
-import sb1.lip.research.rest.spring.api.HelloWorldResponse;
-import sb1.lip.research.rest.spring.api.Metadata;
+import vsb.fou.rest.spring.api.HelloWorldRequest;
+import vsb.fou.rest.spring.api.HelloWorldResponse;
+import vsb.fou.rest.spring.api.Metadata;
 
 import java.util.Date;
 

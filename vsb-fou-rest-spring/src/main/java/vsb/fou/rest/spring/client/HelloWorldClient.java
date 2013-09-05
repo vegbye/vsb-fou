@@ -1,11 +1,11 @@
-package sb1.lip.research.rest.spring.client;
+package vsb.fou.rest.spring.client;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sb1.lip.research.rest.spring.api.HelloWorldRequest;
-import sb1.lip.research.rest.spring.api.HelloWorldResponse;
+import vsb.fou.rest.spring.api.HelloWorldRequest;
+import vsb.fou.rest.spring.api.HelloWorldResponse;
 
 import javax.annotation.Resource;
 

@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.spring.client;
+package vsb.fou.rest.spring.client;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import sb1.lip.research.common.DemandsRunningJettyServerTestCategory;
-import sb1.lip.research.rest.spring.api.HelloWorldRequest;
-import sb1.lip.research.rest.spring.api.HelloWorldResponse;
-import sb1.lip.research.rest.spring.api.Metadata;
+import vsb.fou.rest.spring.api.HelloWorldRequest;
+import vsb.fou.rest.spring.api.HelloWorldResponse;
+import vsb.fou.rest.spring.api.Metadata;
 
 import javax.annotation.Resource;
 

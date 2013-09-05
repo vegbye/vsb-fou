@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.spring.client;
+package vsb.fou.rest.spring.client;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Vegard S. Bye
  */
 @Configuration
-@ComponentScan("sb1.lip.research.rest.spring.client")
+@ComponentScan("vsb.fou.rest.spring.client")
 public class MainCtxResearchClient {
 
     @Bean

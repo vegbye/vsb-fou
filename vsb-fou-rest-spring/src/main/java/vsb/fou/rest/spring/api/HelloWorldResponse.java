@@ -1,4 +1,4 @@
-package sb1.lip.research.rest.spring.api;
+package vsb.fou.rest.spring.api;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Vegard S. Bye
  */
 @XmlRootElement
-public class HelloWorldRequest {
+public class HelloWorldResponse {
 
     @XmlElement
     public Metadata metadata;
 
     @XmlElement
-    public String msg;
+    public String result;
 }
