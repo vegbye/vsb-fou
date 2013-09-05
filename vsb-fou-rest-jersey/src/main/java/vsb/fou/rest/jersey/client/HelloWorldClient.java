@@ -27,7 +27,6 @@ public class HelloWorldClient {
     public HelloWorldResponse getHelloWorld() {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld");
-
         Response response = webTarget.request().get();
         LOGGER.info("response.getEntity() = " + response.getEntity());
         checkResponseForErrors(response);
