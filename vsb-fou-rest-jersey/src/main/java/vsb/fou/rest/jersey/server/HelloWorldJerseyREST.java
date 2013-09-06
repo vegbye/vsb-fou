@@ -10,12 +10,12 @@ import vsb.fou.rest.jersey.api.ResultData;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 /**
@@ -51,7 +51,7 @@ public class HelloWorldJerseyREST {
             response.resultDataList.add(getResultData("GET.4"));
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
+            throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;
@@ -86,7 +86,7 @@ public class HelloWorldJerseyREST {
             response.resultDataList.add(getResultData("GET.5:" + id));
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
+            throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;
@@ -111,7 +111,7 @@ public class HelloWorldJerseyREST {
             response.resultDataList.add(resultData);
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
+            throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("POST:" + response);
         return response;
