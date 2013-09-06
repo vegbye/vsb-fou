@@ -46,13 +46,32 @@ public class HelloWorldClientTest {
     }
 
     @Test
-    public void test_postHello() {
+    public void test_postHello_JSON() {
         HelloWorldRequest request = new HelloWorldRequest();
         request.metadata = new Metadata();
         request.metadata.setSenderId(this.getClass().getSimpleName());
         request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         request.msg = "Hei paa deg:" + new Date();
-        HelloWorldResponse response = helloWorldClient.postHelloWorld(request);
+        HelloWorldResponse response = helloWorldClient.postHelloWorldJSON(request);
+        LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
+        LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
+        LOGGER.info("response.resultDataList = " + response.resultDataList);
+
+        assertThat(response.metadata, notNullValue());
+        assertThat(response.metadata.getMessageId(), notNullValue());
+        assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
+        assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
+        assertThat(response.resultDataList.toString(), containsString("Hello 'POST'"));
+    }
+
+    @Test
+    public void test_postHello_XML() {
+        HelloWorldRequest request = new HelloWorldRequest();
+        request.metadata = new Metadata();
+        request.metadata.setSenderId(this.getClass().getSimpleName());
+        request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        request.msg = "Hei paa deg:" + new Date();
+        HelloWorldResponse response = helloWorldClient.postHelloWorldXML(request);
         LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
         LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
         LOGGER.info("response.resultDataList = " + response.resultDataList);

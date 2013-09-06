@@ -33,7 +33,7 @@ public class HelloWorldJerseyREST {
 
     @GET
     @Path("hente")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public HelloWorldResponse getHello() {
         REQUEST_LOGGER.info("GET hello!");
 
@@ -97,8 +97,8 @@ public class HelloWorldJerseyREST {
 
     @POST
     @Path("poste")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public HelloWorldResponse postHello(HelloWorldRequest request) {
         REQUEST_LOGGER.info("POST hello:" + request);
         HelloWorldResponse response = new HelloWorldResponse();

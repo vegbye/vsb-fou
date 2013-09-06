@@ -33,12 +33,23 @@ public class HelloWorldClient {
         return response.readEntity(HelloWorldResponse.class);
     }
 
-    public HelloWorldResponse postHelloWorld(HelloWorldRequest request) {
+    public HelloWorldResponse postHelloWorldJSON(HelloWorldRequest request) {
         Client client = ClientBuilder.newClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/poste");
 
         Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_JSON);
         Response response = webTarget.request(MediaType.APPLICATION_JSON).post(entity, Response.class);
+
+        checkResponseForErrors(response);
+        return response.readEntity(HelloWorldResponse.class);
+    }
+
+    public HelloWorldResponse postHelloWorldXML(HelloWorldRequest request) {
+        Client client = ClientBuilder.newClient();
+        WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/poste");
+
+        Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_XML);
+        Response response = webTarget.request(MediaType.APPLICATION_XML).post(entity, Response.class);
 
         checkResponseForErrors(response);
         return response.readEntity(HelloWorldResponse.class);
