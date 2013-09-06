@@ -14,6 +14,5 @@ public class HelloWorldApplication extends ResourceConfig {
     public HelloWorldApplication() {
         register(RequestContextFilter.class);
         register(HelloWorldJerseyREST.class);
-        register(HelloWorldService.class);
     }
 }
