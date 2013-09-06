@@ -6,9 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
+import vsb.fou.rest.jersey.api.ResultData;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 
 /**
  * @author Vegard S. Bye
@@ -35,10 +42,54 @@ public class HelloWorldJerseyREST {
         response.metadata.setSenderId(this.getClass().getSimpleName());
         response.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         try {
-            response.result = helloWorldService.sayHello("GET");
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(getResultData("GET.1"));
+            response.resultDataList.add(getResultData("GET.2"));
+            response.resultDataList.add(getResultData("GET.3"));
+            response.resultDataList.add(getResultData("GET.4"));
         } catch (Exception e) {
             e.printStackTrace();
-            response.result = e.toString();
+            ResultData resultData = new ResultData();
+            resultData.setName(e.toString());
+            resultData.setStatus("FAILED");
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(resultData);
+        }
+        RESPONSE_LOGGER.info("GET:" + response);
+        return response;
+    }
+
+    private ResultData getResultData(String hello) {
+        ResultData resultData = new ResultData();
+        resultData.setName(helloWorldService.sayHello(hello));
+        resultData.setStatus("OK");
+        return resultData;
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HelloWorldResponse getHelloId(@PathParam("id") String id) {
+        REQUEST_LOGGER.info("GET hello! id:'" + id + "'");
+
+        HelloWorldResponse response = new HelloWorldResponse();
+        response.metadata = new Metadata();
+        response.metadata.setSenderId(this.getClass().getSimpleName());
+        response.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        try {
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(getResultData("GET.1:" + id));
+            response.resultDataList.add(getResultData("GET.2:" + id));
+            response.resultDataList.add(getResultData("GET.3:" + id));
+            response.resultDataList.add(getResultData("GET.4:" + id));
+            response.resultDataList.add(getResultData("GET.5:" + id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            ResultData resultData = new ResultData();
+            resultData.setName(e.toString());
+            resultData.setStatus("FAILED");
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(resultData);
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;
@@ -55,10 +106,19 @@ public class HelloWorldJerseyREST {
         response.metadata.setSenderId(this.getClass().getSimpleName());
         response.metadata.setMessageId(request.metadata.getMessageId());
         try {
-            response.result = helloWorldService.sayHello("POST");
+            ResultData resultData = new ResultData();
+            String hello = helloWorldService.sayHello("POST");
+            resultData.setName(hello);
+            resultData.setStatus("OK");
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(resultData);
         } catch (Exception e) {
             e.printStackTrace();
-            response.result = e.toString();
+            ResultData resultData = new ResultData();
+            resultData.setName(e.toString());
+            resultData.setStatus("FAILED");
+            response.resultDataList = new ArrayList<ResultData>();
+            response.resultDataList.add(resultData);
         }
         RESPONSE_LOGGER.info("POST:" + response);
         return response;

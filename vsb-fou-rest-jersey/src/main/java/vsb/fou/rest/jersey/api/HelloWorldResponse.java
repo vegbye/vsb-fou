@@ -2,6 +2,7 @@ package vsb.fou.rest.jersey.api;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
  * @author Vegard S. Bye
@@ -12,13 +13,13 @@ public class HelloWorldResponse {
     @XmlElement
     public Metadata metadata;
     @XmlElement
-    public String result;
+    public List<ResultData> resultDataList;
 
     @Override
     public String toString() {
         return "HelloWorldResponse{" +
                 "metadata=" + metadata +
-                ", result='" + result + '\'' +
+                ", resultData='" + resultDataList + '\'' +
                 '}';
     }
 }

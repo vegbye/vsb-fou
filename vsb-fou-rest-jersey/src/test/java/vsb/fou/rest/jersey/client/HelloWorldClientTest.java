@@ -16,7 +16,9 @@ import vsb.fou.rest.jersey.server.HelloWorldJerseyREST;
 import javax.annotation.Resource;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -36,11 +38,11 @@ public class HelloWorldClientTest {
         HelloWorldResponse response = helloWorldClient.getHelloWorld();
         LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
         LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
-        LOGGER.info("response.result = " + response.result);
+        LOGGER.info("response.resultDataList = " + response.resultDataList);
         assertThat(response.metadata, notNullValue());
         assertThat(response.metadata.getMessageId(), notNullValue());
         assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.result, containsString("Hello 'GET'"));
+        assertThat(response.resultDataList.toString(), containsString("Hello 'GET.1'"));
     }
 
     @Test
@@ -53,12 +55,12 @@ public class HelloWorldClientTest {
         HelloWorldResponse response = helloWorldClient.postHelloWorld(request);
         LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
         LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
-        LOGGER.info("response.result = " + response.result);
+        LOGGER.info("response.resultDataList = " + response.resultDataList);
 
         assertThat(response.metadata, notNullValue());
         assertThat(response.metadata.getMessageId(), notNullValue());
         assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
         assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.result, containsString("Hello 'POST'"));
+        assertThat(response.resultDataList.toString(), containsString("Hello 'POST'"));
     }
 }
