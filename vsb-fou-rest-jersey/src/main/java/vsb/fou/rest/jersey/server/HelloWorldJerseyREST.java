@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 @Path("helloworld")
 public class HelloWorldJerseyREST {
 
+    private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + HelloWorldJerseyREST.class.getSimpleName());
     private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("REQUEST." + HelloWorldJerseyREST.class.getSimpleName());
     private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("RESPONSE." + HelloWorldJerseyREST.class.getSimpleName());
     /**
@@ -48,12 +50,8 @@ public class HelloWorldJerseyREST {
             response.resultDataList.add(getResultData("GET.3"));
             response.resultDataList.add(getResultData("GET.4"));
         } catch (Exception e) {
-            e.printStackTrace();
-            ResultData resultData = new ResultData();
-            resultData.setName(e.toString());
-            resultData.setStatus("FAILED");
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(resultData);
+            ERROR_LOGGER.error("/helloworld/hente", e);
+            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;
@@ -77,6 +75,9 @@ public class HelloWorldJerseyREST {
         response.metadata.setSenderId(this.getClass().getSimpleName());
         response.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         try {
+            if ("kast".equalsIgnoreCase(id)) {
+                throw new RuntimeException("Jeg kaster en feil!");
+            }
             response.resultDataList = new ArrayList<ResultData>();
             response.resultDataList.add(getResultData("GET.1:" + id));
             response.resultDataList.add(getResultData("GET.2:" + id));
@@ -84,12 +85,8 @@ public class HelloWorldJerseyREST {
             response.resultDataList.add(getResultData("GET.4:" + id));
             response.resultDataList.add(getResultData("GET.5:" + id));
         } catch (Exception e) {
-            e.printStackTrace();
-            ResultData resultData = new ResultData();
-            resultData.setName(e.toString());
-            resultData.setStatus("FAILED");
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(resultData);
+            ERROR_LOGGER.error("/helloworld/hente", e);
+            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;
@@ -113,12 +110,8 @@ public class HelloWorldJerseyREST {
             response.resultDataList = new ArrayList<ResultData>();
             response.resultDataList.add(resultData);
         } catch (Exception e) {
-            e.printStackTrace();
-            ResultData resultData = new ResultData();
-            resultData.setName(e.toString());
-            resultData.setStatus("FAILED");
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(resultData);
+            ERROR_LOGGER.error("/helloworld/hente", e);
+            throw new VsbServerErrorException(e.toString(), Response.Status.INTERNAL_SERVER_ERROR, e);
         }
         RESPONSE_LOGGER.info("POST:" + response);
         return response;
