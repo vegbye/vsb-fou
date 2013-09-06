@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * @author Vegard S. Bye
  */
-@Path("helloworld")
+@Path("/helloworld")
 public class HelloWorldJerseyREST {
 
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + HelloWorldJerseyREST.class.getSimpleName());
@@ -34,7 +34,7 @@ public class HelloWorldJerseyREST {
     private HelloWorldService helloWorldService;
 
     @GET
-    @Path("hente")
+    @Path("/hente")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public HelloWorldResponse getHello() {
         REQUEST_LOGGER.info("GET hello!");
@@ -65,7 +65,7 @@ public class HelloWorldJerseyREST {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public HelloWorldResponse getHelloId(@PathParam("id") String id) {
         REQUEST_LOGGER.info("GET hello! id:'" + id + "'");
@@ -93,7 +93,7 @@ public class HelloWorldJerseyREST {
     }
 
     @POST
-    @Path("poste")
+    @Path("/poste")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public HelloWorldResponse postHello(HelloWorldRequest request) {
