@@ -90,7 +90,7 @@ public class HelloWorldJerseyREST {
             resultDataList.add(getResultData("GET.5:" + id));
             response.setResultDataList(resultDataList);
         } catch (Exception e) {
-            ERROR_LOGGER.error("/helloworld/hente", e);
+            ERROR_LOGGER.error("/helloworld/henteid", e);
             throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
