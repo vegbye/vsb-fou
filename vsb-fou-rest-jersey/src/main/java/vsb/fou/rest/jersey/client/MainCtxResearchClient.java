@@ -11,7 +11,6 @@ import org.springframework.core.io.ClassPathResource;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import java.util.logging.Level;
 
 /**
  * @author Vegard S. Bye
@@ -35,8 +34,7 @@ public class MainCtxResearchClient {
 
     @PostConstruct
     public void bridgeJulToSlf4j() {
-        java.util.logging.LogManager.getLogManager().reset();
+        org.slf4j.bridge.SLF4JBridgeHandler.removeHandlersForRootLogger();
         org.slf4j.bridge.SLF4JBridgeHandler.install();
-        java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
     }
 }

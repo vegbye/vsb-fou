@@ -2,6 +2,10 @@
 
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
 
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>###%d{ISO8601}### %-5p L[%logger{100}]: %m%n</Pattern>
@@ -13,13 +17,15 @@
 
     <logger name="vsb" level="INFO"/>
 
+    <logger name="com" level="INFO"/>
+    <logger name="javax" level="INFO"/>
     <logger name="org" level="INFO"/>
     <logger name="net" level="INFO"/>
 
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.apache.cxf" level="INFO"/>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
 
