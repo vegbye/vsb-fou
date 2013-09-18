@@ -14,9 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
         <!-- lib versjoner -->
-        <asm.version>4.1</asm.version>
-        <cglib.version>2.2.2</cglib.version>
-        <jackson.version>1.9.13</jackson.version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
@@ -24,8 +21,6 @@
         <mockito.version>1.9.5</mockito.version>
         <hamcrest.version>1.3</hamcrest.version>
         <jersey.version>2.2</jersey.version>
-        <jackson.version>1.9.13</jackson.version>
-        <javax.ws.rs.version>2.0</javax.ws.rs.version>
     </properties>
 
     <build>
@@ -169,13 +164,6 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
-        <dependency>
-            <!-- kommer transitivt med fra jersey-client -->
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${javax.ws.rs.version}</version>
-        </dependency>
         <!-- === Jersey core === -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
@@ -255,23 +243,7 @@
             <artifactId>jersey-spring3</artifactId>
             <version>${jersey.version}</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.codehaus.jackson</groupId>-->
-        <!--<artifactId>jackson-core-asl</artifactId>-->
-        <!--<version>${jackson.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.codehaus.jackson</groupId>-->
-        <!--<artifactId>jackson-mapper-asl</artifactId>-->
-        <!--<version>${jackson.version}</version>-->
-        <!--</dependency>-->
         <!-- ================ provided deps ================ -->
-        <!--<dependency>-->
-        <!--<groupId>javax.servlet</groupId>-->
-        <!--<artifactId>javax.servlet-api</artifactId>-->
-        <!--<version>3.0.1</version>-->
-        <!--<scope>provided</scope>-->
-        <!--</dependency>-->
         <!-- ================ test 3. party deps ================ -->
         <dependency>
             <groupId>junit</groupId>
