@@ -1,5 +1,7 @@
 package vsb.fou.rest.jersey.api;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * @author Vegard S. Bye
  */
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown = false)
 public class HelloWorldResponse {
 
     private Metadata metadata;

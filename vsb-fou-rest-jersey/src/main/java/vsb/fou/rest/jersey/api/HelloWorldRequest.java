@@ -1,11 +1,14 @@
 package vsb.fou.rest.jersey.api;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Vegard S. Bye
  */
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown = false)
 public class HelloWorldRequest {
 
     private Metadata metadata;
