@@ -68,7 +68,7 @@ public class HelloWorldJerseyREST {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/henteid/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public HelloWorldResponse getHelloId(@PathParam("id") String id) {
         REQUEST_LOGGER.info("GET hello! id:'" + id + "'");
