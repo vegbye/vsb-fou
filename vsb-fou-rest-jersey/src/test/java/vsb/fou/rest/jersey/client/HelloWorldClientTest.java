@@ -72,30 +72,6 @@ public class HelloWorldClientTest {
     }
 
     @Test
-    public void test_getHello_JSON() {
-        HelloWorldRequest request = new HelloWorldRequest();
-        Metadata metadata = new Metadata();
-        metadata.setSenderId(this.getClass().getSimpleName());
-        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        request.setMetadata(metadata);
-        request.setMsg("Hei paa deg.");
-        HelloWorldResponse response = helloWorldClient.getHelloWorldJSON(request);
-        LOGGER.info("metadata.senderId:" + response.getMetadata().getSenderId());
-        LOGGER.info("metadata.messageId:" + response.getMetadata().getMessageId());
-        LOGGER.info("response.resultDataList = " + response.getResultDataList());
-
-        assertThat(response.getMetadata(), notNullValue());
-        assertThat(response.getMetadata().getMessageId(), notNullValue());
-        assertThat(response.getMetadata().getMessageId(), is(request.getMetadata().getMessageId()));
-        assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.getResultDataList().toString(), containsString("Hello 'POST'"));
-        assertThat(response.getResultDataList().size(), is(1));
-        assertThat(response.getResultDataList().get(0).getName(), containsString("Hello 'POST'"));
-        assertThat(response.getResultDataList().get(0).getStatus(), containsString("OK"));
-    }
-
-
-    @Test
     public void test_postHello_JSON() {
         HelloWorldRequest request = new HelloWorldRequest();
         Metadata metadata = new Metadata();

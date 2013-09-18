@@ -15,7 +15,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -123,33 +122,6 @@ public class HelloWorldJerseyREST {
             response.setResultDataList(resultDataList);
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new InternalServerErrorException(e.toString(), e);
-        }
-        RESPONSE_LOGGER.info("POST:" + response);
-        return response;
-    }
-
-    @GET
-    @Path("/params")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public HelloWorldResponse params(@QueryParam("helloWorldRequest") HelloWorldRequest helloWorldRequest) {
-        REQUEST_LOGGER.info("GET params:" + helloWorldRequest.getMetadata() + helloWorldRequest.getMsg());
-        HelloWorldResponse response = new HelloWorldResponse();
-        Metadata metadata = new Metadata();
-        metadata.setSenderId(this.getClass().getSimpleName());
-        metadata.setMessageId(helloWorldRequest.getMetadata().getMessageId());
-        response.setMetadata(metadata);
-        try {
-            ResultData resultData = new ResultData();
-            String hello = helloWorldService.sayHello("GET params");
-            resultData.setName(hello);
-            resultData.setStatus("OK");
-            List<ResultData> resultDataList = new ArrayList<ResultData>();
-            resultDataList.add(resultData);
-            response.setResultDataList(resultDataList);
-        } catch (Exception e) {
-            ERROR_LOGGER.error("/helloworld/params", e);
             throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("POST:" + response);
