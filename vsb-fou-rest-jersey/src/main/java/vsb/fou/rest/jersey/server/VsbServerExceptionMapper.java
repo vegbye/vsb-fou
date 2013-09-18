@@ -12,7 +12,6 @@ public class VsbServerExceptionMapper implements ExceptionMapper<VsbServerExcept
 
     @Override
     public Response toResponse(VsbServerException e) {
-        System.out.println("Mapper en feil: " + e);
         return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(e.getMessage()).type(MediaType.TEXT_PLAIN_TYPE).build();
     }
 }

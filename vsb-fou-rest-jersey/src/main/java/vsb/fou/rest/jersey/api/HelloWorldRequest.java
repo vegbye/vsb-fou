@@ -30,11 +30,11 @@ public class HelloWorldRequest {
         this.msg = msg;
     }
 
-    @Override
-    public String toString() {
-        return "HelloWorldRequest{" +
-                "metadata=" + metadata +
-                ", msg='" + msg + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "HelloWorldRequest{" +
+//                "metadata=" + metadata +
+//                ", msg='" + msg + '\'' +
+//                '}';
+//    }
 }

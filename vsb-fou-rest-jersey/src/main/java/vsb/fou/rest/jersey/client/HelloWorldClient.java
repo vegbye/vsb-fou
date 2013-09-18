@@ -42,6 +42,16 @@ public class HelloWorldClient {
         return response.readEntity(HelloWorldResponse.class);
     }
 
+    public HelloWorldResponse getHelloWorldJSON(HelloWorldRequest request) {
+
+        WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/params")
+                .queryParam("helloWorldRequest", request);
+        Response response = webTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
+
+        checkResponseForErrors(response);
+        return response.readEntity(HelloWorldResponse.class);
+    }
+
     public HelloWorldResponse postHelloWorldJSON(HelloWorldRequest request) {
         WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/poste");
 
