@@ -63,6 +63,9 @@ public class HelloWorldClientTest {
         assertThat(response.getMetadata().getMessageId(), is(request.getMetadata().getMessageId()));
         assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
         assertThat(response.getResultDataList().toString(), containsString("Hello 'POST'"));
+        assertThat(response.getResultDataList().size(), is(1));
+        assertThat(response.getResultDataList().get(0).getName(), containsString("Hello 'POST'"));
+        assertThat(response.getResultDataList().get(0).getStatus(), containsString("OK"));
     }
 
     @Test
