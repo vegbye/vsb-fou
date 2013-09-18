@@ -69,7 +69,8 @@ public class HelloWorldClient {
         LOGGER.info("response.getDate() = " + response.getDate());
         if (response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
             LOGGER.error("IKKE SUKSESS:" + response.getStatusInfo().getFamily());
-            throw new RuntimeException("Ikke suksess: " + response.getStatus());
+            String errMessage = response.readEntity(String.class);
+            throw new RuntimeException("Ikke suksess: " + response.getStatus() + " Msg:" + errMessage);
         }
     }
 }

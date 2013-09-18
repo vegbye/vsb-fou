@@ -80,7 +80,7 @@ public class HelloWorldJerseyREST {
         response.setMetadata(metadata);
         try {
             if ("kast".equalsIgnoreCase(id)) {
-                throw new RuntimeException("Jeg kaster en feil!");
+                throw new VsbServerException("Jeg kaster en feil!");
             }
             List<ResultData> resultDataList = new ArrayList<ResultData>();
             resultDataList.add(getResultData("GET.1:" + id));
@@ -89,9 +89,9 @@ public class HelloWorldJerseyREST {
             resultDataList.add(getResultData("GET.4:" + id));
             resultDataList.add(getResultData("GET.5:" + id));
             response.setResultDataList(resultDataList);
-        } catch (Exception e) {
+        } catch (VsbServerException e) {
             ERROR_LOGGER.error("/helloworld/henteid", e);
-            throw new InternalServerErrorException(e.toString(), e);
+            throw e;
         }
         RESPONSE_LOGGER.info("GET:" + response);
         return response;

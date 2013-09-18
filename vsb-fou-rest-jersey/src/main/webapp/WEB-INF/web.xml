@@ -41,4 +41,9 @@
     </servlet-mapping>
     <!-- Jersey -->
 
+    <context-param>
+        <param-name>resteasy.providers</param-name>
+        <param-value>vsb.fou.rest.jersey.server.VsbServerExceptionMapper</param-value>
+    </context-param>
+
 </web-app>

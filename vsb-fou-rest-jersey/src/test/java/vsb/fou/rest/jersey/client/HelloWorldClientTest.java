@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * @author Vegard S. Bye
@@ -56,6 +57,18 @@ public class HelloWorldClientTest {
         assertThat(response.getMetadata().getMessageId(), notNullValue());
         assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
         assertThat(response.getResultDataList().toString(), containsString(id));
+    }
+
+    @Test
+    public void test_getHelloIdKastFeil() {
+        try {
+            String id = "kast";
+            helloWorldClient.getHelloWorldId(id);
+            fail();
+        } catch (Exception e) {
+            assertThat(e.getMessage(), containsString("503"));
+            assertThat(e.getMessage(), containsString("Jeg kaster en feil!"));
+        }
     }
 
     @Test

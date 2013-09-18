@@ -18,5 +18,6 @@ public class HelloWorldApplication extends ResourceConfig {
         register(JacksonFeature.class);
         register(LoggingFilter.class);
         register(HelloWorldJerseyREST.class);
+        register(VsbServerExceptionMapper.class);
     }
 }
