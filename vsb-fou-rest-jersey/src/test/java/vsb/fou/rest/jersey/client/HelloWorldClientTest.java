@@ -36,50 +36,52 @@ public class HelloWorldClientTest {
     @Test
     public void test_getHello() {
         HelloWorldResponse response = helloWorldClient.getHelloWorld();
-        LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
-        LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
-        LOGGER.info("response.resultDataList = " + response.resultDataList);
-        assertThat(response.metadata, notNullValue());
-        assertThat(response.metadata.getMessageId(), notNullValue());
-        assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.resultDataList.toString(), containsString("Hello 'GET.1'"));
+        LOGGER.info("metadata.senderId:" + response.getMetadata().getSenderId());
+        LOGGER.info("metadata.messageId:" + response.getMetadata().getMessageId());
+        LOGGER.info("response.resultDataList = " + response.getResultDataList());
+        assertThat(response.getMetadata(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), notNullValue());
+        assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
+        assertThat(response.getResultDataList().toString(), containsString("Hello 'GET.1'"));
     }
 
     @Test
     public void test_postHello_JSON() {
         HelloWorldRequest request = new HelloWorldRequest();
-        request.metadata = new Metadata();
-        request.metadata.setSenderId(this.getClass().getSimpleName());
-        request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        request.msg = "Hei paa deg:" + new Date();
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        request.setMetadata(metadata);
+        request.setMsg("Hei paa deg:" + new Date());
         HelloWorldResponse response = helloWorldClient.postHelloWorldJSON(request);
-        LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
-        LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
-        LOGGER.info("response.resultDataList = " + response.resultDataList);
+        LOGGER.info("metadata.senderId:" + response.getMetadata().getSenderId());
+        LOGGER.info("metadata.messageId:" + response.getMetadata().getMessageId());
+        LOGGER.info("response.resultDataList = " + response.getResultDataList());
 
-        assertThat(response.metadata, notNullValue());
-        assertThat(response.metadata.getMessageId(), notNullValue());
-        assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
-        assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.resultDataList.toString(), containsString("Hello 'POST'"));
+        assertThat(response.getMetadata(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), is(request.getMetadata().getMessageId()));
+        assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
+        assertThat(response.getResultDataList().toString(), containsString("Hello 'POST'"));
     }
 
     @Test
     public void test_postHello_XML() {
         HelloWorldRequest request = new HelloWorldRequest();
-        request.metadata = new Metadata();
-        request.metadata.setSenderId(this.getClass().getSimpleName());
-        request.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        request.msg = "Hei paa deg:" + new Date();
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        request.setMetadata(metadata);
+        request.setMsg("Hei paa deg:" + new Date());
         HelloWorldResponse response = helloWorldClient.postHelloWorldXML(request);
-        LOGGER.info("metadata.senderId:" + response.metadata.getSenderId());
-        LOGGER.info("metadata.messageId:" + response.metadata.getMessageId());
-        LOGGER.info("response.resultDataList = " + response.resultDataList);
+        LOGGER.info("metadata.senderId:" + response.getMetadata().getSenderId());
+        LOGGER.info("metadata.messageId:" + response.getMetadata().getMessageId());
+        LOGGER.info("response.resultDataList = " + response.getResultDataList());
 
-        assertThat(response.metadata, notNullValue());
-        assertThat(response.metadata.getMessageId(), notNullValue());
-        assertThat(response.metadata.getMessageId(), is(request.metadata.getMessageId()));
-        assertThat(response.metadata.getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
-        assertThat(response.resultDataList.toString(), containsString("Hello 'POST'"));
+        assertThat(response.getMetadata(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), is(request.getMetadata().getMessageId()));
+        assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
+        assertThat(response.getResultDataList().toString(), containsString("Hello 'POST'"));
     }
 }

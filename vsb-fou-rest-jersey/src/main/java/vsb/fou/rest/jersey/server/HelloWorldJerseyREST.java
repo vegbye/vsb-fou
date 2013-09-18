@@ -17,6 +17,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Vegard S. Bye
@@ -40,15 +41,17 @@ public class HelloWorldJerseyREST {
         REQUEST_LOGGER.info("GET hello!");
 
         HelloWorldResponse response = new HelloWorldResponse();
-        response.metadata = new Metadata();
-        response.metadata.setSenderId(this.getClass().getSimpleName());
-        response.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        response.setMetadata(metadata);
         try {
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(getResultData("GET.1"));
-            response.resultDataList.add(getResultData("GET.2"));
-            response.resultDataList.add(getResultData("GET.3"));
-            response.resultDataList.add(getResultData("GET.4"));
+            List<ResultData> resultDataList = new ArrayList<ResultData>();
+            resultDataList.add(getResultData("GET.1"));
+            resultDataList.add(getResultData("GET.2"));
+            resultDataList.add(getResultData("GET.3"));
+            resultDataList.add(getResultData("GET.4"));
+            response.setResultDataList(resultDataList);
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
             throw new InternalServerErrorException(e.toString(), e);
@@ -71,19 +74,21 @@ public class HelloWorldJerseyREST {
         REQUEST_LOGGER.info("GET hello! id:'" + id + "'");
 
         HelloWorldResponse response = new HelloWorldResponse();
-        response.metadata = new Metadata();
-        response.metadata.setSenderId(this.getClass().getSimpleName());
-        response.metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        response.setMetadata(metadata);
         try {
             if ("kast".equalsIgnoreCase(id)) {
                 throw new RuntimeException("Jeg kaster en feil!");
             }
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(getResultData("GET.1:" + id));
-            response.resultDataList.add(getResultData("GET.2:" + id));
-            response.resultDataList.add(getResultData("GET.3:" + id));
-            response.resultDataList.add(getResultData("GET.4:" + id));
-            response.resultDataList.add(getResultData("GET.5:" + id));
+            List<ResultData> resultDataList = new ArrayList<ResultData>();
+            resultDataList.add(getResultData("GET.1:" + id));
+            resultDataList.add(getResultData("GET.2:" + id));
+            resultDataList.add(getResultData("GET.3:" + id));
+            resultDataList.add(getResultData("GET.4:" + id));
+            resultDataList.add(getResultData("GET.5:" + id));
+            response.setResultDataList(resultDataList);
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
             throw new InternalServerErrorException(e.toString(), e);
@@ -97,18 +102,20 @@ public class HelloWorldJerseyREST {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public HelloWorldResponse postHello(HelloWorldRequest request) {
-        REQUEST_LOGGER.info("POST hello:" + request);
+        REQUEST_LOGGER.info("POST hello:" + request.getMetadata() + request.getMsg());
         HelloWorldResponse response = new HelloWorldResponse();
-        response.metadata = new Metadata();
-        response.metadata.setSenderId(this.getClass().getSimpleName());
-        response.metadata.setMessageId(request.metadata.getMessageId());
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(request.getMetadata().getMessageId());
+        response.setMetadata(metadata);
         try {
             ResultData resultData = new ResultData();
             String hello = helloWorldService.sayHello("POST");
             resultData.setName(hello);
             resultData.setStatus("OK");
-            response.resultDataList = new ArrayList<ResultData>();
-            response.resultDataList.add(resultData);
+            List<ResultData> resultDataList = new ArrayList<ResultData>();
+            resultDataList.add(resultData);
+            response.setResultDataList(resultDataList);
         } catch (Exception e) {
             ERROR_LOGGER.error("/helloworld/hente", e);
             throw new InternalServerErrorException(e.toString(), e);
