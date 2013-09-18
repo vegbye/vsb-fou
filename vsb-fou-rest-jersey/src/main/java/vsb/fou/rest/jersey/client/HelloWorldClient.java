@@ -1,5 +1,6 @@
 package vsb.fou.rest.jersey.client;
 
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,16 +26,16 @@ public class HelloWorldClient {
     private String baseUrl;
 
     public HelloWorldResponse getHelloWorld() {
-        Client client = ClientBuilder.newClient();
+        Client client = getClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/hente");
-        Response response = webTarget.request().get();
+        Response response = webTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
         LOGGER.info("response.getEntity() = " + response.getEntity());
         checkResponseForErrors(response);
         return response.readEntity(HelloWorldResponse.class);
     }
 
     public HelloWorldResponse postHelloWorldJSON(HelloWorldRequest request) {
-        Client client = ClientBuilder.newClient();
+        Client client = getClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/poste");
 
         Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_JSON);
@@ -45,7 +46,7 @@ public class HelloWorldClient {
     }
 
     public HelloWorldResponse postHelloWorldXML(HelloWorldRequest request) {
-        Client client = ClientBuilder.newClient();
+        Client client = getClient();
         WebTarget webTarget = client.target(baseUrl + "/rest/").path("helloworld/poste");
 
         Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_XML);
@@ -53,6 +54,10 @@ public class HelloWorldClient {
 
         checkResponseForErrors(response);
         return response.readEntity(HelloWorldResponse.class);
+    }
+
+    private Client getClient() {
+        return ClientBuilder.newClient().register(new JacksonFeature());
     }
 
     private void checkResponseForErrors(Response response) {

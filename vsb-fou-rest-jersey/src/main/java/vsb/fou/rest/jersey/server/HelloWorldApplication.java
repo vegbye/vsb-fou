@@ -1,5 +1,6 @@
 package vsb.fou.rest.jersey.server;
 
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
@@ -13,6 +14,7 @@ public class HelloWorldApplication extends ResourceConfig {
      */
     public HelloWorldApplication() {
         register(RequestContextFilter.class);
+        register(JacksonFeature.class);
         register(HelloWorldJerseyREST.class);
     }
 }
