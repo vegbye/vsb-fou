@@ -3,7 +3,6 @@ package vsb.fou.rest.jersey.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
@@ -21,19 +20,17 @@ import java.util.List;
  * @author Vegard S. Bye
  */
 @Path("/helloworld")
-@Service
 public class HelloWorldJerseyREST {
 
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + HelloWorldJerseyREST.class.getSimpleName());
     private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("REQUEST." + HelloWorldJerseyREST.class.getSimpleName());
     private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("RESPONSE." + HelloWorldJerseyREST.class.getSimpleName());
+    private static int counter = 0;
     /**
      * NB! MÅ være @Autowired ikke @Resource !?
      */
     @Autowired
     private HelloWorldService helloWorldService;
-
-    private static int counter = 0;
 
     public HelloWorldJerseyREST() {
         counter++;
@@ -51,17 +48,12 @@ public class HelloWorldJerseyREST {
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         response.setMetadata(metadata);
-        try {
-            List<ResultData> resultDataList = new ArrayList<ResultData>();
-            resultDataList.add(getResultData("GET.1"));
-            resultDataList.add(getResultData("GET.2"));
-            resultDataList.add(getResultData("GET.3"));
-            resultDataList.add(getResultData("GET.4"));
-            response.setResultDataList(resultDataList);
-        } catch (Exception e) {
-            ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new InternalServerErrorException(e.toString(), e);
-        }
+        List<ResultData> resultDataList = new ArrayList<ResultData>();
+        resultDataList.add(getResultData("GET.1"));
+        resultDataList.add(getResultData("GET.2"));
+        resultDataList.add(getResultData("GET.3"));
+        resultDataList.add(getResultData("GET.4"));
+        response.setResultDataList(resultDataList);
         RESPONSE_LOGGER.info("GET:" + response);
         return VsbRestUtils.okResponse(response);
     }
@@ -77,17 +69,12 @@ public class HelloWorldJerseyREST {
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         response.setMetadata(metadata);
-        try {
-            List<ResultData> resultDataList = new ArrayList<ResultData>();
-            resultDataList.add(getResultData("GET.1"));
-            resultDataList.add(getResultData("GET.2"));
-            resultDataList.add(getResultData("GET.3"));
-            resultDataList.add(getResultData("GET.4"));
-            response.setResultDataList(resultDataList);
-        } catch (Exception e) {
-            ERROR_LOGGER.error("/helloworld/params", e);
-            throw new InternalServerErrorException(e.toString(), e);
-        }
+        List<ResultData> resultDataList = new ArrayList<ResultData>();
+        resultDataList.add(getResultData("GET.1"));
+        resultDataList.add(getResultData("GET.2"));
+        resultDataList.add(getResultData("GET.3"));
+        resultDataList.add(getResultData("GET.4"));
+        response.setResultDataList(resultDataList);
         RESPONSE_LOGGER.info("GET:" + response);
         return VsbRestUtils.okResponse(response);
     }
@@ -122,21 +109,16 @@ public class HelloWorldJerseyREST {
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
         entity.setMetadata(metadata);
-        try {
-            if ("kast".equalsIgnoreCase(id)) {
-                throw new VsbServerException("Jeg kaster en feil!");
-            }
-            List<ResultData> resultDataList = new ArrayList<ResultData>();
-            resultDataList.add(getResultData("GET.1:" + id));
-            resultDataList.add(getResultData("GET.2:" + id));
-            resultDataList.add(getResultData("GET.3:" + id));
-            resultDataList.add(getResultData("GET.4:" + id));
-            resultDataList.add(getResultData("GET.5:" + id));
-            entity.setResultDataList(resultDataList);
-        } catch (VsbServerException e) {
-            ERROR_LOGGER.error("/helloworld/henteid", e);
-            throw e;
+        if ("kast".equalsIgnoreCase(id)) {
+            throw new VsbServerException("Jeg kaster en feil!");
         }
+        List<ResultData> resultDataList = new ArrayList<ResultData>();
+        resultDataList.add(getResultData("GET.1:" + id));
+        resultDataList.add(getResultData("GET.2:" + id));
+        resultDataList.add(getResultData("GET.3:" + id));
+        resultDataList.add(getResultData("GET.4:" + id));
+        resultDataList.add(getResultData("GET.5:" + id));
+        entity.setResultDataList(resultDataList);
         RESPONSE_LOGGER.info("GET:" + entity);
         return VsbRestUtils.okResponse(entity);
     }
@@ -152,18 +134,13 @@ public class HelloWorldJerseyREST {
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(request.getMetadata().getMessageId());
         response.setMetadata(metadata);
-        try {
-            ResultData resultData = new ResultData();
-            String hello = helloWorldService.sayHello("POST");
-            resultData.setName(hello);
-            resultData.setStatus("OK");
-            List<ResultData> resultDataList = new ArrayList<ResultData>();
-            resultDataList.add(resultData);
-            response.setResultDataList(resultDataList);
-        } catch (Exception e) {
-            ERROR_LOGGER.error("/helloworld/hente", e);
-            throw new InternalServerErrorException(e.toString(), e);
-        }
+        ResultData resultData = new ResultData();
+        String hello = helloWorldService.sayHello("POST");
+        resultData.setName(hello);
+        resultData.setStatus("OK");
+        List<ResultData> resultDataList = new ArrayList<ResultData>();
+        resultDataList.add(resultData);
+        response.setResultDataList(resultDataList);
         RESPONSE_LOGGER.info("POST:" + response);
         return VsbRestUtils.okResponse(response);
     }

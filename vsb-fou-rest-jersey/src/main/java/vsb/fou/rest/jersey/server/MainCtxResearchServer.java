@@ -2,7 +2,6 @@ package vsb.fou.rest.jersey.server;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +10,6 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 @ComponentScan("vsb.fou.rest.jersey.server")
-@EnableAspectJAutoProxy
 public class MainCtxResearchServer {
 
     @PostConstruct

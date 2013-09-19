@@ -5,6 +5,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.Response;
@@ -13,6 +15,10 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class VsbRestAspect {
+
+    private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + VsbRestAspect.class.getSimpleName());
+    private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("REQUEST." + VsbRestAspect.class.getSimpleName());
+    private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("RESPONSE." + VsbRestAspect.class.getSimpleName());
 
     @Pointcut("within(@javax.ws.rs.Path *)")
     public void pathAnnotatedClass() {
@@ -43,7 +49,7 @@ public class VsbRestAspect {
             }
             return response;
         } catch (Exception e) {
-            // log it
+            ERROR_LOGGER.error("En feil har skjedd!", e);
             throw e;
         } finally {
             // clean up
