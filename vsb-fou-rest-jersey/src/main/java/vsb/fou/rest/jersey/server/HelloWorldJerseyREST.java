@@ -57,6 +57,32 @@ public class HelloWorldJerseyREST {
         return VsbRestUtils.okResponse(response);
     }
 
+    @GET
+    @Path("/params")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response getHelloWithParams(@DefaultValue("123456") @QueryParam("messageId") String messageId) {
+        REQUEST_LOGGER.info("GET hello params:" + messageId);
+
+        HelloWorldResponse response = new HelloWorldResponse();
+        Metadata metadata = new Metadata();
+        metadata.setSenderId(this.getClass().getSimpleName());
+        metadata.setMessageId(Long.toString(System.currentTimeMillis()));
+        response.setMetadata(metadata);
+        try {
+            List<ResultData> resultDataList = new ArrayList<ResultData>();
+            resultDataList.add(getResultData("GET.1"));
+            resultDataList.add(getResultData("GET.2"));
+            resultDataList.add(getResultData("GET.3"));
+            resultDataList.add(getResultData("GET.4"));
+            response.setResultDataList(resultDataList);
+        } catch (Exception e) {
+            ERROR_LOGGER.error("/helloworld/params", e);
+            throw new InternalServerErrorException(e.toString(), e);
+        }
+        RESPONSE_LOGGER.info("GET:" + response);
+        return VsbRestUtils.okResponse(response);
+    }
+
     private ResultData getResultData(String hello) {
         ResultData resultData = new ResultData();
         resultData.setName(helloWorldService.sayHello(hello));

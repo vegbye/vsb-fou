@@ -35,6 +35,15 @@ public class HelloWorldClient {
         return response.readEntity(HelloWorldResponse.class);
     }
 
+    public HelloWorldResponse getHelloWorldParams() {
+        WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/params")
+                .queryParam("messageId", Long.toString(System.currentTimeMillis()));
+        Response response = webTarget.request(MediaType.APPLICATION_JSON_TYPE).get();
+        LOGGER.info("response.getEntity() = " + response.getEntity());
+        checkResponseForErrors(response);
+        return response.readEntity(HelloWorldResponse.class);
+    }
+
     public HelloWorldResponse getHelloWorldId(String id) {
         WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/henteid").path(id);
         Response response = webTarget.request(MediaType.APPLICATION_JSON_TYPE).get();

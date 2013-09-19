@@ -45,6 +45,18 @@ public class HelloWorldClientTest {
     }
 
     @Test
+    public void test_getHelloParams() {
+        HelloWorldResponse response = helloWorldClient.getHelloWorldParams();
+        LOGGER.info("metadata.senderId:" + response.getMetadata().getSenderId());
+        LOGGER.info("metadata.messageId:" + response.getMetadata().getMessageId());
+        LOGGER.info("response.resultDataList = " + response.getResultDataList());
+        assertThat(response.getMetadata(), notNullValue());
+        assertThat(response.getMetadata().getMessageId(), notNullValue());
+        assertThat(response.getMetadata().getSenderId(), is(HelloWorldJerseyREST.class.getSimpleName()));
+        assertThat(response.getResultDataList().toString(), containsString("Hello 'GET.1'"));
+    }
+
+    @Test
     public void test_getHelloId() {
         String id = "ID-" + System.currentTimeMillis();
         HelloWorldResponse response = helloWorldClient.getHelloWorldId(id);
