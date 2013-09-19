@@ -8,16 +8,11 @@ import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
 import vsb.fou.rest.jersey.api.ResultData;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +34,7 @@ public class HelloWorldJerseyREST {
     @GET
     @Path("/hente")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public HelloWorldResponse getHello() {
+    public Response getHello() {
         REQUEST_LOGGER.info("GET hello!");
 
         HelloWorldResponse response = new HelloWorldResponse();
@@ -59,7 +54,7 @@ public class HelloWorldJerseyREST {
             throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("GET:" + response);
-        return response;
+        return VsbRestUtils.okResponse(response);
     }
 
     private ResultData getResultData(String hello) {
@@ -72,16 +67,26 @@ public class HelloWorldJerseyREST {
     @GET
     @Path("/henteid/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public HelloWorldResponse getHelloId(@PathParam("id") String id,
-                                         @Context Request restRequest,
-                                         @Context javax.ws.rs.core.UriInfo uriInfo) {
-        REQUEST_LOGGER.info("GET hello! id:'" + id + "'" + "Request method:" + restRequest.getMethod() + " URI:" + uriInfo.getRequestUri());
+    public Response getHelloId(@PathParam("id") String id,
+                               @Context Request restRequest,
+                               @Context javax.ws.rs.core.UriInfo uriInfo) {
+        REQUEST_LOGGER.info("GET hello! id:'" + id + "'"
+                + "Request method:" + restRequest.getMethod()
+                + " URI:" + uriInfo.getRequestUri());
 
-        HelloWorldResponse response = new HelloWorldResponse();
+        for (String key : uriInfo.getPathParameters().keySet()) {
+            List<String> params = uriInfo.getPathParameters().get(key);
+            REQUEST_LOGGER.info(key + "=>" + params);
+        }
+        for (String key : uriInfo.getQueryParameters().keySet()) {
+            List<String> params = uriInfo.getQueryParameters().get(key);
+            REQUEST_LOGGER.info(key + "=>" + params);
+        }
+        HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        response.setMetadata(metadata);
+        entity.setMetadata(metadata);
         try {
             if ("kast".equalsIgnoreCase(id)) {
                 throw new VsbServerException("Jeg kaster en feil!");
@@ -92,20 +97,20 @@ public class HelloWorldJerseyREST {
             resultDataList.add(getResultData("GET.3:" + id));
             resultDataList.add(getResultData("GET.4:" + id));
             resultDataList.add(getResultData("GET.5:" + id));
-            response.setResultDataList(resultDataList);
+            entity.setResultDataList(resultDataList);
         } catch (VsbServerException e) {
             ERROR_LOGGER.error("/helloworld/henteid", e);
             throw e;
         }
-        RESPONSE_LOGGER.info("GET:" + response);
-        return response;
+        RESPONSE_LOGGER.info("GET:" + entity);
+        return VsbRestUtils.okResponse(entity);
     }
 
     @POST
     @Path("/poste")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public HelloWorldResponse postHello(HelloWorldRequest request) {
+    public Response postHello(HelloWorldRequest request) {
         REQUEST_LOGGER.info("POST hello:" + request.getMetadata() + request.getMsg());
         HelloWorldResponse response = new HelloWorldResponse();
         Metadata metadata = new Metadata();
@@ -125,7 +130,7 @@ public class HelloWorldJerseyREST {
             throw new InternalServerErrorException(e.toString(), e);
         }
         RESPONSE_LOGGER.info("POST:" + response);
-        return response;
+        return VsbRestUtils.okResponse(response);
     }
 
 }
