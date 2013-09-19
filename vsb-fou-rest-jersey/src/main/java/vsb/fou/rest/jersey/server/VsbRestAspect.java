@@ -8,7 +8,9 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Aspect
+@Service
 public class VsbRestAspect {
 
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + VsbRestAspect.class.getSimpleName());
@@ -23,12 +26,20 @@ public class VsbRestAspect {
     private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("TRANSACTION.RESPONSE." + VsbRestAspect.class.getSimpleName());
     private static final Map<String, List<String>> TRUNCATED_REQUEST_PARAMS = new HashMap<String, List<String>>();
 
+    private static VsbSessionCache vsbSessionCache;
+
     public static void addTruncatedRequestParam(String serviceName, String paramName) {
         List<String> paramNames = TRUNCATED_REQUEST_PARAMS.get(serviceName);
         if (paramNames == null) {
             TRUNCATED_REQUEST_PARAMS.put(serviceName, new ArrayList<String>());
         }
         TRUNCATED_REQUEST_PARAMS.get(serviceName).add(paramName);
+    }
+
+    @Resource
+    public void setVsbSessionCache(VsbSessionCache vsbSessionCache) {
+        System.out.println("Setter vsbSessionCache:" + vsbSessionCache);
+        VsbRestAspect.vsbSessionCache = vsbSessionCache;
     }
 
     @Pointcut("within(@javax.ws.rs.Path *)")
@@ -52,6 +63,7 @@ public class VsbRestAspect {
         MDC.put("THREADID", Long.toString(Thread.currentThread().getId()));
         REQUEST_LOGGER.info(serviceName + "[" + requestParams + "]");
         try {
+            vsbSessionCache.sayHello();
             Object response = jp.proceed();
             if (response instanceof Response) {
                 Response r = (Response) response;
