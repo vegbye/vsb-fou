@@ -17,30 +17,4 @@
         <module>vsb-fou-kladd</module>
     </modules>
 
-    <profiles>
-        <profile>
-            <id>linuxProps</id>
-            <activation>
-                <os>
-                    <family>Unix</family>
-                </os>
-            </activation>
-            <properties>
-                <jetty.webapps.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
-            </properties>
-        </profile>
-        <profile>
-            <id>windowsProps</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>
