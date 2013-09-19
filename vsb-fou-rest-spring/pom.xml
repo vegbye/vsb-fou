@@ -222,29 +222,6 @@
 
     <profiles>
         <profile>
-            <id>linuxProps</id>
-            <activation>
-                <os>
-                    <family>Unix</family>
-                </os>
-            </activation>
-            <properties>
-                <jetty.webapps.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
-            </properties>
-        </profile>
-        <profile>
-            <id>windowsProps</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <os>
-                    <family>Windows</family>
-                </os>
-            </activation>
-            <properties>
-                <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
-            </properties>
-        </profile>
-        <profile>
             <id>standardBygg</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -283,10 +260,55 @@
             </build>
         </profile>
         <profile>
-            <id>kopier</id>
+            <id>kopierMac</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+            <properties>
+                <jetty.webapps.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <excludedGroups>
+                                vsb.fou.common.DemandsRunningJettyServerTestCategory
+                            </excludedGroups>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <id>copy-war</id>
+                                <phase>install</phase>
+                                <configuration>
+                                    <target>
+                                        <copy file="${project.build.directory}/${project.build.finalName}.war"
+                                              todir="${jetty.webapps.dir}"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>kopierWindows</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
