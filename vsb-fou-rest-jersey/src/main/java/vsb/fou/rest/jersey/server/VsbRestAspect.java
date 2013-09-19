@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.core.Response;
-import java.util.Arrays;
 
 @Aspect
 @Component
@@ -31,21 +30,24 @@ public class VsbRestAspect {
     @Around("publicMethod() && pathAnnotatedClass()")
     public Object aroundExeute(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
-        System.out.println("Arrays.toString(args) = " + Arrays.toString(args));
         MethodSignature signature = (MethodSignature) jp.getSignature();
-        System.out.println("signature.getMethod().getName() = " + signature.getMethod().getName());
-        System.out.println("signature.getReturnType().getName() = " + signature.getReturnType().getName());
         String[] parameterNames = signature.getParameterNames();
-        System.out.println("Arrays.toString(parameterNames) = " + Arrays.toString(parameterNames));
         Class<?> restClass = jp.getTarget().getClass();
 
-        Object response = null;
+        String requestParams = getRequestParams(parameterNames, args);
+
+        REQUEST_LOGGER.info(restClass.getSimpleName() + "." + signature.getMethod().getName()
+                + "[" + requestParams + "]");
         try {
-            response = jp.proceed();
+            Object response = jp.proceed();
             if (response instanceof Response) {
                 Response r = (Response) response;
                 Object entity = r.getEntity();
-                System.out.println("entity = " + entity);
+                RESPONSE_LOGGER.info(restClass.getSimpleName() + "." + signature.getMethod().getName()
+                        + "[" + entity + "]");
+            } else {
+                RESPONSE_LOGGER.info(restClass.getSimpleName() + "." + signature.getMethod().getName()
+                        + "[" + response + "]");
             }
             return response;
         } catch (Exception e) {
@@ -54,6 +56,19 @@ public class VsbRestAspect {
         } finally {
             // clean up
         }
+    }
+
+    private String getRequestParams(String[] parameterNames, Object[] args) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < parameterNames.length; i++) {
+            String paramName = parameterNames[i];
+            Object arg = args[i];
+            sb.append(paramName)
+                    .append("=")
+                    .append(arg)
+                    .append(" ");
+        }
+        return sb.toString().trim();
     }
 
 }

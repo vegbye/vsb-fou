@@ -33,9 +33,6 @@ public class HelloWorldResponse {
 
     @Override
     public String toString() {
-        return "HelloWorldResponse{" +
-                "metadata=" + metadata +
-                ", resultData='" + resultDataList + '\'' +
-                '}';
+        return String.format("HelloWorldResponse[%s, resultDataList: %s]", metadata, resultDataList);
     }
 }

@@ -26,9 +26,6 @@ public class Metadata {
 
     @Override
     public String toString() {
-        return "Metadata{" +
-                "messageId='" + messageId + '\'' +
-                ", senderId='" + senderId + '\'' +
-                '}';
+        return String.format("Metadata[senderId: %s, messageId: %s]", senderId, messageId);
     }
 }
