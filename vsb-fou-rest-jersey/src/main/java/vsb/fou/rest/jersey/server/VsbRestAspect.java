@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -48,8 +49,8 @@ public class VsbRestAspect {
         String serviceName = restClass.getSimpleName() + "." + signature.getMethod().getName();
         String requestParams = getRequestParams(serviceName, parameterNames, args);
 
-        REQUEST_LOGGER.info(serviceName
-                + "[" + requestParams + "]");
+        MDC.put("THREADID", Long.toString(Thread.currentThread().getId()));
+        REQUEST_LOGGER.info(serviceName + "[" + requestParams + "]");
         try {
             Object response = jp.proceed();
             if (response instanceof Response) {
@@ -65,7 +66,7 @@ public class VsbRestAspect {
             ERROR_LOGGER.error("", e);
             throw e;
         } finally {
-            // clean up
+            MDC.clear();
         }
     }
 
