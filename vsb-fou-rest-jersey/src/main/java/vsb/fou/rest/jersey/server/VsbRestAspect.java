@@ -16,8 +16,8 @@ import javax.ws.rs.core.Response;
 public class VsbRestAspect {
 
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + VsbRestAspect.class.getSimpleName());
-    private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("REQUEST." + VsbRestAspect.class.getSimpleName());
-    private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("RESPONSE." + VsbRestAspect.class.getSimpleName());
+    private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("TRANSACTION.REQUEST." + VsbRestAspect.class.getSimpleName());
+    private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("TRANSACTION.RESPONSE." + VsbRestAspect.class.getSimpleName());
 
     @Pointcut("within(@javax.ws.rs.Path *)")
     public void pathAnnotatedClass() {
@@ -51,7 +51,9 @@ public class VsbRestAspect {
             }
             return response;
         } catch (Exception e) {
-            ERROR_LOGGER.error("En feil har skjedd!", e);
+            RESPONSE_LOGGER.error(restClass.getSimpleName() + "." + signature.getMethod().getName()
+                    + "[" + e + "]");
+            ERROR_LOGGER.error("", e);
             throw e;
         } finally {
             // clean up
