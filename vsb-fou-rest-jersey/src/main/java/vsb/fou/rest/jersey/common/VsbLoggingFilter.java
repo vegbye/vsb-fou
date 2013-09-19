@@ -7,6 +7,6 @@ import java.util.logging.Logger;
 public class VsbLoggingFilter extends LoggingFilter {
 
     public VsbLoggingFilter() {
-        super(Logger.getLogger("TRANSACTION.REST"), false);
+        super(Logger.getLogger("HTTP.REST"), false);
     }
 }
