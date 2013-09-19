@@ -34,36 +34,36 @@ public class HelloWorldJerseyREST {
     @Path("/hente")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response getHello() {
-        HelloWorldResponse response = new HelloWorldResponse();
+        HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        response.setMetadata(metadata);
+        entity.setMetadata(metadata);
         List<ResultData> resultDataList = new ArrayList<ResultData>();
         resultDataList.add(getResultData("GET.1"));
         resultDataList.add(getResultData("GET.2"));
         resultDataList.add(getResultData("GET.3"));
         resultDataList.add(getResultData("GET.4"));
-        response.setResultDataList(resultDataList);
-        return VsbRestUtils.okResponse(response);
+        entity.setResultDataList(resultDataList);
+        return VsbRestUtils.okResponse(entity);
     }
 
     @GET
     @Path("/params")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response getHelloWithParams(@DefaultValue("123456") @QueryParam("messageId") String messageId) {
-        HelloWorldResponse response = new HelloWorldResponse();
+        HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(Long.toString(System.currentTimeMillis()));
-        response.setMetadata(metadata);
+        entity.setMetadata(metadata);
         List<ResultData> resultDataList = new ArrayList<ResultData>();
         resultDataList.add(getResultData("GET.1"));
         resultDataList.add(getResultData("GET.2"));
         resultDataList.add(getResultData("GET.3"));
         resultDataList.add(getResultData("GET.4"));
-        response.setResultDataList(resultDataList);
-        return VsbRestUtils.okResponse(response);
+        entity.setResultDataList(resultDataList);
+        return VsbRestUtils.okResponse(entity);
     }
 
     @GET
@@ -93,19 +93,19 @@ public class HelloWorldJerseyREST {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response postHello(HelloWorldRequest request) {
-        HelloWorldResponse response = new HelloWorldResponse();
+        HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
         metadata.setMessageId(request.getMetadata().getMessageId());
-        response.setMetadata(metadata);
+        entity.setMetadata(metadata);
         ResultData resultData = new ResultData();
         String hello = helloWorldService.sayHello("POST");
         resultData.setName(hello);
         resultData.setStatus("OK");
         List<ResultData> resultDataList = new ArrayList<ResultData>();
         resultDataList.add(resultData);
-        response.setResultDataList(resultDataList);
-        return VsbRestUtils.okResponse(response);
+        entity.setResultDataList(resultDataList);
+        return VsbRestUtils.okResponse(entity);
     }
 
     private ResultData getResultData(String hello) {

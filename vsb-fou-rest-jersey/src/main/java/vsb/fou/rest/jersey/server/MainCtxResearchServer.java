@@ -17,4 +17,9 @@ public class MainCtxResearchServer {
         org.slf4j.bridge.SLF4JBridgeHandler.removeHandlersForRootLogger();
         org.slf4j.bridge.SLF4JBridgeHandler.install();
     }
+
+    @PostConstruct
+    public void addTruncatedElements() {
+        VsbRestAspect.addTruncatedRequestParam(HelloWorldJerseyREST.class.getSimpleName() + ".getHelloId", "id");
+    }
 }
