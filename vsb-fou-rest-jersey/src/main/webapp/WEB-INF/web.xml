@@ -25,14 +25,6 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>vsb.fou.rest.jersey.server.HelloWorldApplication</param-value>
         </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
-            <param-value>org.glassfish.jersey.filter.LoggingFilter</param-value>
-        </init-param>
-        <init-param>
-            <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-            <param-value>org.glassfish.jersey.filter.LoggingFilter</param-value>
-        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
