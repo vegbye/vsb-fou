@@ -11,6 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import javax.annotation.PostConstruct;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import java.util.logging.Logger;
 
 /**
  * @author Vegard S. Bye
@@ -29,7 +30,8 @@ public class MainCtxResearchClient {
 
     @Bean
     public Client restClient() {
-        return ClientBuilder.newClient().register(new JacksonFeature()).register(new LoggingFilter());
+        LoggingFilter loggingFilter = new LoggingFilter(Logger.getLogger("TRANSACTION.REST"), true);
+        return ClientBuilder.newClient().register(new JacksonFeature()).register(loggingFilter);
     }
 
     @PostConstruct

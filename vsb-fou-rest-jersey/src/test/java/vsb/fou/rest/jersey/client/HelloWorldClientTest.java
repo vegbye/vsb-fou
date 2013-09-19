@@ -16,9 +16,7 @@ import vsb.fou.rest.jersey.server.HelloWorldJerseyREST;
 import javax.annotation.Resource;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -66,7 +64,7 @@ public class HelloWorldClientTest {
             helloWorldClient.getHelloWorldId(id);
             fail();
         } catch (Exception e) {
-            assertThat(e.getMessage(), containsString("503"));
+            assertThat(e.getMessage(), containsString("500"));
             assertThat(e.getMessage(), containsString("Jeg kaster en feil!"));
         }
     }

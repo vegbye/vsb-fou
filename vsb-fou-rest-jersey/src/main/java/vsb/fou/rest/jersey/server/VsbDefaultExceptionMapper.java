@@ -1,5 +1,7 @@
 package vsb.fou.rest.jersey.server;
 
+import vsb.fou.rest.jersey.api.VsbRestError;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -12,6 +14,12 @@ public class VsbDefaultExceptionMapper implements ExceptionMapper<Exception> {
 
     @Override
     public Response toResponse(Exception e) {
-        return Response.status(Response.Status.SERVICE_UNAVAILABLE).entity(e.toString()).type(MediaType.TEXT_PLAIN_TYPE).build();
+        VsbRestError vsbRestError = new VsbRestError();
+        vsbRestError.setErrorId(Long.toString(System.currentTimeMillis()));
+        vsbRestError.setErrorMsg(e.toString());
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(vsbRestError)
+                .type(MediaType.APPLICATION_JSON_TYPE)
+                .build();
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
+import vsb.fou.rest.jersey.api.VsbRestError;
 
 import javax.annotation.Resource;
 import javax.ws.rs.client.Client;
@@ -69,8 +70,10 @@ public class HelloWorldClient {
         LOGGER.info("response.getDate() = " + response.getDate());
         if (response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
             LOGGER.error("IKKE SUKSESS:" + response.getStatusInfo().getFamily());
-            String errMessage = response.readEntity(String.class);
-            throw new RuntimeException("Ikke suksess: " + response.getStatus() + " Msg:" + errMessage);
+            VsbRestError vsbRestError = response.readEntity(VsbRestError.class);
+            throw new RuntimeException("Ikke suksess: " + response.getStatus()
+                    + ", Id:" + vsbRestError.getErrorId()
+                    + ", Msg:" + vsbRestError.getErrorMsg());
         }
     }
 }
