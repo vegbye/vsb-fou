@@ -3,6 +3,7 @@ package vsb.fou.rest.jersey.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author Vegard S. Bye
  */
 @Path("/helloworld")
+@Service
 public class HelloWorldJerseyREST {
 
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + HelloWorldJerseyREST.class.getSimpleName());
@@ -30,6 +32,13 @@ public class HelloWorldJerseyREST {
      */
     @Autowired
     private HelloWorldService helloWorldService;
+
+    private static int counter = 0;
+
+    public HelloWorldJerseyREST() {
+        counter++;
+        System.out.println("counter = " + counter);
+    }
 
     @GET
     @Path("/hente")

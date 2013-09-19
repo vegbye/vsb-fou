@@ -7,54 +7,47 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Method;
+import javax.ws.rs.core.Response;
+import java.util.Arrays;
 
 @Aspect
 @Component
 public class VsbRestAspect {
 
-    @Pointcut("within(@javax.jws.WebService *)")
-    public void webServiceAnnotatedClass() {
-    }
-
-    @Pointcut("within(@sb1.lip.infra.ws.WebServiceWithoutMetadata *)")
-    public void webServiceWithoutMetadataAnnotatedClass() {
+    @Pointcut("within(@javax.ws.rs.Path *)")
+    public void pathAnnotatedClass() {
     }
 
     @Pointcut("execution(public * *(..))")
     public void publicMethod() {
     }
 
-    @Pointcut("execution(@javax.annotation.Resource * *(..))")
-    public void publicSpringSetter() {
-    }
-
-    /**
-     * Dette gjøres før og etter (rundt eller around) Prccess.execute, men etter beforeExecute
-     */
-    @Around("publicMethod() && webServiceAnnotatedClass() && !webServiceWithoutMetadataAnnotatedClass() && !publicSpringSetter()")
+    @Around("publicMethod() && pathAnnotatedClass()")
     public Object aroundExeute(ProceedingJoinPoint jp) throws Throwable {
-        Object request = getRequest(jp);
+        Object[] args = jp.getArgs();
+        System.out.println("Arrays.toString(args) = " + Arrays.toString(args));
         MethodSignature signature = (MethodSignature) jp.getSignature();
-        Class<?> webServiceClass = jp.getTarget().getClass();
-        Method method = findMethod(webServiceClass, signature.getName());
+        System.out.println("signature.getMethod().getName() = " + signature.getMethod().getName());
+        System.out.println("signature.getReturnType().getName() = " + signature.getReturnType().getName());
+        String[] parameterNames = signature.getParameterNames();
+        System.out.println("Arrays.toString(parameterNames) = " + Arrays.toString(parameterNames));
+        Class<?> restClass = jp.getTarget().getClass();
 
-        lipServiceHandler.before(method, request);
-        lipServiceAudit.startPerformance("WS");
-        lipServiceAudit.logTransaction(TransactionType.REQUEST, request);
-        Object jaxbResponse = null;
+        Object response = null;
         try {
-            jaxbResponse = lipExecutorService.submit(createLipCallable(jp));
-        } catch (ErrorCodeException e) {
-            jaxbResponse = lipServiceErrorAudit.afterThrowing(e, e.getErrorCode());
+            response = jp.proceed();
+            if (response instanceof Response) {
+                Response r = (Response) response;
+                Object entity = r.getEntity();
+                System.out.println("entity = " + entity);
+            }
+            return response;
         } catch (Exception e) {
-            jaxbResponse = lipServiceErrorAudit.afterThrowing(e, InfraErrorCode.UNEXPECTED_ERROR_3);
+            // log it
+            throw e;
         } finally {
-            lipServiceAudit.logTransaction(TransactionType.RESPONSE, jaxbResponse);
-            lipServiceAudit.stopPerformance();
-            lipServiceHandler.after();
+            // clean up
         }
-        return jaxbResponse;
     }
 
 }
