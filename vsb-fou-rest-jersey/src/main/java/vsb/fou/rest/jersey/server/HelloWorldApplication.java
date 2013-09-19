@@ -3,8 +3,7 @@ package vsb.fou.rest.jersey.server;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
-
-import java.util.logging.Logger;
+import vsb.fou.rest.jersey.common.VsbLoggingFilter;
 
 /**
  * @author Vegard S. Bye
@@ -17,7 +16,7 @@ public class HelloWorldApplication extends ResourceConfig {
     public HelloWorldApplication() {
         register(RequestContextFilter.class);
         register(JacksonFeature.class);
-        register(new VsbLoggingFilter(Logger.getLogger("TRANSACTION.REST"), true));
+        register(new VsbLoggingFilter());
         register(HelloWorldJerseyREST.class);
         register(VsbDefaultExceptionMapper.class);
     }
