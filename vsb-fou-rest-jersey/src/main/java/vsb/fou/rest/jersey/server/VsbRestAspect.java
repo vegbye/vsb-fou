@@ -38,7 +38,6 @@ public class VsbRestAspect {
 
     @Resource
     public void setVsbSessionCache(VsbSessionCache vsbSessionCache) {
-        System.out.println("Setter vsbSessionCache:" + vsbSessionCache);
         VsbRestAspect.vsbSessionCache = vsbSessionCache;
     }
 

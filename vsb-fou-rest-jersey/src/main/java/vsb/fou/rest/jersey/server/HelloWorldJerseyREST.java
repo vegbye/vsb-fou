@@ -51,7 +51,7 @@ public class HelloWorldJerseyREST {
     @GET
     @Path("/params")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getHelloWithParams(@DefaultValue("123456") @QueryParam("messageId") String messageId) {
+    public Response getHelloWithParams(@SuppressWarnings("UnusedParameters") @DefaultValue("123456") @QueryParam("messageId") String messageId) {
         HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
@@ -92,7 +92,8 @@ public class HelloWorldJerseyREST {
     @Path("/poste")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response postHello(@QueryParam("senderId") String senderId, HelloWorldRequest request) {
+    public Response postHello(@SuppressWarnings("UnusedParameters") @QueryParam("senderId") String senderId,
+                              HelloWorldRequest request) {
         HelloWorldResponse entity = new HelloWorldResponse();
         Metadata metadata = new Metadata();
         metadata.setSenderId(this.getClass().getSimpleName());
