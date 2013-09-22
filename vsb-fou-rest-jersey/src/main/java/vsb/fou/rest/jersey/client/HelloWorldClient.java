@@ -53,7 +53,8 @@ public class HelloWorldClient {
     }
 
     public HelloWorldResponse postHelloWorldJSON(HelloWorldRequest request) {
-        WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/poste");
+        WebTarget webTarget = restClient.target(baseUrl).path("/rest/helloworld/poste")
+                .queryParam("senderId", "vegard");
 
         Entity<HelloWorldRequest> entity = Entity.entity(request, MediaType.APPLICATION_JSON);
         Response response = webTarget.request(MediaType.APPLICATION_JSON).post(entity, Response.class);

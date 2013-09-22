@@ -32,6 +32,6 @@ public class HelloWorldRequest {
 
     @Override
     public String toString() {
-        return String.format("HelloWorldRequest[%s, msg: %s]", metadata, msg);
+        return String.format("HelloWorldRequest[%s, msg:%s]", metadata, msg);
     }
 }

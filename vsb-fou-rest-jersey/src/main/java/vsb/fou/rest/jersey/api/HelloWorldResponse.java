@@ -33,6 +33,6 @@ public class HelloWorldResponse {
 
     @Override
     public String toString() {
-        return String.format("HelloWorldResponse[%s, resultDataList: %s]", metadata, resultDataList);
+        return String.format("HelloWorldResponse[%s, resultDataList:%s]", metadata, resultDataList);
     }
 }

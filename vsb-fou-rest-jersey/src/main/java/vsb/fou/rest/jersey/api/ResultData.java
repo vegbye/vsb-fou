@@ -26,6 +26,6 @@ public class ResultData {
 
     @Override
     public String toString() {
-        return String.format("ResultData[name: %s, status: %s]", name, status);
+        return String.format("ResultData[name:%s, status:%s]", name, status);
     }
 }
