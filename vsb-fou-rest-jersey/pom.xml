@@ -32,7 +32,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${vsb.fou.jdk.version}</source>
                     <target>${vsb.fou.jdk.version}</target>
-                    <forceAjcCompile>true</forceAjcCompile>
+                    <forceAjcCompile>false</forceAjcCompile>
                 </configuration>
                 <executions>
                     <execution>
@@ -87,7 +87,7 @@
                     <target>${vsb.fou.jdk.version}</target>
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
-                    <fork>true</fork>
+                    <fork>false</fork>
                     <showDeprecation>false</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>

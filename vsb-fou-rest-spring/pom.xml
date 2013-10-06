@@ -70,7 +70,7 @@
                     <target>${vsb.fou.jdk.version}</target>
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
-                    <fork>true</fork>
+                    <fork>false</fork>
                     <showDeprecation>false</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>
