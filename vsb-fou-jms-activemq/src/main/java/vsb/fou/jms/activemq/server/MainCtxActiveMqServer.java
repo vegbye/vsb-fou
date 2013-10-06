@@ -11,10 +11,9 @@ public class MainCtxActiveMqServer {
 
     @Bean
     public BrokerService broker() throws Exception {
-        BrokerService broker = new BrokerService();
-        broker.setBrokerName("vsb-fou-activemq");
-        broker.addConnector("tcp://localhost:61616");
-        broker.start();
-        return broker;
+
+        BrokerService bean = new BrokerService();
+        bean.start();
+        return bean;
     }
 }

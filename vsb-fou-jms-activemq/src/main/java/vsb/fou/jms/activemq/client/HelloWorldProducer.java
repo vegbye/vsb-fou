@@ -1,7 +1,9 @@
 package vsb.fou.jms.activemq.client;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.jms.core.JmsTemplate;
 
+import javax.annotation.Resource;
 import javax.jms.*;
 
 public class HelloWorldProducer {
@@ -10,8 +12,12 @@ public class HelloWorldProducer {
         new HelloWorldProducer().doIt();
     }
 
+    @Resource
+    private JmsTemplate jmsTemplate;
+
     public void doIt() {
         try {
+
             // Create a ConnectionFactory
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 
