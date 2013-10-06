@@ -10,12 +10,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <spring.version>3.2.3.RELEASE</spring.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
-        <aspectj.version>1.6.11</aspectj.version>
+        <aspectj.version>1.7.3</aspectj.version>
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <hamcrest.version>1.3</hamcrest.version>
@@ -28,11 +28,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.4</version>
+                <version>1.5</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${vsb.fou.jdk.version}</source>
                     <target>${vsb.fou.jdk.version}</target>
+                    <complianceLevel>${vsb.fou.jdk.version}</complianceLevel>
                     <forceAjcCompile>false</forceAjcCompile>
                 </configuration>
                 <executions>
@@ -89,7 +90,7 @@
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
                     <fork>false</fork>
-                    <showDeprecation>false</showDeprecation>
+                    <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
