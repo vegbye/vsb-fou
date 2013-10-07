@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainCtxActiveMqClient.class, TestCtxActiveMqEnv.class})
-public class VsbAsyncProducerNoStubTest {
+public class AsyncJmsClientNoStubTest {
 
     @Resource
     public BrokerService broker;

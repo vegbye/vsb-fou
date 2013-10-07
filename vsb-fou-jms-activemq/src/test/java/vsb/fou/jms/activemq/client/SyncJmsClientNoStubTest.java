@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainCtxActiveMqClient.class, MainCtxActiveMqServer.class, TestCtxActiveMqEnv.class})
-public class VsbSyncJmsNoStubTest {
+public class SyncJmsClientNoStubTest {
 
     @Resource
     private JmsTemplate jmsTemplate;
