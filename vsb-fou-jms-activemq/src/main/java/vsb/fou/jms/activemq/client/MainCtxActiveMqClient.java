@@ -3,15 +3,14 @@ package vsb.fou.jms.activemq.client;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.jms.core.JmsTemplate;
+import vsb.fou.common.EnvironmentConfiguration;
 
 import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@ComponentScan("vsb.fou.jms.activemq.client")
-@Import(EnvCtxActiveMqClient.class)
+@ComponentScan(basePackages = "vsb.fou.jms.activemq.client", excludeFilters = {@ComponentScan.Filter(EnvironmentConfiguration.class)})
 public class MainCtxActiveMqClient {
 
     @Resource

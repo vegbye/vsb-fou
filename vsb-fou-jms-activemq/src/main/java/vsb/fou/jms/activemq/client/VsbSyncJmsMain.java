@@ -18,7 +18,7 @@ public class VsbSyncJmsMain {
 
     public void doIt() {
         try {
-            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClient.class);
+            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
 
             ProducerConsumer pc = new ProducerConsumer("synkron jms", JmsKonstanter.SYNC_REQUEST_QUEUE, JmsKonstanter.SYNC_REPLY_QUEUE, jmsTemplate.getDestinationResolver());

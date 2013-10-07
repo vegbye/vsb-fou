@@ -1,18 +1,25 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.client;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.jms.activemq.common.JmsKonstanter;
+
+import javax.jms.ConnectionFactory;
 
 @Configuration
-public class EnvCtxActiveMqServer {
+@Import(MainCtxActiveMqClient.class)
+@EnvironmentConfiguration
+public class MainCtxActiveMqClientEnv {
 
     @Bean(destroyMethod = "stop")
-    public PooledConnectionFactory connectionFactory() throws Exception {
+    public ConnectionFactory connectionFactory() throws Exception {
         PooledConnectionFactory bean = new PooledConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL("tcp://localhost:61616");
+        connectionFactory.setBrokerURL(JmsKonstanter.BROKER_URL);
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }

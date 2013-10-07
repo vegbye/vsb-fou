@@ -7,6 +7,6 @@ public class MainCtxActiveMqClientTest {
 
     @Test
     public void testAppCtx() throws Exception {
-        new AnnotationConfigApplicationContext(MainCtxActiveMqClient.class);
+        new AnnotationConfigApplicationContext(MainCtxActiveMqClient.class, MockCtxActiveMqClientEnv.class);
     }
 }

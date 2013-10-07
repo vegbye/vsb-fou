@@ -24,7 +24,7 @@ public class VsbAsyncProducer {
 
     public void doIt() {
         try {
-            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClient.class);
+            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
 
             final String correlationID = UUID.randomUUID().toString();
