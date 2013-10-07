@@ -25,6 +25,9 @@ public class SyncJmsListener implements MessageListener {
     @Resource
     private JmsTemplate jmsTemplate;
 
+    /**
+     * Dette tilsvarer det som Dialogue gjør.
+     */
     @Override
     public void onMessage(Message message) {
         try {

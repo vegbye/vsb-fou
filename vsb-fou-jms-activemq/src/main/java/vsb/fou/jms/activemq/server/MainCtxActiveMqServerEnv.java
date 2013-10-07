@@ -58,9 +58,12 @@ public class MainCtxActiveMqServerEnv {
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
         TransportConnector connector = new TransportConnector();
         connector.setUri(new URI(brokerUrl));
+        connector.setEnableStatusMonitor(true);
+        connector.setAuditNetworkProducers(true);
         bean.addConnector(connector);
         bean.setPersistent(true);
         bean.setPersistenceAdapter(persistenceAdapter());
+        bean.setEnableStatistics(true);
         bean.start();
         return bean;
     }

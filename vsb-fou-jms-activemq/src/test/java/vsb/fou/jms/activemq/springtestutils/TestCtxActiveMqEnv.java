@@ -49,9 +49,12 @@ public class TestCtxActiveMqEnv {
         brokerPlugins.add(loggingBrokerPlugin);
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
         TransportConnector connector = new TransportConnector();
+        connector.setEnableStatusMonitor(true);
+        connector.setAuditNetworkProducers(true);
         connector.setUri(new URI(BROKER_URL));
         bean.addConnector(connector);
         bean.setPersistent(false);
+        bean.setEnableStatistics(true);
         bean.start();
         return bean;
     }
