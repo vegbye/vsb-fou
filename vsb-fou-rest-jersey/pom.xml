@@ -15,7 +15,7 @@
         <spring.version>3.2.3.RELEASE</spring.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
-        <aspectj.version>1.7.3</aspectj.version>
+        <aspectj.version>1.7.0</aspectj.version>
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <hamcrest.version>1.3</hamcrest.version>
@@ -44,6 +44,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
