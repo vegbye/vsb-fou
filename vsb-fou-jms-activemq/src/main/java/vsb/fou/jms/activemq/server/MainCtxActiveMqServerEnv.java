@@ -52,9 +52,14 @@ public class MainCtxActiveMqServerEnv {
     @Bean
     public PersistenceAdapter persistenceAdapter() throws IOException {
         KahaDBPersistenceAdapter kahaDBPersistenceAdapter = new KahaDBPersistenceAdapter();
-        File file = new File("vegard-kahadb");
-        file.mkdirs();
-        kahaDBPersistenceAdapter.setDirectory(file);
+        File kahaDir = new File(System.getProperty("java.io.tmpdir"), "vsb-fou-kahadb");
+        if (!kahaDir.exists()) {
+            boolean mkdir = kahaDir.mkdir();
+            if (!mkdir) {
+                throw new RuntimeException("Fikk ikke opprettet KahaDB katalog:" + kahaDir.getAbsolutePath());
+            }
+        }
+        kahaDBPersistenceAdapter.setDirectory(kahaDir);
         return kahaDBPersistenceAdapter;
     }
 
