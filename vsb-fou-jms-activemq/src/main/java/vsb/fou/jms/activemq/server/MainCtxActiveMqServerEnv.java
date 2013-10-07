@@ -10,9 +10,12 @@ import org.apache.activemq.store.PersistenceAdapter;
 import org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ClassPathResource;
 import vsb.fou.common.EnvironmentConfiguration;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 
@@ -29,6 +32,15 @@ import java.util.List;
 public class MainCtxActiveMqServerEnv {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
+    @Value("${vsb.fou.jms.activemq.brokerUrl}")
+    private String brokerUrl;
+
+    @Bean
+    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
+        bean.setLocation(new ClassPathResource("vsb-fou-jms-activemq.properties"));
+        return bean;
+    }
 
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
@@ -45,7 +57,7 @@ public class MainCtxActiveMqServerEnv {
         brokerPlugins.add(loggingBrokerPlugin);
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
         TransportConnector connector = new TransportConnector();
-        connector.setUri(new URI(JmsKonstanter.BROKER_URL));
+        connector.setUri(new URI(brokerUrl));
         bean.addConnector(connector);
         bean.setPersistent(true);
         bean.setPersistenceAdapter(persistenceAdapter());
@@ -74,7 +86,7 @@ public class MainCtxActiveMqServerEnv {
     public ConnectionFactory connectionFactory() throws Exception {
         PooledConnectionFactory bean = new PooledConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL(JmsKonstanter.BROKER_URL);
+        connectionFactory.setBrokerURL(brokerUrl);
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }

@@ -6,8 +6,6 @@ import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.broker.TransportConnector;
 import org.apache.activemq.broker.util.LoggingBrokerPlugin;
 import org.apache.activemq.pool.PooledConnectionFactory;
-import org.apache.activemq.store.PersistenceAdapter;
-import org.apache.activemq.store.memory.MemoryPersistenceAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import vsb.fou.common.EnvironmentConfiguration;
@@ -25,11 +23,13 @@ import java.util.List;
 @EnvironmentConfiguration
 public class TestCtxActiveMqEnv {
 
+    private static final String BROKER_URL = "vm://localhost";
+
     @Bean(destroyMethod = "stop")
     public ConnectionFactory connectionFactory() throws Exception {
         PooledConnectionFactory bean = new PooledConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL(JmsKonstanter.BROKER_URL);
+        connectionFactory.setBrokerURL(BROKER_URL);
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }
@@ -49,16 +49,10 @@ public class TestCtxActiveMqEnv {
         brokerPlugins.add(loggingBrokerPlugin);
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
         TransportConnector connector = new TransportConnector();
-        connector.setUri(new URI(JmsKonstanter.BROKER_URL));
+        connector.setUri(new URI(BROKER_URL));
         bean.addConnector(connector);
-        bean.setPersistenceAdapter(persistenceAdapter());
-        bean.setPersistent(true);
+        bean.setPersistent(false);
         bean.start();
         return bean;
-    }
-
-    @Bean
-    public PersistenceAdapter persistenceAdapter() {
-        return new MemoryPersistenceAdapter();
     }
 }
