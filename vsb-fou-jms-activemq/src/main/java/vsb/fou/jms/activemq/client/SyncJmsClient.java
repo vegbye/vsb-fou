@@ -30,7 +30,7 @@ public class SyncJmsClient {
         try {
             ProducerConsumer pc = new ProducerConsumer(msg, JmsKonstanter.SYNC_REQUEST_QUEUE, JmsKonstanter.SYNC_REPLY_QUEUE, jmsTemplate.getDestinationResolver());
             Message message = jmsTemplate.execute(pc, true);
-            LOGGER.info("Melding sendt og mottatt med  CorrelationID:" + pc.getCorrelationID() + " msg:" + message);
+            LOGGER.info("Melding sendt og mottatt med CorrelationID:" + pc.getCorrelationID() + " msg:" + message);
             return message;
         } catch (Exception e) {
             throw new RuntimeException(e);
