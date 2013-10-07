@@ -47,18 +47,18 @@ public class ProducerConsumer implements SessionCallback<Message> {
             correlationID = UUID.randomUUID().toString();
             final Destination requestQueueDest = destinationResolver.resolveDestinationName(session, requestQueue, false);
             final Destination replyQueueDest = destinationResolver.resolveDestinationName(session, replyQueue, false);
-            String messageSelector = JmsMessageUtil.getJMSCorrelationIDMessageSelector(correlationID);
+            String messageSelector = JmsMessageUtil.getCorrelationIDMessageSelector(correlationID);
             consumer = session.createConsumer(replyQueueDest, messageSelector);
-            final Message responseMsg = session.createTextMessage("Hei hei:" + requestMsg + " " + new Date());
-            responseMsg.setJMSCorrelationID(correlationID);
-            responseMsg.setJMSMessageID(Long.toString(System.currentTimeMillis()));
-            responseMsg.setJMSReplyTo(replyQueueDest);
+            final Message replyMsg = session.createTextMessage("Hei hei:" + requestMsg + " " + new Date());
+            replyMsg.setJMSCorrelationID(correlationID);
+            replyMsg.setJMSMessageID(Long.toString(System.currentTimeMillis()));
+            replyMsg.setJMSReplyTo(replyQueueDest);
 
             producer = session.createProducer(requestQueueDest);
             int timeToLive = 5 * 60 * 1000;
             producer.setTimeToLive(timeToLive + 1000L);
-            LOGGER.info("Sending a responseMsg on " + requestQueue + " expecting answer on " + replyQueue + " using selector: " + consumer.getMessageSelector() + " with timeout " + timeToLive);
-            producer.send(responseMsg);
+            LOGGER.info("Sending a replyMsg on " + requestQueue + " expecting answer on " + replyQueue + " using selector: " + consumer.getMessageSelector() + " with timeout " + timeToLive);
+            producer.send(replyMsg);
             return consumer.receive(timeToLive);
         } finally {
             JmsUtils.closeMessageConsumer(consumer);
