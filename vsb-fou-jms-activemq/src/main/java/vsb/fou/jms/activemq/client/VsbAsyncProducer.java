@@ -17,29 +17,38 @@ import java.util.UUID;
 public class VsbAsyncProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VsbAsyncProducer.class);
+    private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        new VsbAsyncProducer().doIt();
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
+        try {
+            JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
+            VsbAsyncProducer vsbAsyncProducer = new VsbAsyncProducer();
+            vsbAsyncProducer.setJmsTemplate(jmsTemplate);
+            vsbAsyncProducer.doIt("Hei fra VsbAsyncProducer! " + new Date());
+        } finally {
+            ctx.close();
+        }
     }
 
-    public void doIt() {
-        try {
-            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
-            JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
+    public void setJmsTemplate(JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
 
+    public void doIt(final String msg) {
+        try {
             final String correlationID = UUID.randomUUID().toString();
             jmsTemplate.send(JmsKonstanter.ASYNC_REQUEST_QUEUE, new MessageCreator() {
                 @Override
                 public Message createMessage(Session session) throws JMSException {
-                    TextMessage message = session.createTextMessage("Hei fra VsbAsyncProducer! " + new Date());
+                    TextMessage message = session.createTextMessage(msg);
                     message.setJMSCorrelationID(correlationID);
                     return message;
                 }
             });
             LOGGER.info("Melding sendt med CorrelationID:" + correlationID);
-            ctx.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
