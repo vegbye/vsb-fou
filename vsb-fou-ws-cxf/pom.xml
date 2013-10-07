@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <spring.version>3.2.3.RELEASE</spring.version>
         <cxf.version>2.7.6</cxf.version>
@@ -68,8 +68,8 @@
                     <target>${vsb.fou.jdk.version}</target>
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
-                    <fork>true</fork>
-                    <showDeprecation>false</showDeprecation>
+                    <fork>false</fork>
+                    <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>

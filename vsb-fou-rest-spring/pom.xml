@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.6</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <asm.version>4.1</asm.version>
         <cglib.version>2.2.2</cglib.version>
@@ -70,8 +70,8 @@
                     <target>${vsb.fou.jdk.version}</target>
                     <meminitial>128m</meminitial>
                     <maxmem>1024m</maxmem>
-                    <fork>true</fork>
-                    <showDeprecation>false</showDeprecation>
+                    <fork>false</fork>
+                    <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
