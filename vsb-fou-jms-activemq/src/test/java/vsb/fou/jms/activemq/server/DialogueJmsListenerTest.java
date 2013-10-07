@@ -9,7 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import javax.jms.Message;
+import javax.jms.TextMessage;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
@@ -29,7 +29,7 @@ public class DialogueJmsListenerTest {
 
     @Test
     public void testIt() {
-        Message message = Mockito.mock(Message.class);
+        TextMessage message = Mockito.mock(TextMessage.class);
         dialogueJmsListener.onMessage(message);
 
         verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
