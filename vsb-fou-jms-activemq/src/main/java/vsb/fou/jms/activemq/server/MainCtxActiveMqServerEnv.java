@@ -8,6 +8,8 @@ import org.apache.activemq.broker.util.LoggingBrokerPlugin;
 import org.apache.activemq.pool.PooledConnectionFactory;
 import org.apache.activemq.store.PersistenceAdapter;
 import org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -25,6 +27,8 @@ import java.util.List;
 @Import(MainCtxActiveMqServer.class)
 @EnvironmentConfiguration
 public class MainCtxActiveMqServerEnv {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
 
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
@@ -53,6 +57,7 @@ public class MainCtxActiveMqServerEnv {
     public PersistenceAdapter persistenceAdapter() throws IOException {
         KahaDBPersistenceAdapter kahaDBPersistenceAdapter = new KahaDBPersistenceAdapter();
         File kahaDir = new File(System.getProperty("java.io.tmpdir"), "vsb-fou-kahadb");
+        LOGGER.info("KahaDB katalog:" + kahaDir.getAbsolutePath());
         if (!kahaDir.exists()) {
             boolean mkdir = kahaDir.mkdir();
             if (!mkdir) {
