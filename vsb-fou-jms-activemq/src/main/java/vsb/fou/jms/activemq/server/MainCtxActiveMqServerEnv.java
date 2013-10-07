@@ -25,10 +25,15 @@ public class MainCtxActiveMqServerEnv {
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
         BrokerService bean = new BrokerService();
-        bean.setBrokerName("vsb-fou");
+        bean.setBrokerName(JmsKonstanter.BROKER_NAME);
         List<BrokerPlugin> brokerPlugins = new ArrayList<>();
         LoggingBrokerPlugin loggingBrokerPlugin = new LoggingBrokerPlugin();
-        loggingBrokerPlugin.setLogAll(true);
+        loggingBrokerPlugin.setLogConnectionEvents(true);
+        loggingBrokerPlugin.setLogMessageEvents(true);
+        loggingBrokerPlugin.setLogTransactionEvents(true);
+        loggingBrokerPlugin.setLogProducerEvents(true);
+        loggingBrokerPlugin.setLogConsumerEvents(true);
+        loggingBrokerPlugin.setLogInternalEvents(false);
         brokerPlugins.add(loggingBrokerPlugin);
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
         TransportConnector connector = new TransportConnector();

@@ -31,7 +31,7 @@ public class MainCtxActiveMqServer {
     }
 
     @Bean
-    public DefaultMessageListenerContainer container() {
+    public DefaultMessageListenerContainer defaultContainer() {
         DefaultMessageListenerContainer bean = new DefaultMessageListenerContainer();
         bean.setConnectionFactory(connectionFactory);
         bean.setDestinationName(JmsKonstanter.ASYNC_REQUEST_QUEUE);
