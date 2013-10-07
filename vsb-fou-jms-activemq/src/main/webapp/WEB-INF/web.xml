@@ -10,7 +10,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>vsb.fou.rest.jersey.server.MainCtxResearchServer</param-value>
+        <param-value>vsb.fou.jms.activemq.server.MainCtxActiveMqServer</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

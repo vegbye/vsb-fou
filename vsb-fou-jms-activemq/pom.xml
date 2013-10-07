@@ -99,7 +99,6 @@
                                 <requireJavaVersion>
                                     <version>${vsb.fou.jdk.version}</version>
                                 </requireJavaVersion>
-                                <!--<DependencyConvergence/>-->
                             </rules>
                             <fail>true</fail>
                         </configuration>
