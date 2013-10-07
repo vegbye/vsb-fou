@@ -8,12 +8,12 @@ import javax.jms.Message;
 /**
  * @author Vegard S. Bye
  */
-public class VsbJmsListenerTest {
+public class AsyncJmsListenerTest {
 
     @Test
     public void testIt() {
         Message message = Mockito.mock(Message.class);
-        VsbJmsListener vsbJmsListener = new VsbJmsListener();
-        vsbJmsListener.onMessage(message);
+        AsyncJmsListener asyncJmsListener = new AsyncJmsListener();
+        asyncJmsListener.onMessage(message);
     }
 }

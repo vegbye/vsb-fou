@@ -20,17 +20,17 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * @author Vegard S. Bye
  */
 @RunWith(MockitoJUnitRunner.class)
-public class DialogueJmsListenerTest {
+public class SyncJmsListenerTest {
 
     @InjectMocks
-    private DialogueJmsListener dialogueJmsListener;
+    private SyncJmsListener syncJmsListener;
     @Mock
     private JmsTemplate jmsTemplate;
 
     @Test
     public void testIt() {
         TextMessage message = Mockito.mock(TextMessage.class);
-        dialogueJmsListener.onMessage(message);
+        syncJmsListener.onMessage(message);
 
         verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
         verifyNoMoreInteractions(jmsTemplate);

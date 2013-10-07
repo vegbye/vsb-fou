@@ -12,9 +12,9 @@ import javax.jms.MessageListener;
  * @author Vegard S. Bye
  */
 @Service
-public class VsbJmsListener implements MessageListener {
+public class AsyncJmsListener implements MessageListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VsbJmsListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsListener.class);
 
     @Override
     public void onMessage(Message message) {

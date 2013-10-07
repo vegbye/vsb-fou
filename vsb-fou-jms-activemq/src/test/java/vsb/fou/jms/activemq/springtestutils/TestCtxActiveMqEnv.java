@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.client;
+package vsb.fou.jms.activemq.springtestutils;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.broker.BrokerPlugin;
@@ -14,7 +14,6 @@ import vsb.fou.common.EnvironmentConfiguration;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 
 import javax.jms.ConnectionFactory;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
  */
 @Configuration
 @EnvironmentConfiguration
-public class TestCtxActiveMqClient {
+public class TestCtxActiveMqEnv {
 
     @Bean(destroyMethod = "stop")
     public ConnectionFactory connectionFactory() throws Exception {
@@ -59,7 +58,7 @@ public class TestCtxActiveMqClient {
     }
 
     @Bean
-    public PersistenceAdapter persistenceAdapter() throws IOException {
+    public PersistenceAdapter persistenceAdapter() {
         return new MemoryPersistenceAdapter();
     }
 }

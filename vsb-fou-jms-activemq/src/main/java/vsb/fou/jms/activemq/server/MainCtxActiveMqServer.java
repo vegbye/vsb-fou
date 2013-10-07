@@ -19,9 +19,9 @@ public class MainCtxActiveMqServer {
     @Resource
     private ConnectionFactory connectionFactory;
     @Resource
-    private VsbJmsListener vsbJmsListener;
+    private AsyncJmsListener asyncJmsListener;
     @Resource
-    private DialogueJmsListener dialogueJmsListener;
+    private SyncJmsListener syncJmsListener;
 
     @Bean
     public JmsTemplate jmsTemplate() {
@@ -37,7 +37,7 @@ public class MainCtxActiveMqServer {
         bean.setDestinationName(JmsKonstanter.ASYNC_REQUEST_QUEUE);
         bean.setDestinationResolver(dynamicDestinationResolver());
         bean.setAutoStartup(true);
-        bean.setMessageListener(vsbJmsListener);
+        bean.setMessageListener(asyncJmsListener);
         return bean;
     }
 
@@ -48,7 +48,7 @@ public class MainCtxActiveMqServer {
         bean.setDestinationName(JmsKonstanter.SYNC_REQUEST_QUEUE);
         bean.setDestinationResolver(dynamicDestinationResolver());
         bean.setAutoStartup(true);
-        bean.setMessageListener(dialogueJmsListener);
+        bean.setMessageListener(syncJmsListener);
         return bean;
     }
 

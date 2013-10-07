@@ -12,14 +12,14 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * @author Vegard S. Bye
  */
-public class VsbSyncJmsTest {
+public class SyncJmsClientTest {
 
     @Test
     public void testIt() throws Exception {
-        VsbSyncJms vsbSyncJms = new VsbSyncJms();
+        SyncJmsClient syncJmsClient = new SyncJmsClient();
         JmsTemplate jmsTemplate = mock(JmsTemplate.class);
-        vsbSyncJms.setJmsTemplate(jmsTemplate);
-        vsbSyncJms.doIt("Hei fra JUnit test.");
+        syncJmsClient.setJmsTemplate(jmsTemplate);
+        syncJmsClient.doIt("Hei fra JUnit test.");
 
         verify(jmsTemplate).execute(any(ProducerConsumer.class), anyBoolean());
         verify(jmsTemplate).getDestinationResolver();

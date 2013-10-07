@@ -13,14 +13,14 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * @author Vegard S. Bye
  */
-public class VsbAsyncProducerTest {
+public class AsyncJmsClientTest {
 
     @Test
     public void testIt() {
-        VsbAsyncProducer vsbAsyncProducer = new VsbAsyncProducer();
+        AsyncJmsClient asyncJmsClient = new AsyncJmsClient();
         JmsTemplate jmsTemplate = mock(JmsTemplate.class);
-        vsbAsyncProducer.setJmsTemplate(jmsTemplate);
-        vsbAsyncProducer.doIt("Hei fra JUnit test.");
+        asyncJmsClient.setJmsTemplate(jmsTemplate);
+        asyncJmsClient.doIt("Hei fra JUnit test.");
 
         verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
         verifyNoMoreInteractions(jmsTemplate);

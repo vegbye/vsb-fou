@@ -9,6 +9,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.jms.activemq.server.MainCtxActiveMqServer;
+import vsb.fou.jms.activemq.springtestutils.TestCtxActiveMqEnv;
 
 import javax.annotation.Resource;
 import javax.jms.Message;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MainCtxActiveMqClient.class, MainCtxActiveMqServer.class, TestCtxActiveMqClient.class})
+@ContextConfiguration(classes = {MainCtxActiveMqClient.class, MainCtxActiveMqServer.class, TestCtxActiveMqEnv.class})
 public class VsbSyncJmsNoStubTest {
 
     @Resource
@@ -35,10 +36,10 @@ public class VsbSyncJmsNoStubTest {
 
     @Test
     public void testIt() throws Exception {
-        VsbSyncJms vsbSyncJms = new VsbSyncJms();
-        vsbSyncJms.setJmsTemplate(jmsTemplate);
+        SyncJmsClient syncJmsClient = new SyncJmsClient();
+        syncJmsClient.setJmsTemplate(jmsTemplate);
         String msg = "Hei fra JUnit test:" + System.currentTimeMillis();
-        Message message = vsbSyncJms.doIt(msg);
+        Message message = syncJmsClient.doIt(msg);
         assertThat(message, CoreMatchers.notNullValue());
         assertThat(message, CoreMatchers.instanceOf(TextMessage.class));
         TextMessage textMessage = (TextMessage) message;

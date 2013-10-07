@@ -14,17 +14,17 @@ import javax.jms.TextMessage;
 import java.util.Date;
 import java.util.UUID;
 
-public class VsbAsyncProducer {
+public class AsyncJmsClient {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VsbAsyncProducer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsClient.class);
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class)) {
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
-            VsbAsyncProducer vsbAsyncProducer = new VsbAsyncProducer();
-            vsbAsyncProducer.setJmsTemplate(jmsTemplate);
-            vsbAsyncProducer.doIt("Hei fra VsbAsyncProducer! " + new Date());
+            AsyncJmsClient asyncJmsClient = new AsyncJmsClient();
+            asyncJmsClient.setJmsTemplate(jmsTemplate);
+            asyncJmsClient.doIt("Hei fra AsyncJmsClient! " + new Date());
         }
     }
 

@@ -19,9 +19,9 @@ import java.util.Date;
  * @author Vegard S. Bye
  */
 @Service
-public class DialogueJmsListener implements MessageListener {
+public class SyncJmsListener implements MessageListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DialogueJmsListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SyncJmsListener.class);
     @Resource
     private JmsTemplate jmsTemplate;
 

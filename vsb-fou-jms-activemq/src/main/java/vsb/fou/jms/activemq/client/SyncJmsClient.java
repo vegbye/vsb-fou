@@ -8,17 +8,17 @@ import vsb.fou.jms.activemq.common.JmsKonstanter;
 
 import javax.jms.Message;
 
-public class VsbSyncJms {
+public class SyncJmsClient {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VsbSyncJms.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SyncJmsClient.class);
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class)) {
-            VsbSyncJms vsbSyncJms = new VsbSyncJms();
+            SyncJmsClient syncJmsClient = new SyncJmsClient();
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
-            vsbSyncJms.setJmsTemplate(jmsTemplate);
-            vsbSyncJms.doIt("synkron jms");
+            syncJmsClient.setJmsTemplate(jmsTemplate);
+            syncJmsClient.doIt("synkron jms");
         }
     }
 
