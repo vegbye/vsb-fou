@@ -6,6 +6,8 @@ import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.broker.TransportConnector;
 import org.apache.activemq.broker.util.LoggingBrokerPlugin;
 import org.apache.activemq.pool.PooledConnectionFactory;
+import org.apache.activemq.store.PersistenceAdapter;
+import org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -13,6 +15,8 @@ import vsb.fou.common.EnvironmentConfiguration;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 
 import javax.jms.ConnectionFactory;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +44,18 @@ public class MainCtxActiveMqServerEnv {
         connector.setUri(new URI(JmsKonstanter.BROKER_URL));
         bean.addConnector(connector);
         bean.setPersistent(true);
+        bean.setPersistenceAdapter(persistenceAdapter());
         bean.start();
         return bean;
+    }
+
+    @Bean
+    public PersistenceAdapter persistenceAdapter() throws IOException {
+        KahaDBPersistenceAdapter kahaDBPersistenceAdapter = new KahaDBPersistenceAdapter();
+        File file = new File("vegard-kahadb");
+        file.mkdirs();
+        kahaDBPersistenceAdapter.setDirectory(file);
+        return kahaDBPersistenceAdapter;
     }
 
     @Bean(destroyMethod = "stop")

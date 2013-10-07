@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,22 +19,22 @@ import java.util.Date;
  * @author Vegard S. Bye
  */
 @Service
-public class DialogueJmsListener implements MessageListener {
+public class DialogueJmsListenerMock implements MessageListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DialogueJmsListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DialogueJmsListenerMock.class);
     @Resource
     private JmsTemplate jmsTemplate;
 
     @Override
     public void onMessage(Message message) {
+
         try {
             final String correlationID = message.getJMSCorrelationID();
             LOGGER.info("Melding mottatt med CorrelationID:" + correlationID);
-            final TextMessage requestTextMessage = (TextMessage) message;
             jmsTemplate.send(JmsKonstanter.SYNC_REPLY_QUEUE, new MessageCreator() {
                 @Override
                 public Message createMessage(Session session) throws JMSException {
-                    TextMessage textMessage = session.createTextMessage("Hei fra DialogueJmsListener! " + new Date() + " " + requestTextMessage.getText());
+                    TextMessage textMessage = session.createTextMessage("Hei fra DialogueJmsListener! " + new Date());
                     textMessage.setJMSCorrelationID(correlationID);
                     textMessage.setJMSMessageID(Long.toString(System.currentTimeMillis()));
                     return textMessage;

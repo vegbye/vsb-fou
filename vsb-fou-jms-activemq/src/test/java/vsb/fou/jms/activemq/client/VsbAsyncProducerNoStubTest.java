@@ -1,5 +1,7 @@
 package vsb.fou.jms.activemq.client;
 
+import org.apache.activemq.broker.BrokerService;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jms.core.JmsTemplate;
@@ -16,7 +18,14 @@ import javax.annotation.Resource;
 public class VsbAsyncProducerNoStubTest {
 
     @Resource
+    public BrokerService broker;
+    @Resource
     private JmsTemplate jmsTemplate;
+
+    @After
+    public void stopBroker() throws Exception {
+        broker.stop();
+    }
 
     @Test
     public void testIt() {

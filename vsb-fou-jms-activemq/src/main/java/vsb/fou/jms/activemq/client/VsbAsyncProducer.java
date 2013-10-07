@@ -20,14 +20,11 @@ public class VsbAsyncProducer {
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
-        try {
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class)) {
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
             VsbAsyncProducer vsbAsyncProducer = new VsbAsyncProducer();
             vsbAsyncProducer.setJmsTemplate(jmsTemplate);
             vsbAsyncProducer.doIt("Hei fra VsbAsyncProducer! " + new Date());
-        } finally {
-            ctx.close();
         }
     }
 

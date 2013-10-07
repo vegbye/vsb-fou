@@ -14,14 +14,11 @@ public class VsbSyncJms {
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class);
-        try {
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class)) {
             VsbSyncJms vsbSyncJms = new VsbSyncJms();
             JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
             vsbSyncJms.setJmsTemplate(jmsTemplate);
             vsbSyncJms.doIt("synkron jms");
-        } finally {
-            ctx.close();
         }
     }
 
