@@ -6,6 +6,7 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BrukAvCommonsConfiguration {
 
@@ -22,5 +23,7 @@ public class BrukAvCommonsConfiguration {
         System.out.println("kaffe = " + kaffe);
         double versjon = config.getDouble("versjon");
         System.out.println("versjon = " + versjon);
+        List<Object> list = config.getList("vsb.liste");
+        System.out.println("list = " + list);
     }
 }
