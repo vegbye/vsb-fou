@@ -26,6 +26,7 @@ public class AsyncJmsClientNoStubTest {
     @After
     public void stopBroker() throws Exception {
         broker.stop();
+        broker.waitUntilStopped();
     }
 
     @Test
