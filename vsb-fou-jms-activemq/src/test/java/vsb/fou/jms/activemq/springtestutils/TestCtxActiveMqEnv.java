@@ -5,9 +5,9 @@ import org.apache.activemq.broker.BrokerPlugin;
 import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.broker.TransportConnector;
 import org.apache.activemq.broker.util.LoggingBrokerPlugin;
-import org.apache.activemq.pool.PooledConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.connection.SingleConnectionFactory;
 import vsb.fou.common.EnvironmentConfiguration;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 
@@ -25,12 +25,12 @@ public class TestCtxActiveMqEnv {
 
     private static final String BROKER_URL = "vm://localhost";
 
-    @Bean(destroyMethod = "stop")
+    @Bean(destroyMethod = "destroy")
     public ConnectionFactory connectionFactory() throws Exception {
-        PooledConnectionFactory bean = new PooledConnectionFactory();
+        SingleConnectionFactory bean = new SingleConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(BROKER_URL);
-        bean.setConnectionFactory(connectionFactory);
+        bean.setTargetConnectionFactory(connectionFactory);
         return bean;
     }
 
