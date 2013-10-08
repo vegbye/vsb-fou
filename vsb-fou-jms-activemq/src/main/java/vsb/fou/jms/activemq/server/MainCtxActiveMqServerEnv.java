@@ -32,7 +32,7 @@ import java.util.List;
 public class MainCtxActiveMqServerEnv {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
-    @Value("${vsb.fou.jms.activemq.brokerUrl}")
+    @Value("${vsb-fou-jms-activemq.broker.url}")
     private String brokerUrl;
 
     @Bean
@@ -48,11 +48,12 @@ public class MainCtxActiveMqServerEnv {
         bean.setBrokerName(JmsKonstanter.BROKER_NAME);
         List<BrokerPlugin> brokerPlugins = new ArrayList<>();
         LoggingBrokerPlugin loggingBrokerPlugin = new LoggingBrokerPlugin();
+        loggingBrokerPlugin.setLogAll(false);
         loggingBrokerPlugin.setLogConnectionEvents(true);
-        loggingBrokerPlugin.setLogMessageEvents(true);
-        loggingBrokerPlugin.setLogTransactionEvents(true);
-        loggingBrokerPlugin.setLogProducerEvents(true);
-        loggingBrokerPlugin.setLogConsumerEvents(true);
+        loggingBrokerPlugin.setLogMessageEvents(false);
+        loggingBrokerPlugin.setLogTransactionEvents(false);
+        loggingBrokerPlugin.setLogProducerEvents(false);
+        loggingBrokerPlugin.setLogConsumerEvents(false);
         loggingBrokerPlugin.setLogInternalEvents(false);
         brokerPlugins.add(loggingBrokerPlugin);
         bean.setPlugins(brokerPlugins.toArray(new BrokerPlugin[brokerPlugins.size()]));
@@ -88,9 +89,10 @@ public class MainCtxActiveMqServerEnv {
     @Bean(destroyMethod = "stop")
     public ConnectionFactory connectionFactory() throws Exception {
         PooledConnectionFactory bean = new PooledConnectionFactory();
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL(brokerUrl);
-        bean.setConnectionFactory(connectionFactory);
+        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
+        activeMQConnectionFactory.setBrokerURL(brokerUrl);
+        bean.setConnectionFactory(activeMQConnectionFactory);
+        bean.setCreateConnectionOnStartup(false);
         return bean;
     }
 

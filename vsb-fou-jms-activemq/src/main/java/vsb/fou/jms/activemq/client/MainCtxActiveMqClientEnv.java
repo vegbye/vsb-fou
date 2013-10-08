@@ -17,7 +17,7 @@ import javax.jms.ConnectionFactory;
 @EnvironmentConfiguration
 public class MainCtxActiveMqClientEnv {
 
-    @Value("${vsb.fou.jms.activemq.brokerUrl}")
+    @Value("${vsb-fou-jms-activemq.broker.url}")
     private String brokerUrl;
 
     @Bean
