@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.client;
+package vsb.fou.jms.activemq.springtestutils;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
