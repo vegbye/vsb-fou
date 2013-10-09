@@ -1,6 +1,10 @@
 package vsb.fou.kladd.argsparsing;
 
-import com.martiansoftware.jsap.*;
+import com.martiansoftware.jsap.FlaggedOption;
+import com.martiansoftware.jsap.JSAP;
+import com.martiansoftware.jsap.JSAPException;
+import com.martiansoftware.jsap.JSAPResult;
+import com.martiansoftware.jsap.Switch;
 
 public class VsbJsap {
 
