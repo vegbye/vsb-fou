@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +12,9 @@ import javax.jms.MessageListener;
  * @author Vegard S. Bye
  */
 @Service
-public class AsyncJmsListener implements MessageListener {
+public class AsyncJmsConsumer implements MessageListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsConsumer.class);
 
     @Override
     public void onMessage(Message message) {

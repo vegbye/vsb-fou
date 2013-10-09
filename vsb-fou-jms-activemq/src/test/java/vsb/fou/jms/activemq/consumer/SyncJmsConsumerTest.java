@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.consumer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,17 +20,17 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * @author Vegard S. Bye
  */
 @RunWith(MockitoJUnitRunner.class)
-public class SyncJmsListenerTest {
+public class SyncJmsConsumerTest {
 
     @InjectMocks
-    private SyncJmsListener syncJmsListener;
+    private SyncJmsConsumer syncJmsConsumer;
     @Mock
     private JmsTemplate jmsTemplate;
 
     @Test
     public void testIt() {
         TextMessage message = Mockito.mock(TextMessage.class);
-        syncJmsListener.onMessage(message);
+        syncJmsConsumer.onMessage(message);
 
         verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
         verifyNoMoreInteractions(jmsTemplate);

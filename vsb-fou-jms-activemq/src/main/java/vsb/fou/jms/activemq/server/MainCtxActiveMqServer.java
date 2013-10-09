@@ -8,6 +8,8 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.jms.support.destination.DynamicDestinationResolver;
 import vsb.fou.common.EnvironmentConfiguration;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
+import vsb.fou.jms.activemq.consumer.AsyncJmsConsumer;
+import vsb.fou.jms.activemq.consumer.SyncJmsConsumer;
 
 import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
@@ -19,9 +21,9 @@ public class MainCtxActiveMqServer {
     @Resource
     private ConnectionFactory connectionFactory;
     @Resource
-    private AsyncJmsListener asyncJmsListener;
+    private AsyncJmsConsumer asyncJmsConsumer;
     @Resource
-    private SyncJmsListener syncJmsListener;
+    private SyncJmsConsumer syncJmsConsumer;
 
     @Bean
     public JmsTemplate jmsTemplate() {
@@ -37,7 +39,7 @@ public class MainCtxActiveMqServer {
         bean.setDestinationName(JmsKonstanter.ASYNC_REQUEST_QUEUE);
         bean.setDestinationResolver(dynamicDestinationResolver());
         bean.setAutoStartup(true);
-        bean.setMessageListener(asyncJmsListener);
+        bean.setMessageListener(asyncJmsConsumer);
         return bean;
     }
 
@@ -48,7 +50,7 @@ public class MainCtxActiveMqServer {
         bean.setDestinationName(JmsKonstanter.SYNC_REQUEST_QUEUE);
         bean.setDestinationResolver(dynamicDestinationResolver());
         bean.setAutoStartup(true);
-        bean.setMessageListener(syncJmsListener);
+        bean.setMessageListener(syncJmsConsumer);
         return bean;
     }
 

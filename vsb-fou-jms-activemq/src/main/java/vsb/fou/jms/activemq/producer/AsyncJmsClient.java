@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.client;
+package vsb.fou.jms.activemq.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

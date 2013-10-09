@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.client;
+package vsb.fou.jms.activemq.producer;
 
 import org.apache.activemq.broker.BrokerService;
 import org.hamcrest.CoreMatchers;

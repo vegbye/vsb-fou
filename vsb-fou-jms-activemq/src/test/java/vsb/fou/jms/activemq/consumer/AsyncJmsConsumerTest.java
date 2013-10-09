@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.consumer;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -8,12 +8,12 @@ import javax.jms.Message;
 /**
  * @author Vegard S. Bye
  */
-public class AsyncJmsListenerTest {
+public class AsyncJmsConsumerTest {
 
     @Test
     public void testIt() {
         Message message = Mockito.mock(Message.class);
-        AsyncJmsListener asyncJmsListener = new AsyncJmsListener();
-        asyncJmsListener.onMessage(message);
+        AsyncJmsConsumer asyncJmsConsumer = new AsyncJmsConsumer();
+        asyncJmsConsumer.onMessage(message);
     }
 }

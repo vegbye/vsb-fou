@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.client;
+package vsb.fou.jms.activemq.producer;
 
 import org.junit.Test;
 import org.springframework.jms.core.JmsTemplate;
