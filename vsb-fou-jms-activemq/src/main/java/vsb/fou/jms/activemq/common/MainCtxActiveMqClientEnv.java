@@ -7,13 +7,14 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jms.core.JmsTemplate;
 import vsb.fou.common.EnvironmentConfiguration;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
 @EnvironmentConfiguration
-public class MainCtxActiveMqCommonEnv {
+public class MainCtxActiveMqClientEnv {
 
     @Value("${vsb-fou-jms-activemq.broker.client.url}")
     private String brokerUrl;
@@ -25,8 +26,15 @@ public class MainCtxActiveMqCommonEnv {
         return bean;
     }
 
+    @Bean
+    public JmsTemplate jmsTemplate() {
+        JmsTemplate bean = new JmsTemplate();
+        bean.setConnectionFactory(connectionFactory());
+        return bean;
+    }
+
     @Bean(destroyMethod = "stop")
-    public ConnectionFactory connectionFactory() throws Exception {
+    public ConnectionFactory connectionFactory() {
         PooledConnectionFactory bean = new PooledConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL(brokerUrl);
