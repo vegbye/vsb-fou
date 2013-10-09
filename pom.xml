@@ -11,6 +11,7 @@
 
     <modules>
         <module>vsb-fou-common</module>
+        <module>vsb-fou-db-h2</module>
         <module>vsb-fou-jms-activemq</module>
         <module>vsb-fou-rest-jersey</module>
         <module>vsb-fou-rest-spring</module>
