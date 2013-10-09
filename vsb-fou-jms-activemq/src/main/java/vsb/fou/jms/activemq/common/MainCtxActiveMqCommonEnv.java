@@ -6,15 +6,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import vsb.fou.common.EnvironmentConfiguration;
-import vsb.fou.jms.activemq.producer.MainCtxActiveMqProducer;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@Import(MainCtxActiveMqProducer.class)
 @EnvironmentConfiguration
 public class MainCtxActiveMqCommonEnv {
 
