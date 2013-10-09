@@ -25,7 +25,7 @@ public class TestCtxActiveMqEnv {
 
     private static final String BROKER_URL = "vm://localhost";
 
-    @Bean
+    @Bean(destroyMethod = "destroy")
     public ConnectionFactory connectionFactory() throws Exception {
         SingleConnectionFactory bean = new SingleConnectionFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();

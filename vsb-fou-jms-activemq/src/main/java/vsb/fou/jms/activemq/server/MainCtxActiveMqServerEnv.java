@@ -93,6 +93,7 @@ public class MainCtxActiveMqServerEnv {
         activeMQConnectionFactory.setBrokerURL(brokerUrl);
         bean.setConnectionFactory(activeMQConnectionFactory);
         bean.setCreateConnectionOnStartup(false);
+        bean.setMaxConnections(10);
         return bean;
     }
 
