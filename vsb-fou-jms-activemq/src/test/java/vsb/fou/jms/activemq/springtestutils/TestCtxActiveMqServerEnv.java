@@ -17,7 +17,7 @@ import java.net.URI;
  */
 @Configuration
 @EnvironmentConfiguration
-public class TestCtxActiveMqEnv {
+public class TestCtxActiveMqServerEnv {
 
     private static final String BROKER_URL = "vm://localhost";
 
