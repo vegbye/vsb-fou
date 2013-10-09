@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.common;
+package vsb.fou.jms.activemq.client.common;
 
 /**
  * @author Vegard S. Bye

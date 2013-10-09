@@ -11,11 +11,9 @@ import org.apache.activemq.store.kahadb.KahaDBPersistenceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.core.io.ClassPathResource;
 import vsb.fou.common.EnvironmentConfiguration;
 
 import javax.jms.ConnectionFactory;
@@ -33,13 +31,6 @@ public class MainCtxActiveMqServerEnv {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
     @Value("${vsb-fou-jms-activemq.broker.server.url}")
     private String brokerUrl;
-
-    @Bean
-    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
-        PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
-        bean.setLocation(new ClassPathResource("vsb-fou-jms-activemq.properties"));
-        return bean;
-    }
 
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {

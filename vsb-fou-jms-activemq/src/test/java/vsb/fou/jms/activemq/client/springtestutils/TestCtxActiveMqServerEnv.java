@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.springtestutils;
+package vsb.fou.jms.activemq.client.springtestutils;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.broker.BrokerService;

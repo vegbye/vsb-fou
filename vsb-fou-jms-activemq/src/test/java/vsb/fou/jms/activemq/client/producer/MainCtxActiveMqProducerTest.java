@@ -1,8 +1,8 @@
-package vsb.fou.jms.activemq.producer;
+package vsb.fou.jms.activemq.client.producer;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import vsb.fou.jms.activemq.springtestutils.MockCtxActiveMqClientEnv;
+import vsb.fou.jms.activemq.client.springtestutils.MockCtxActiveMqClientEnv;
 
 public class MainCtxActiveMqProducerTest {
 

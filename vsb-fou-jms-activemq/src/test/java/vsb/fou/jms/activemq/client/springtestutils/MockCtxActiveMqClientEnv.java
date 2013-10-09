@@ -1,18 +1,18 @@
-package vsb.fou.jms.activemq.server;
+package vsb.fou.jms.activemq.client.springtestutils;
 
-import org.apache.activemq.broker.BrokerService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
-public class MockCtxActiveMqServerEnv {
+public class MockCtxActiveMqClientEnv {
 
     @Bean
-    public BrokerService broker() {
-        return Mockito.mock(BrokerService.class);
+    public JmsTemplate jmsTemplate() {
+        return Mockito.mock(JmsTemplate.class);
     }
 
     @Bean

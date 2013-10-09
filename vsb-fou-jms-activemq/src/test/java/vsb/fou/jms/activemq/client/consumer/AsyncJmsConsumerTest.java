@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.consumer;
+package vsb.fou.jms.activemq.client.consumer;
 
 import org.junit.Test;
 import org.mockito.Mockito;

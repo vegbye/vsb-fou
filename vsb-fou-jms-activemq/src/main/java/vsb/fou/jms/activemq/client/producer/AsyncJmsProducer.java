@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.producer;
+package vsb.fou.jms.activemq.client.producer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
-import vsb.fou.jms.activemq.common.JmsKonstanter;
-import vsb.fou.jms.activemq.common.MainCtxActiveMqClientEnv;
-import vsb.fou.jms.activemq.consumer.MainCtxActiveMqConsumer;
+import vsb.fou.jms.activemq.client.common.JmsKonstanter;
+import vsb.fou.jms.activemq.client.common.MainCtxActiveMqClientEnv;
+import vsb.fou.jms.activemq.client.consumer.MainCtxActiveMqConsumer;
 
 import javax.annotation.Resource;
 import javax.jms.JMSException;

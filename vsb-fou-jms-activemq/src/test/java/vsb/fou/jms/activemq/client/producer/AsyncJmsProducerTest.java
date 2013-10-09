@@ -1,18 +1,15 @@
-package vsb.fou.jms.activemq.consumer;
+package vsb.fou.jms.activemq.client.producer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import javax.jms.TextMessage;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -20,17 +17,16 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * @author Vegard S. Bye
  */
 @RunWith(MockitoJUnitRunner.class)
-public class SyncJmsConsumerTest {
+public class AsyncJmsProducerTest {
 
     @InjectMocks
-    private SyncJmsConsumer syncJmsConsumer;
+    private AsyncJmsProducer asyncJmsProducer;
     @Mock
     private JmsTemplate jmsTemplate;
 
     @Test
     public void testIt() {
-        TextMessage message = Mockito.mock(TextMessage.class);
-        syncJmsConsumer.onMessage(message);
+        asyncJmsProducer.doIt("Hei fra JUnit test.");
 
         verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
         verifyNoMoreInteractions(jmsTemplate);

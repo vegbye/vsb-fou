@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.producer;
+package vsb.fou.jms.activemq.client.producer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,10 +6,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
+import org.springframework.jms.core.SessionCallback;
 
+import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -17,18 +17,19 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * @author Vegard S. Bye
  */
 @RunWith(MockitoJUnitRunner.class)
-public class AsyncJmsProducerTest {
+public class SyncJmsProducerConsumerTest {
 
     @InjectMocks
-    private AsyncJmsProducer asyncJmsProducer;
+    private SyncJmsProducerConsumer syncJmsProducerConsumer;
     @Mock
     private JmsTemplate jmsTemplate;
 
     @Test
-    public void testIt() {
-        asyncJmsProducer.doIt("Hei fra JUnit test.");
+    public void testIt() throws Exception {
+        syncJmsProducerConsumer.doIt("Hei fra JUnit test.");
 
-        verify(jmsTemplate).send(anyString(), any(MessageCreator.class));
+        verify(jmsTemplate).execute(any(SessionCallback.class), anyBoolean());
+        verify(jmsTemplate).getDestinationResolver();
         verifyNoMoreInteractions(jmsTemplate);
     }
 }

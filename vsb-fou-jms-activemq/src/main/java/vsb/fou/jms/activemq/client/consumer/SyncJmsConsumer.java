@@ -1,11 +1,11 @@
-package vsb.fou.jms.activemq.consumer;
+package vsb.fou.jms.activemq.client.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
-import vsb.fou.jms.activemq.common.JmsKonstanter;
+import vsb.fou.jms.activemq.client.common.JmsKonstanter;
 
 import javax.annotation.Resource;
 import javax.jms.JMSException;
