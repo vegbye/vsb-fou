@@ -24,7 +24,6 @@
     </properties>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -265,7 +264,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <jetty.webapps.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
+                <jetty.home.dir>/Users/vegbye/opt/jetty/8.1.12.v20130726</jetty.home.dir>
             </properties>
             <build>
                 <plugins>
@@ -289,7 +288,7 @@
                                 <configuration>
                                     <target>
                                         <copy file="${project.build.directory}/${project.build.finalName}.war"
-                                              todir="${jetty.webapps.dir}"/>
+                                              tofile="${jetty.home.dir}/webapps/${project.artifactId}.war"/>
                                     </target>
                                 </configuration>
                                 <goals>
@@ -307,7 +306,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <jetty.webapps.dir>/opt/jetty/8.1.12.v20130726/webapps</jetty.webapps.dir>
+                <jetty.home.dir>/opt/jetty/8.1.12.v20130726</jetty.home.dir>
             </properties>
             <build>
                 <plugins>
@@ -331,7 +330,7 @@
                                 <configuration>
                                     <target>
                                         <copy file="${project.build.directory}/${project.build.finalName}.war"
-                                              todir="${jetty.webapps.dir}"/>
+                                              tofile="${jetty.home.dir}/webapps/${project.artifactId}.war"/>
                                     </target>
                                 </configuration>
                                 <goals>
