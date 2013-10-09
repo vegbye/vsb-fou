@@ -1,4 +1,4 @@
-package vsb.fou.jms.activemq.producer;
+package vsb.fou.jms.activemq.common;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.pool.PooledConnectionFactory;
@@ -9,13 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.jms.activemq.producer.MainCtxActiveMqProducer;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@Import(MainCtxActiveMqClient.class)
+@Import(MainCtxActiveMqProducer.class)
 @EnvironmentConfiguration
-public class MainCtxActiveMqClientEnv {
+public class MainCtxActiveMqCommonEnv {
 
     @Value("${vsb-fou-jms-activemq.broker.url}")
     private String brokerUrl;

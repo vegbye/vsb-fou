@@ -11,7 +11,7 @@ import javax.jms.ConnectionFactory;
 
 @Configuration
 @ComponentScan(basePackages = "vsb.fou.jms.activemq.producer", excludeFilters = {@ComponentScan.Filter(EnvironmentConfiguration.class)})
-public class MainCtxActiveMqClient {
+public class MainCtxActiveMqProducer {
 
     @Resource
     public ConnectionFactory connectionFactory;

@@ -1,14 +1,11 @@
 package vsb.fou.jms.activemq.producer;
 
-import org.apache.activemq.broker.BrokerService;
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vsb.fou.jms.activemq.server.MainCtxActiveMqServer;
+import vsb.fou.jms.activemq.consumer.MainCtxActiveMqConsumer;
 import vsb.fou.jms.activemq.springtestutils.TestCtxActiveMqEnv;
 
 import javax.annotation.Resource;
@@ -21,25 +18,16 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MainCtxActiveMqClient.class, MainCtxActiveMqServer.class, TestCtxActiveMqEnv.class})
-public class SyncJmsClientNoStubTest {
+@ContextConfiguration(classes = {MainCtxActiveMqProducer.class, MainCtxActiveMqConsumer.class, TestCtxActiveMqEnv.class})
+public class SyncJmsProducerConsumerNoStubTest {
 
     @Resource
-    private JmsTemplate jmsTemplate;
-    @Resource
-    private BrokerService broker;
-
-    @After
-    public void stopBroker() throws Exception {
-        broker.stop();
-    }
+    private SyncJmsProducerConsumer syncJmsProducerConsumer;
 
     @Test
     public void testIt() throws Exception {
-        SyncJmsClient syncJmsClient = new SyncJmsClient();
-        syncJmsClient.setJmsTemplate(jmsTemplate);
         String msg = "Hei fra JUnit test:" + System.currentTimeMillis();
-        Message message = syncJmsClient.doIt(msg);
+        Message message = syncJmsProducerConsumer.doIt(msg);
         assertThat(message, CoreMatchers.notNullValue());
         assertThat(message, CoreMatchers.instanceOf(TextMessage.class));
         TextMessage textMessage = (TextMessage) message;

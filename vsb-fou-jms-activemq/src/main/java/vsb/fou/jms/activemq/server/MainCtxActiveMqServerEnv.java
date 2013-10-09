@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import vsb.fou.common.EnvironmentConfiguration;
-import vsb.fou.jms.activemq.common.JmsKonstanter;
 
 import javax.jms.ConnectionFactory;
 import java.io.File;
@@ -45,7 +44,7 @@ public class MainCtxActiveMqServerEnv {
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
         BrokerService bean = new BrokerService();
-        bean.setBrokerName(JmsKonstanter.BROKER_NAME);
+        bean.setBrokerName(ActiveMqServerKonstanter.BROKER_NAME);
         List<BrokerPlugin> brokerPlugins = new ArrayList<>();
         LoggingBrokerPlugin loggingBrokerPlugin = new LoggingBrokerPlugin();
         loggingBrokerPlugin.setLogAll(false);

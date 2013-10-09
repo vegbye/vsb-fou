@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
+import org.springframework.stereotype.Service;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
+import vsb.fou.jms.activemq.common.MainCtxActiveMqCommonEnv;
 
+import javax.annotation.Resource;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
@@ -14,22 +17,18 @@ import javax.jms.TextMessage;
 import java.util.Date;
 import java.util.UUID;
 
-public class AsyncJmsClient {
+@Service
+public class AsyncJmsProducer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AsyncJmsProducer.class);
+    @Resource
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqClientEnv.class)) {
-            JmsTemplate jmsTemplate = ctx.getBean(JmsTemplate.class);
-            AsyncJmsClient asyncJmsClient = new AsyncJmsClient();
-            asyncJmsClient.setJmsTemplate(jmsTemplate);
-            asyncJmsClient.doIt("Hei fra AsyncJmsClient! " + new Date());
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqCommonEnv.class)) {
+            AsyncJmsProducer asyncJmsProducer = ctx.getBean(AsyncJmsProducer.class);
+            asyncJmsProducer.doIt("Hei fra AsyncJmsProducer! " + new Date());
         }
-    }
-
-    public void setJmsTemplate(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
     }
 
     public void doIt(final String msg) {
