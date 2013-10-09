@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.connection.SingleConnectionFactory;
 import vsb.fou.common.EnvironmentConfiguration;
-import vsb.fou.jms.activemq.server.ActiveMqServerKonstanter;
 
 import javax.jms.ConnectionFactory;
 import java.net.URI;
@@ -33,7 +32,7 @@ public class TestCtxActiveMqServerEnv {
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
         BrokerService bean = new BrokerService();
-        bean.setBrokerName(ActiveMqServerKonstanter.BROKER_NAME);
+        bean.setBrokerName("vsb-fou-activemq-test-broker");
         TransportConnector connector = new TransportConnector();
         connector.setEnableStatusMonitor(false);
         connector.setAuditNetworkProducers(false);
