@@ -32,7 +32,7 @@ public class TestCtxActiveMqServerEnv {
     @Bean(destroyMethod = "stop")
     public BrokerService broker() throws Exception {
         BrokerService bean = new BrokerService();
-        bean.setBrokerName("vsb-fou-activemq-test-broker");
+        bean.setBrokerName("vsb-fou-test-broker");
         TransportConnector connector = new TransportConnector();
         connector.setEnableStatusMonitor(false);
         connector.setAuditNetworkProducers(false);
