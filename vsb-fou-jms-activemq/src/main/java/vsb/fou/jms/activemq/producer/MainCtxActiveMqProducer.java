@@ -4,13 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
-import vsb.fou.common.EnvironmentConfiguration;
 
 import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@ComponentScan(basePackages = "vsb.fou.jms.activemq.producer", excludeFilters = {@ComponentScan.Filter(EnvironmentConfiguration.class)})
+@ComponentScan("vsb.fou.jms.activemq.producer")
 public class MainCtxActiveMqProducer {
 
     @Resource

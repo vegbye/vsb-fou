@@ -31,7 +31,7 @@ import java.util.List;
 public class MainCtxActiveMqServerEnv {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
-    @Value("${vsb-fou-jms-activemq.broker.url}")
+    @Value("${vsb-fou-jms-activemq.broker.server.url}")
     private String brokerUrl;
 
     @Bean

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 import vsb.fou.jms.activemq.common.JmsMessageUtil;
 import vsb.fou.jms.activemq.common.MainCtxActiveMqCommonEnv;
+import vsb.fou.jms.activemq.consumer.MainCtxActiveMqConsumer;
 
 import javax.annotation.Resource;
 import javax.jms.Destination;
@@ -30,7 +31,8 @@ public class SyncJmsProducerConsumer {
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqCommonEnv.class)) {
+        Class[] ctxClasses = {MainCtxActiveMqProducer.class, MainCtxActiveMqConsumer.class, MainCtxActiveMqCommonEnv.class};
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ctxClasses)) {
             SyncJmsProducerConsumer syncJmsProducerConsumer = ctx.getBean(SyncJmsProducerConsumer.class);
             syncJmsProducerConsumer.doIt("synkron jms");
         }

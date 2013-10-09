@@ -8,6 +8,7 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 import vsb.fou.jms.activemq.common.JmsKonstanter;
 import vsb.fou.jms.activemq.common.MainCtxActiveMqCommonEnv;
+import vsb.fou.jms.activemq.consumer.MainCtxActiveMqConsumer;
 
 import javax.annotation.Resource;
 import javax.jms.JMSException;
@@ -25,7 +26,8 @@ public class AsyncJmsProducer {
     private JmsTemplate jmsTemplate;
 
     public static void main(String[] args) {
-        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainCtxActiveMqCommonEnv.class)) {
+        Class[] ctxClasses = {MainCtxActiveMqProducer.class, MainCtxActiveMqConsumer.class, MainCtxActiveMqCommonEnv.class};
+        try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ctxClasses)) {
             AsyncJmsProducer asyncJmsProducer = ctx.getBean(AsyncJmsProducer.class);
             asyncJmsProducer.doIt("Hei fra AsyncJmsProducer! " + new Date());
         }
