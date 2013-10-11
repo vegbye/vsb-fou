@@ -1,4 +1,4 @@
 package vsb.fou.db.hsqldb;
 
-public class BrukAvH2 {
+public class BrukAvHsqldb {
 }

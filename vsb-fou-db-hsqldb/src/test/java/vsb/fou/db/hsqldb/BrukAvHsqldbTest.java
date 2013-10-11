@@ -3,7 +3,7 @@ package vsb.fou.db.hsqldb;
 
 import org.junit.Test;
 
-public class BrukAvH2Test {
+public class BrukAvHsqldbTest {
 
     @Test
     public void testIt() {
