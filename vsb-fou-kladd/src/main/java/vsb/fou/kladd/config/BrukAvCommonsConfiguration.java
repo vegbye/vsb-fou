@@ -25,5 +25,7 @@ public class BrukAvCommonsConfiguration {
         System.out.println("versjon = " + versjon);
         List<Object> list = config.getList("vsb.liste");
         System.out.println("list = " + list);
+        boolean aBoolean = config.getBoolean(this.getClass().getName());
+        System.out.println("aBoolean = " + aBoolean);
     }
 }
