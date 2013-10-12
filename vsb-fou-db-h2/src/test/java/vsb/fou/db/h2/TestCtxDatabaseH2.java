@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 @ComponentScan("vsb.fou.db.h2")
 public class TestCtxDatabaseH2 {
 
-    @Bean
+    @Bean(destroyMethod = "dispose")
     public DataSource dataSource() {
         JdbcDataSource targetDataSource = new JdbcDataSource();
         targetDataSource.setURL("jdbc:h2:mem:vsb-fou-test");

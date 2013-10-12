@@ -16,10 +16,10 @@ public class HelloWorldH2 {
      */
     public static void main(String... args) throws Exception {
         // delete the database named 'test' in the user home directory
-        DeleteDbFiles.execute("~", "test", true);
+        DeleteDbFiles.execute("~", "HelloWorldH2", true);
 
         Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:h2:~/test");
+        Connection conn = DriverManager.getConnection("jdbc:h2:~/HelloWorldH2");
         Statement stat = conn.createStatement();
 
         // this line would initialize the database
