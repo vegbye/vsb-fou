@@ -17,6 +17,6 @@ public class EmployeeServiceTest {
 
     @Test
     public void testIt() {
-        employeeService.doItSpring();
+        employeeService.doIt();
     }
 }

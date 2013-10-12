@@ -19,10 +19,10 @@ public class EmployeeService {
     @Resource
     private DataSource dataSource;
 
-    public void doItSpring() {
+    public void doIt() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.execute("create table employee (id int, name varchar)");
-        jdbcTemplate.execute("insert into employee (id, name) values (1, 'Vegard')");
+        jdbcTemplate.execute("insert into employee (id, name) values (1, 'Vegard S. Bye')");
 
         List<String> name = jdbcTemplate.query("select * from employee", new RowMapper<String>() {
 
