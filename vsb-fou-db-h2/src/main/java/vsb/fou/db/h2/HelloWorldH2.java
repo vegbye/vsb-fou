@@ -15,7 +15,7 @@ public class HelloWorldH2 {
      * @param args ignored
      */
     public static void main(String... args) throws Exception {
-        // delete the database named 'test' in the user home directory
+        // delete the database named 'HelloWorldH2' in the user home directory
         DeleteDbFiles.execute("~", "HelloWorldH2", true);
 
         Class.forName("org.h2.Driver");
@@ -35,6 +35,9 @@ public class HelloWorldH2 {
         }
         stat.close();
         conn.close();
+
+        // delete the database named 'HelloWorldH2' in the user home directory
+        DeleteDbFiles.execute("~", "HelloWorldH2", true);
     }
 
 }
