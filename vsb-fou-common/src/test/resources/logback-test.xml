@@ -1,6 +1,6 @@
 <configuration scan="true" scanPeriod="10 seconds" debug="false">
 
-    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+    <!--statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/-->
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
@@ -11,7 +11,7 @@
             <Pattern>###%d{ISO8601}### %-5p T[%-32thread] L[%-32c{0}]: %m%n</Pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>OFF</level>
         </filter>
     </appender>
 
