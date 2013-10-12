@@ -11,7 +11,7 @@
             <Pattern>###%d{ISO8601}### %-5p T[%-32thread] L[%-32c{0}]: %m%n</Pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>DEBUG</level>
         </filter>
     </appender>
 
@@ -25,7 +25,7 @@
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.apache.cxf" level="INFO"/>
 
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
 
