@@ -10,13 +10,13 @@ import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestCtxDatabaseH2.class})
-public class EmployeeServiceTest {
+public class EmployeeServiceH2Test {
 
     @Resource
-    private EmployeeService employeeService;
+    private EmployeeServiceH2 employeeServiceH2;
 
     @Test
     public void testIt() {
-        employeeService.doIt();
+        employeeServiceH2.doIt();
     }
 }

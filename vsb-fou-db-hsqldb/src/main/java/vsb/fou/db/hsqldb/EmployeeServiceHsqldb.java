@@ -1,4 +1,4 @@
-package vsb.fou.db.h2;
+package vsb.fou.db.hsqldb;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,15 +13,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Service
-public class EmployeeService {
+public class EmployeeServiceHsqldb {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceHsqldb.class);
     @Resource
     private DataSource dataSource;
 
     public void doIt() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("create table employee (id int, name varchar)");
+        jdbcTemplate.execute("create table employee (id int, name varchar (255))");
         jdbcTemplate.execute("insert into employee (id, name) values (1, 'Vegard S. Bye')");
 
         List<String> name = jdbcTemplate.query("select * from employee", new RowMapper<String>() {
