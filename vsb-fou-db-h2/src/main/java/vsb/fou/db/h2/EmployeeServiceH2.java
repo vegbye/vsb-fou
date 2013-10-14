@@ -19,19 +19,19 @@ public class EmployeeServiceH2 {
     @Resource
     private DataSource dataSource;
 
-    public void doIt() {
+    public void insert(String primaryKey, String name) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("create table employee (id int, name varchar (255))");
-        jdbcTemplate.execute("insert into employee (id, name) values (1, 'Vegard S. Bye')");
+//        jdbcTemplate.execute("create table employee (id int, name varchar (255))");
+        jdbcTemplate.execute("insert into employee (id, name) values (" + primaryKey + ", '" + name + "')");
 
-        List<String> name = jdbcTemplate.query("select * from employee", new RowMapper<String>() {
+        List<String> nameList = jdbcTemplate.query("select * from employee", new RowMapper<String>() {
 
             @Override
             public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return rs.getString("name");
             }
         });
-        LOGGER.info("name = " + name);
+        LOGGER.info("nameList = " + nameList);
     }
 
 
