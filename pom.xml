@@ -10,6 +10,7 @@
     <description>Bygge pom for min FoU</description>
 
     <modules>
+        <module>vsb-fou-batch-spring</module>
         <module>vsb-fou-common</module>
         <module>vsb-fou-db-h2</module>
         <module>vsb-fou-db-hsqldb</module>
