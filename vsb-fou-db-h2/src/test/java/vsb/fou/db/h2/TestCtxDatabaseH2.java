@@ -15,7 +15,7 @@ public class TestCtxDatabaseH2 {
     @Bean(destroyMethod = "dispose")
     public DataSource dataSource() {
         JdbcDataSource targetDataSource = new JdbcDataSource();
-        targetDataSource.setURL("jdbc:h2:mem:vsb-fou-test");
+        targetDataSource.setURL("jdbc:h2:mem:");
         return JdbcConnectionPool.create(targetDataSource);
     }
 }
