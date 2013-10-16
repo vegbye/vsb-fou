@@ -29,7 +29,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SpringBatchAdminServlet</servlet-name>
-        <url-pattern>/springbatchadmin</url-pattern>
+        <url-pattern>/springbatchadmin/*</url-pattern>
     </servlet-mapping>
     <!-- Spring Batch Admin slutt -->
 
