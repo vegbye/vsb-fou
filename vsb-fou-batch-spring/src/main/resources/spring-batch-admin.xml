@@ -8,7 +8,9 @@
     <!--<property name="putEmptyParamsInPath" value="true"/>-->
     <!--</bean>-->
 
-    <!--<bean id="resourceService" class="org.springframework.batch.admin.web.resources.DefaultResourceService"/>-->
+    <bean id="resourceService" class="org.springframework.batch.admin.web.resources.DefaultResourceService">
+        <property name="servletPath" value="/springbatchadmin"/>
+    </bean>
 
     <bean id="jobLauncherTimestamp" class="sb1.integration.life.batchframework.launcher.TimestampJobLauncher">
         <property name="delegateJobLauncer" ref="jobLauncher"/>
