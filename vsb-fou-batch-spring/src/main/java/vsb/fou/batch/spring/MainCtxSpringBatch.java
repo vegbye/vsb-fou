@@ -8,11 +8,14 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import vsb.fou.common.InfraConfig;
@@ -34,6 +37,8 @@ public class MainCtxSpringBatch {
     private PlatformTransactionManager transactionManager;
     @Resource
     private JobRepository jobRepository;
+    @Value("${vsb-fou-batch-spring.target.file}")
+    private String targetFile;
 
     @Bean
     public MapJobRepositoryFactoryBean jobRepository() {
@@ -56,13 +61,20 @@ public class MainCtxSpringBatch {
     public ItemReader productReader() {
         FlatFileItemReader<Product> bean = new FlatFileItemReader<>();
         bean.setLinesToSkip(1);
-        bean.setResource(new ClassPathResource("/products.csv"));
+        bean.setResource(new FileSystemResource(targetFile));
         DefaultLineMapper<Product> lineMapper = new DefaultLineMapper<>();
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setNames(new String[]{"NAME", "DESCRIPTION", "PRICE"});
         lineMapper.setLineTokenizer(lineTokenizer);
         lineMapper.setFieldSetMapper(new ProductFieldSetMapper());
         bean.setLineMapper(lineMapper);
+        return bean;
+    }
+
+    @Bean
+    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
+        bean.setLocation(new ClassPathResource("/vsb-fou-batch-spring.properties"));
         return bean;
     }
 

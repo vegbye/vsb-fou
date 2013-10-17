@@ -5,9 +5,16 @@
 
 
     <job id="importProductsJob" xmlns="http://www.springframework.org/schema/batch">
+        <step id="decompress" next="readWriteProducts">
+            <tasklet ref="decompressTasklet"/>
+        </step>
         <step id="readWriteProducts">
             <tasklet>
-                <chunk reader="productReader" writer="productWriter" commit-interval="100"/>
+                <chunk reader="productReader" writer="productWriter" commit-interval="100" skip-limit="5">
+                    <skippable-exception-classes>
+                        <include class="org.springframework.batch.item.file.FlatFileParseException"/>
+                    </skippable-exception-classes>
+                </chunk>
             </tasklet>
         </step>
     </job>
