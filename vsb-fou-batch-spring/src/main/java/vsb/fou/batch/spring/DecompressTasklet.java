@@ -1,6 +1,5 @@
 package vsb.fou.batch.spring;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,14 +35,10 @@ public class DecompressTasklet implements Tasklet {
         ClassPathResource inputResource = new ClassPathResource(inputFile);
         ZipInputStream zis = new ZipInputStream(
                 new BufferedInputStream(inputResource.getInputStream()));
-        File targetDirectoryAsFile = new File(System.getProperty("java.io.tmpdir"), "DecompressTasklet-" + System.currentTimeMillis());
-        if (!targetDirectoryAsFile.exists()) {
-            FileUtils.forceMkdir(targetDirectoryAsFile);
-        }
         File target = new File(targetFile);
-        target.getParentFile().mkdirs();
         LOGGER.info("target:" + target.getAbsolutePath());
-        BufferedOutputStream dest = null;
+        target.getParentFile().mkdirs();
+        BufferedOutputStream dest;
         while (zis.getNextEntry() != null) {
             if (!target.exists()) {
                 target.createNewFile();
