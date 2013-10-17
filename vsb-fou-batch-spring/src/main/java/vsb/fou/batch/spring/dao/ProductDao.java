@@ -46,14 +46,15 @@ public class ProductDao {
                 return product;
             }
         });
-        LOGGER.info(products.toString());
         if (products.size() > 1) {
             throw new IllegalStateException("Fant flere enn 1 produkt med primary-key:" + id + " " + products);
         }
         if (products.isEmpty()) {
             return null;
         }
-        return products.get(0);
+        Product product = products.get(0);
+        LOGGER.info("Hentet produkt fra tabell:" + product);
+        return product;
     }
 
     public void deleteProduct(int id) {
@@ -61,21 +62,23 @@ public class ProductDao {
     }
 
     public int updateProduct(Product product) {
+        int id;
         if (product.getId() != null) {
             jdbcTemplate.update(
                     UPDATE_PRODUCT,
                     product.getName(), product.getDescription(),
                     product.getPrice(), product.getId()
             );
-            return product.getId();
+            id = product.getId();
         } else {
-            int id = productSequence.nextIntValue();
+            id = productSequence.nextIntValue();
             jdbcTemplate.update(
                     INSERT_PRODUCT,
                     id, product.getName(),
                     product.getDescription(), product.getPrice()
             );
-            return id;
         }
+        LOGGER.info("Oppdatert database tabell PRODUCT for id:" + id);
+        return id;
     }
 }
