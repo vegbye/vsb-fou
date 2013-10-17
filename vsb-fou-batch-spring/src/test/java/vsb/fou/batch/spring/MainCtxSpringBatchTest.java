@@ -10,6 +10,8 @@ public class MainCtxSpringBatchTest {
 
     @Test
     public void testAppCtx() {
-        new AnnotationConfigApplicationContext(MainCtxSpringBatch.class, MockCtxSpringBatch.class);
+        new AnnotationConfigApplicationContext(
+                MockCtxSpringBatch.class,
+                MainCtxSpringBatch.class);
     }
 }

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MainCtxSpringBatch.class, TestCtxSpringBatch.class})
+@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatch.class})
 public class ProductDaoTest {
 
     @Resource
