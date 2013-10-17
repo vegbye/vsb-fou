@@ -59,7 +59,7 @@ public class MainCtxSpringBatch {
         bean.setResource(new ClassPathResource("/products.csv"));
         DefaultLineMapper<Product> lineMapper = new DefaultLineMapper<>();
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
-        lineTokenizer.setNames(new String[]{"PRODUCT_ID", "NAME", "DESCRIPTION", "PRICE"});
+        lineTokenizer.setNames(new String[]{"NAME", "DESCRIPTION", "PRICE"});
         lineMapper.setLineTokenizer(lineTokenizer);
         lineMapper.setFieldSetMapper(new ProductFieldSetMapper());
         bean.setLineMapper(lineMapper);
