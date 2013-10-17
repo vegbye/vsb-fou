@@ -12,6 +12,7 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -25,6 +26,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = "vsb.fou.batch.spring", excludeFilters = {@ComponentScan.Filter(InfraConfig.class)})
+@ImportResource("classpath:/import-products-job.xml")
 public class MainCtxSpringBatch {
 
     @Resource

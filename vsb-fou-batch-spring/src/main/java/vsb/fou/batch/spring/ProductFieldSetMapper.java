@@ -11,7 +11,7 @@ public class ProductFieldSetMapper implements FieldSetMapper<Product> {
 
     public Product mapFieldSet(FieldSet fieldSet) throws BindException {
         Product product = new Product();
-        product.setId(fieldSet.readString("PRODUCT_ID"));
+        product.setId(fieldSet.readInt("PRODUCT_ID"));
         product.setName(fieldSet.readString("NAME"));
         product.setDescription(fieldSet.readString("DESCRIPTION"));
         product.setPrice(fieldSet.readBigDecimal("PRICE"));

@@ -4,10 +4,10 @@
                             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
 
 
-    <job id="importProducts" xmlns="http://www.springframework.org/schema/batch">
+    <job id="importProductsJob" xmlns="http://www.springframework.org/schema/batch">
         <step id="readWriteProducts">
             <tasklet>
-                <chunk reader="reader" writer="writer" commit-interval="100"/>
+                <chunk reader="productReader" writer="productWriter" commit-interval="100"/>
             </tasklet>
         </step>
     </job>
