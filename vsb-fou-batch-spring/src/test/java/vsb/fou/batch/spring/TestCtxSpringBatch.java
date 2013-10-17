@@ -1,5 +1,6 @@
 package vsb.fou.batch.spring;
 
+import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -31,6 +32,11 @@ public class TestCtxSpringBatch {
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    public MapJobRepositoryFactoryBean jobRepository() {
+        return new MapJobRepositoryFactoryBean(transactionManager());
     }
 
     @Bean

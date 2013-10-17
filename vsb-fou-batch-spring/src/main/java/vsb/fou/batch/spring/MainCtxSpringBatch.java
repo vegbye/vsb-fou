@@ -3,7 +3,6 @@ package vsb.fou.batch.spring;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -17,7 +16,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.PlatformTransactionManager;
 import vsb.fou.common.InfraConfig;
 
 import javax.annotation.Resource;
@@ -34,15 +32,15 @@ public class MainCtxSpringBatch {
     @Resource
     private DataSource dataSource;
     @Resource
-    private PlatformTransactionManager transactionManager;
-    @Resource
     private JobRepository jobRepository;
     @Value("${vsb-fou-batch-spring.target.file}")
     private String targetFile;
 
     @Bean
-    public MapJobRepositoryFactoryBean jobRepository() {
-        return new MapJobRepositoryFactoryBean(transactionManager);
+    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
+        bean.setLocation(new ClassPathResource("/vsb-fou-batch-spring.properties"));
+        return bean;
     }
 
     @Bean
@@ -68,13 +66,6 @@ public class MainCtxSpringBatch {
         lineMapper.setLineTokenizer(lineTokenizer);
         lineMapper.setFieldSetMapper(new ProductFieldSetMapper());
         bean.setLineMapper(lineMapper);
-        return bean;
-    }
-
-    @Bean
-    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
-        PropertyPlaceholderConfigurer bean = new PropertyPlaceholderConfigurer();
-        bean.setLocation(new ClassPathResource("/vsb-fou-batch-spring.properties"));
         return bean;
     }
 

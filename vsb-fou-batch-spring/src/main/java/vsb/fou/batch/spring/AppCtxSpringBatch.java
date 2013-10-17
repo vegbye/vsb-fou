@@ -8,7 +8,7 @@ import vsb.fou.common.InfraConfig;
  * @author Vegard S. Bye
  */
 @Configuration
-@Import({InfraCtxSpringBatch.class, MainCtxSpringBatch.class})
+@Import({InfraCtxSpringBatch.class, MainCtxSpringBatch.class, SpringBatchAdminCtx.class})
 @InfraConfig
 public class AppCtxSpringBatch {
 }

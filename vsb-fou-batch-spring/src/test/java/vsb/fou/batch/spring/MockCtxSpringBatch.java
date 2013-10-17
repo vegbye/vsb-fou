@@ -1,6 +1,7 @@
 package vsb.fou.batch.spring;
 
 import org.mockito.Mockito;
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
@@ -24,6 +25,11 @@ public class MockCtxSpringBatch {
     @Bean
     public PlatformTransactionManager transactionManager() {
         return Mockito.mock(PlatformTransactionManager.class);
+    }
+
+    @Bean
+    public JobRepository jobRepository() {
+        return Mockito.mock(JobRepository.class);
     }
 
     @Bean

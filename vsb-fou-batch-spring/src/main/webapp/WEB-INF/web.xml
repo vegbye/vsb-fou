@@ -18,19 +18,29 @@
     <!--Spring config slutt -->
 
     <!-- Spring Batch Admin start -->
-    <!--<servlet>-->
-    <!--<servlet-name>SpringBatchAdminServlet</servlet-name>-->
-    <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-    <!--<init-param>-->
-    <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>classpath*:/org/springframework/batch/admin/web/resources/servlet-config.xml</param-value>-->
-    <!--</init-param>-->
-    <!--<load-on-startup>4</load-on-startup>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>SpringBatchAdminServlet</servlet-name>-->
-    <!--<url-pattern>/springbatchadmin/*</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>SpringBatchAdminServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:/org/springframework/batch/admin/web/resources/servlet-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringBatchAdminServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
     <!-- Spring Batch Admin slutt -->
+
+    <servlet>
+        <servlet-name>H2Console</servlet-name>
+        <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>H2Console</servlet-name>
+        <url-pattern>/h2/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>
