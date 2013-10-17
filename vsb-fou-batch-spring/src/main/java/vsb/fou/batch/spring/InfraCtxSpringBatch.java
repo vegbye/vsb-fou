@@ -22,6 +22,9 @@ import javax.sql.DataSource;
 @InfraConfig
 public class InfraCtxSpringBatch {
 
+    /**
+     * H2 oppretter en database på disk med de angitte brukernavn/passord om den ikke eksisterer.
+     */
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
