@@ -20,7 +20,10 @@ public class TestCtxSpringBatch {
     @Bean(destroyMethod = "shutdown")
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2).addScript("/org/springframework/batch/core/schema-h2.sql").addScript("/create-product-table.sql").build();
+        return builder.setType(EmbeddedDatabaseType.H2)
+                .addScript("/org/springframework/batch/core/schema-h2.sql")
+                .addScript("/create-product-table.sql")
+                .build();
     }
 
     @Bean

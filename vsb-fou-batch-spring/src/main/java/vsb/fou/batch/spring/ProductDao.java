@@ -22,6 +22,17 @@ public class ProductDao {
     }
 
     public void updateProduct(Product product) {
-
+        int updated = jdbcTemplate.update(
+                UPDATE_PRODUCT,
+                product.getName(), product.getDescription(),
+                product.getPrice(), product.getId()
+        );
+        if (updated == 0) {
+            jdbcTemplate.update(
+                    INSERT_PRODUCT,
+                    product.getId(), product.getName(),
+                    product.getDescription(), product.getPrice()
+            );
+        }
     }
 }

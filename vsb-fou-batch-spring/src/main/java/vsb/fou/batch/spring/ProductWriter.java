@@ -19,24 +19,16 @@ public class ProductWriter implements ItemWriter<Product> {
     private JdbcTemplate jdbcTemplate;
 
     @Resource
+    private ProductDao productDao;
+
+    @Resource
     public void setDataSource(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
     public void write(List<? extends Product> items) throws Exception {
         for (Product item : items) {
-            int updated = jdbcTemplate.update(
-                    UPDATE_PRODUCT,
-                    item.getName(), item.getDescription(),
-                    item.getPrice(), item.getId()
-            );
-            if (updated == 0) {
-                jdbcTemplate.update(
-                        INSERT_PRODUCT,
-                        item.getId(), item.getName(),
-                        item.getDescription(), item.getPrice()
-                );
-            }
+            productDao.updateProduct(item);
         }
     }
 }
