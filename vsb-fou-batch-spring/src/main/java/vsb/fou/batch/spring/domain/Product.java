@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.domain;
 
 import java.math.BigDecimal;
 

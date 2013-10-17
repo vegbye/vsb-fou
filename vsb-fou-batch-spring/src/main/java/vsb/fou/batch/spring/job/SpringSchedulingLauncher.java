@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.job;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;

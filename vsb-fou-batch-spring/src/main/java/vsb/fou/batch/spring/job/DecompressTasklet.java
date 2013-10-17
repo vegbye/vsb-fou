@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.job;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -10,6 +10,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import vsb.fou.batch.spring.dao.ProductDao;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import vsb.fou.batch.spring.domain.Product;
+import vsb.fou.batch.spring.job.ProductFieldSetMapper;
 import vsb.fou.common.InfraConfig;
 
 import javax.annotation.Resource;

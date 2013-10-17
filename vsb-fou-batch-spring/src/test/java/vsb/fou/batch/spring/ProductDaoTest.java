@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import vsb.fou.batch.spring.dao.ProductDao;
+import vsb.fou.batch.spring.domain.Product;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;

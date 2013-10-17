@@ -1,7 +1,9 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.job;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
+import vsb.fou.batch.spring.dao.ProductDao;
+import vsb.fou.batch.spring.domain.Product;
 
 import javax.annotation.Resource;
 import java.util.List;

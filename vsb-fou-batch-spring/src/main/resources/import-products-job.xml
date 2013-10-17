@@ -9,7 +9,7 @@
     <task:scheduler id="scheduler" pool-size="10"/>
 
     <task:scheduled-tasks scheduler="scheduler">
-        <task:scheduled ref="springSchedulingLauncher" method="launch" fixed-rate="10000"/>
+        <task:scheduled ref="springSchedulingLauncher" method="launch" initial-delay="10000" fixed-rate="3000"/>
     </task:scheduled-tasks>
 
     <job id="importProductsJob" xmlns="http://www.springframework.org/schema/batch">
