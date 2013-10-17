@@ -25,7 +25,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainCtxSpringBatch.class, TestCtxSpringBatch.class})
 @TransactionConfiguration(defaultRollback = true)
-public class ImportProductsBatchTest {
+public class ImportProducts2BatchTest {
 
     @Resource
     private JobLauncher jobLauncher;

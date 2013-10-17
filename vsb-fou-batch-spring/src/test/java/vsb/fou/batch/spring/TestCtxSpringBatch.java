@@ -6,6 +6,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
+import vsb.fou.common.InfraConfig;
 
 import javax.sql.DataSource;
 
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
  * @author Vegard S. Bye
  */
 @Configuration
+@InfraConfig
 public class TestCtxSpringBatch {
 
     @Bean(destroyMethod = "shutdown")
