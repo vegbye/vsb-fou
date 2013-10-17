@@ -6,7 +6,7 @@ import org.apache.activemq.broker.TransportConnector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.connection.SingleConnectionFactory;
-import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.common.InfraConfig;
 
 import javax.jms.ConnectionFactory;
 import java.net.URI;
@@ -15,7 +15,7 @@ import java.net.URI;
  * @author Vegard S. Bye
  */
 @Configuration
-@EnvironmentConfiguration
+@InfraConfig
 public class TestCtxActiveMqServerEnv {
 
     private static final String BROKER_URL = "vm://localhost";

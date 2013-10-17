@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.common.InfraConfig;
 
 @Configuration
-@ComponentScan(basePackages = "vsb.fou.jms.activemq.server", excludeFilters = {@ComponentScan.Filter(EnvironmentConfiguration.class)})
+@ComponentScan(basePackages = "vsb.fou.jms.activemq.server", excludeFilters = {@ComponentScan.Filter(InfraConfig.class)})
 public class MainCtxActiveMqServer {
 
     @Bean

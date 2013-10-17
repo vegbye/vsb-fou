@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jms.core.JmsTemplate;
-import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.common.InfraConfig;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@EnvironmentConfiguration
+@InfraConfig
 public class MainCtxActiveMqClientEnv {
 
     @Value("${vsb-fou-jms-activemq.broker.client.url}")

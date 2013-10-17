@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import vsb.fou.common.EnvironmentConfiguration;
+import vsb.fou.common.InfraConfig;
 
 import javax.jms.ConnectionFactory;
 import java.io.File;
@@ -25,7 +25,7 @@ import java.util.List;
 
 @Configuration
 @Import(MainCtxActiveMqServer.class)
-@EnvironmentConfiguration
+@InfraConfig
 public class MainCtxActiveMqServerEnv {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MainCtxActiveMqServerEnv.class);
