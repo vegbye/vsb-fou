@@ -18,6 +18,7 @@
         <spring.version>3.2.4.RELEASE</spring.version>
         <spring-batch.version>2.1.9.RELEASE</spring-batch.version>
         <spring-batch-admin.version>1.2.2.RELEASE</spring-batch-admin.version>
+        <quartz.version>2.2.1</quartz.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
         <junit.version>4.11</junit.version>
@@ -126,6 +127,11 @@
             <type>test-jar</type>
         </dependency>
         <!-- ================ main 3. party deps ================ -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
