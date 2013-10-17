@@ -59,6 +59,7 @@ public class ProductDao {
 
     public void deleteProduct(int id) {
         jdbcTemplate.update(DELETE_PRODUCT, new String[]{Integer.toString(id)});
+        LOGGER.info("Slettet produkt fra tabell med id:" + id);
     }
 
     public int updateProduct(Product product) {
