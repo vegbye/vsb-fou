@@ -169,6 +169,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -242,6 +247,23 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
+        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>javax.mail</groupId>-->
+        <!--<artifactId>javax.mail-api</artifactId>-->
+        <!--<version>1.5.0</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>mailapi</artifactId>
+            <version>1.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
         </dependency>
         <!-- ================ test 3. party deps ================ -->
         <dependency>
