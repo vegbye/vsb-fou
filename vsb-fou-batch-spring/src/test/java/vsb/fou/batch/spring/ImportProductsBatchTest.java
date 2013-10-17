@@ -11,7 +11,6 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import java.util.UUID;
@@ -24,7 +23,6 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainCtxSpringBatch.class, TestCtxSpringBatch.class})
-@TransactionConfiguration(defaultRollback = true)
 public class ImportProductsBatchTest {
 
     @Resource
@@ -33,7 +31,7 @@ public class ImportProductsBatchTest {
     private Job importProductsJob;
 
     @Test
-    public void testIt_1() throws Exception {
+    public void test_import_products() throws Exception {
         JobExecution jobExecution = jobLauncher.run(importProductsJob, new JobParametersBuilder()
                 .addString("ID", UUID.randomUUID().toString())
                 .toJobParameters());
@@ -43,7 +41,7 @@ public class ImportProductsBatchTest {
     }
 
     @Test
-    public void testIt_2() throws Exception {
+    public void test_import_products_with_errors() throws Exception {
         JobExecution jobExecution = jobLauncher.run(importProductsJob, new JobParametersBuilder()
                 .addString("ID", UUID.randomUUID().toString())
                 .toJobParameters());

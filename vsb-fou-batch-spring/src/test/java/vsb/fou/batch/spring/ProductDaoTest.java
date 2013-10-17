@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -18,7 +17,6 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainCtxSpringBatch.class, TestCtxSpringBatch.class})
-@TransactionConfiguration(defaultRollback = true)
 public class ProductDaoTest {
 
     @Resource
