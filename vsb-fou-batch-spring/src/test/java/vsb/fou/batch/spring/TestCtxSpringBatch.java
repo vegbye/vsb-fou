@@ -3,6 +3,8 @@ package vsb.fou.batch.spring;
 import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -44,4 +46,8 @@ public class TestCtxSpringBatch {
         return new H2SequenceMaxValueIncrementer(dataSource(), "VSB.PRODUCT_SEQ");
     }
 
+    @Bean
+    public TaskExecutor taskExecutor() {
+        return new SyncTaskExecutor();
+    }
 }

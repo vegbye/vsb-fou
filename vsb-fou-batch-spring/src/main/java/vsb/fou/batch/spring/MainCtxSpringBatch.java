@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import vsb.fou.batch.spring.domain.Product;
 import vsb.fou.batch.spring.job.ProductFieldSetMapper;
@@ -37,6 +38,8 @@ public class MainCtxSpringBatch {
     private JobRepository jobRepository;
     @Value("${vsb-fou-batch-spring.target.file}")
     private String targetFile;
+    @Resource
+    private TaskExecutor taskExecutor;
 
     @Bean
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
@@ -49,6 +52,7 @@ public class MainCtxSpringBatch {
     public JobLauncher jobLauncher() {
         SimpleJobLauncher bean = new SimpleJobLauncher();
         bean.setJobRepository(jobRepository);
+        bean.setTaskExecutor(taskExecutor);
         return bean;
     }
 

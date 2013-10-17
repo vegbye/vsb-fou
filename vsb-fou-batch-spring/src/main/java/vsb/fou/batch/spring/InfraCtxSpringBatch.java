@@ -7,6 +7,8 @@ import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
 import org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer;
@@ -29,7 +31,7 @@ public class InfraCtxSpringBatch {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:/var/db/vsb/vsb-fou-batch-spring");
+        dataSource.setUrl("jdbc:h2:~/db/vsb/vsb-fou-batch-spring");
         dataSource.setUsername("vsb");
         dataSource.setPassword("vsb");
         return dataSource;
@@ -63,5 +65,12 @@ public class InfraCtxSpringBatch {
     @Bean
     public AbstractSequenceMaxValueIncrementer productSequence() {
         return new H2SequenceMaxValueIncrementer(dataSource(), "VSB.PRODUCT_SEQ");
+    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        SimpleAsyncTaskExecutor bean = new SimpleAsyncTaskExecutor();
+        bean.setConcurrencyLimit(-1);
+        return bean;
     }
 }
