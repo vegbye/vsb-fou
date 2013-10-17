@@ -31,7 +31,7 @@ public class ImportProductsBatchTest {
     private Job importProductsJob;
 
     @Test
-    public void test_import_products() throws Exception {
+    public void test_import_products_1() throws Exception {
         JobExecution jobExecution = jobLauncher.run(importProductsJob, new JobParametersBuilder()
                 .addString("ID", UUID.randomUUID().toString())
                 .toJobParameters());
@@ -41,7 +41,7 @@ public class ImportProductsBatchTest {
     }
 
     @Test
-    public void test_import_products_with_errors() throws Exception {
+    public void test_import_products_2() throws Exception {
         JobExecution jobExecution = jobLauncher.run(importProductsJob, new JobParametersBuilder()
                 .addString("ID", UUID.randomUUID().toString())
                 .toJobParameters());
