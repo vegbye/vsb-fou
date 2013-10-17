@@ -29,7 +29,7 @@ public class InfraCtxSpringBatch {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:/var/db/vsb-fou-batch-spring");
+        dataSource.setUrl("jdbc:h2:/var/db/vsb/vsb-fou-batch-spring");
         dataSource.setUsername("vsb");
         dataSource.setPassword("vsb");
         return dataSource;
