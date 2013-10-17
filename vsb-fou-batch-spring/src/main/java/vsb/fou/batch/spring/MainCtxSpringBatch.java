@@ -5,7 +5,6 @@ import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
@@ -66,11 +65,5 @@ public class MainCtxSpringBatch {
         bean.setLineMapper(lineMapper);
         return bean;
     }
-
-    @Bean
-    public ItemWriter productWriter() {
-        return new ProductJdbcItemWriter(dataSource);
-    }
-
 
 }
