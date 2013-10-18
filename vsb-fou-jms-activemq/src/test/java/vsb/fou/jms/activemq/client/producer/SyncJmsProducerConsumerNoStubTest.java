@@ -3,12 +3,12 @@ package vsb.fou.jms.activemq.client.producer;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.jms.activemq.client.consumer.MainCtxActiveMqConsumer;
 import vsb.fou.jms.activemq.client.springtestutils.TestCtxActiveMqServerEnv;
 
-import javax.annotation.Resource;
 import javax.jms.Message;
 import javax.jms.TextMessage;
 
@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 @ContextConfiguration(classes = {MainCtxActiveMqProducer.class, MainCtxActiveMqConsumer.class, TestCtxActiveMqServerEnv.class})
 public class SyncJmsProducerConsumerNoStubTest {
 
-    @Resource
+    @Autowired
     private SyncJmsProducerConsumer syncJmsProducerConsumer;
 
     @Test

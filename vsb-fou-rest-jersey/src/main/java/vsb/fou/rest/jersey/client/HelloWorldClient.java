@@ -2,13 +2,13 @@ package vsb.fou.rest.jersey.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.VsbRestError;
 
-import javax.annotation.Resource;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -24,7 +24,7 @@ public class HelloWorldClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClient.class);
     @Value("${vsb.fou.rest.baseurl}")
     private String baseUrl;
-    @Resource
+    @Autowired
     private Client restClient;
 
     public HelloWorldResponse getHelloWorld() {

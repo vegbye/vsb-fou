@@ -6,7 +6,14 @@ import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
 import vsb.fou.rest.jersey.api.ResultData;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -20,7 +27,7 @@ public class HelloWorldJerseyREST {
 
     private static int counter = 0;
     /**
-     * NB! MÅ være @Autowired ikke @Resource !?
+     * NB! MÅ være @Autowired ikke @Autowired !?
      */
     @Autowired
     private HelloWorldService helloWorldService;

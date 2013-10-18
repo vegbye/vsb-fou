@@ -2,11 +2,11 @@ package vsb.fou.db.h2;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeServiceH2 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceH2.class);
-    @Resource
+    @Autowired
     private DataSource dataSource;
 
     public void insert(String primaryKey, String name) {

@@ -6,12 +6,12 @@ import org.springframework.batch.admin.web.resources.ResourceService;
 import org.springframework.batch.core.configuration.JobRegistry;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import vsb.fou.common.InfraConfig;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
@@ -26,13 +26,13 @@ import javax.sql.DataSource;
 @InfraConfig
 public class SpringBatchAdminCtx {
 
-    @Resource
+    @Autowired
     private JobLauncher jobLauncher;
-    @Resource
+    @Autowired
     private JobRepository jobRepository;
-    @Resource
+    @Autowired
     private DataSource dataSource;
-    @Resource
+    @Autowired
     private JobRegistry jobRegistry;
 
     @Bean

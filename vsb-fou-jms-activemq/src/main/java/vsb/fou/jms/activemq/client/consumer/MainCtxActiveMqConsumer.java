@@ -1,5 +1,6 @@
 package vsb.fou.jms.activemq.client.consumer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,18 +9,17 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.jms.support.destination.DynamicDestinationResolver;
 import vsb.fou.jms.activemq.client.common.JmsKonstanter;
 
-import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
 
 @Configuration
 @ComponentScan("vsb.fou.jms.activemq.client.consumer")
 public class MainCtxActiveMqConsumer {
 
-    @Resource
+    @Autowired
     private ConnectionFactory connectionFactory;
-    @Resource
+    @Autowired
     private AsyncJmsConsumer asyncJmsConsumer;
-    @Resource
+    @Autowired
     private SyncJmsConsumer syncJmsConsumer;
 
     @Bean

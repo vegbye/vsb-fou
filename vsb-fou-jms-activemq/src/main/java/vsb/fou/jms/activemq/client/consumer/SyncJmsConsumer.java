@@ -2,12 +2,12 @@ package vsb.fou.jms.activemq.client.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 import vsb.fou.jms.activemq.client.common.JmsKonstanter;
 
-import javax.annotation.Resource;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -22,7 +22,7 @@ import java.util.Date;
 public class SyncJmsConsumer implements MessageListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SyncJmsConsumer.class);
-    @Resource
+    @Autowired
     private JmsTemplate jmsTemplate;
 
     /**

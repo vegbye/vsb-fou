@@ -8,9 +8,9 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class VsbRestAspect {
         TRUNCATED_REQUEST_PARAMS.get(serviceName).add(paramName);
     }
 
-    @Resource
+    @Autowired
     public void setVsbSessionCache(VsbSessionCache vsbSessionCache) {
         VsbRestAspect.vsbSessionCache = vsbSessionCache;
     }

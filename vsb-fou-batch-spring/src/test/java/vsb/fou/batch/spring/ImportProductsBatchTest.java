@@ -9,10 +9,10 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.annotation.Resource;
 import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,9 +25,9 @@ import static org.junit.Assert.assertThat;
 @ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatch.class})
 public class ImportProductsBatchTest {
 
-    @Resource
+    @Autowired
     private JobLauncher jobLauncher;
-    @Resource
+    @Autowired
     private Job importProductsJob;
 
     @Test

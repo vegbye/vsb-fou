@@ -7,6 +7,7 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,6 @@ import vsb.fou.batch.spring.domain.Product;
 import vsb.fou.batch.spring.job.ProductFieldSetMapper;
 import vsb.fou.common.InfraConfig;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
@@ -32,13 +32,13 @@ import javax.sql.DataSource;
 @ImportResource("classpath:/import-products-job.xml")
 public class MainCtxSpringBatch {
 
-    @Resource
+    @Autowired
     private DataSource dataSource;
-    @Resource
+    @Autowired
     private JobRepository jobRepository;
     @Value("${vsb-fou-batch-spring.target.file}")
     private String targetFile;
-    @Resource
+    @Autowired
     private TaskExecutor taskExecutor;
 
     @Bean

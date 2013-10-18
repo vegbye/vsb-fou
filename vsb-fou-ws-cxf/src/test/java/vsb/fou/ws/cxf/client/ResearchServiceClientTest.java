@@ -5,14 +5,13 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 import vsb.fou.service._2013._08.PingRequest;
 import vsb.fou.service._2013._08.PingResponse;
 import vsb.fou.service._2013._08.ResearchPortType;
-
-import javax.annotation.Resource;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
@@ -26,7 +25,7 @@ import static org.junit.Assert.assertThat;
 public class ResearchServiceClientTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResearchServiceClientTest.class);
-    @Resource
+    @Autowired
     private ResearchPortType researchClient;
 
     @Test

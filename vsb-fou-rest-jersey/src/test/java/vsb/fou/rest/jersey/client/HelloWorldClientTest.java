@@ -5,6 +5,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.common.DemandsRunningJettyServerTestCategory;
@@ -13,10 +14,11 @@ import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
 import vsb.fou.rest.jersey.server.HelloWorldJerseyREST;
 
-import javax.annotation.Resource;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -29,7 +31,7 @@ import static org.junit.Assert.fail;
 public class HelloWorldClientTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientTest.class);
-    @Resource
+    @Autowired
     private HelloWorldClient helloWorldClient;
 
     @Test

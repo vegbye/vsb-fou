@@ -4,9 +4,9 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
@@ -15,9 +15,9 @@ import java.util.UUID;
 @Component
 public class SpringSchedulingLauncher {
 
-    @Resource
+    @Autowired
     private Job job;
-    @Resource
+    @Autowired
     private JobLauncher jobLauncher;
 
     public void launch() throws Exception {

@@ -2,13 +2,13 @@ package vsb.fou.batch.spring.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
 import org.springframework.stereotype.Repository;
 import vsb.fou.batch.spring.domain.Product;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,11 +25,11 @@ public class ProductDao {
     private static final String UPDATE_PRODUCT = "UPDATE VSB.PRODUCT set " + "NAME=?, DESCRIPTION=?, PRICE=? WHERE ID=?";
     private static final String SELECT_PRODUCT = "SELECT * FROM VSB.PRODUCT WHERE ID=?";
     private static final String DELETE_PRODUCT = "DELETE FROM VSB.PRODUCT WHERE ID=?";
-    @Resource
+    @Autowired
     public AbstractSequenceMaxValueIncrementer productSequence;
     private JdbcTemplate jdbcTemplate;
 
-    @Resource
+    @Autowired
     public void setDataSource(DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
