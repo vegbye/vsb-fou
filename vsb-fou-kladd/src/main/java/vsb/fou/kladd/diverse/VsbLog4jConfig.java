@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public final class VsbLog4jConfig {
 
-    private static final Logger log = Logger.getLogger(VsbLog4jConfig.class);
+    private static final Logger LOGGER = Logger.getLogger(VsbLog4jConfig.class);
 
     private VsbLog4jConfig() {
     }
@@ -18,7 +18,7 @@ public final class VsbLog4jConfig {
 
     public static void configure() {
         PropertyConfigurator.configure(createProps());
-        log.info("Log4j er konfigurert programmatisk.");
+        LOGGER.info("Log4j er konfigurert programmatisk.");
     }
 
     private static Properties createProps() {
