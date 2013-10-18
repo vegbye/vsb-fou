@@ -7,10 +7,14 @@ import java.util.Properties;
 
 public final class VsbLog4jConfig {
 
+    private static final Logger log = Logger.getLogger(VsbLog4jConfig.class);
+
     private VsbLog4jConfig() {
     }
 
-    private static final Logger log = Logger.getLogger(VsbLog4jConfig.class);
+    public static void main(String[] args) {
+        configure();
+    }
 
     public static void configure() {
         PropertyConfigurator.configure(createProps());
