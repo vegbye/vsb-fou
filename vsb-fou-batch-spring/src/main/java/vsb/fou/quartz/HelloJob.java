@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.quartz;
+package vsb.fou.quartz;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
