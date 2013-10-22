@@ -16,6 +16,7 @@ public class MyQuartzJobBean extends QuartzJobBean {
         runMeTask.printMe();
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public void setRunMeTask(RunMeTask runMeTask) {
         this.runMeTask = runMeTask;
     }
