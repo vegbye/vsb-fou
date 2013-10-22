@@ -11,7 +11,7 @@ import org.quartz.impl.StdSchedulerFactory;
 /**
  * @author Vegard S. Bye
  */
-public class QuartzTestMain {
+public class HelloWorldQuartzMain {
 
     public static void main(String[] args) {
 
@@ -22,8 +22,8 @@ public class QuartzTestMain {
             // and start it off
             scheduler.start();
 
-            // define the job and tie it to our HelloJob class
-            JobDetail job = JobBuilder.newJob(HelloJob.class)
+            // define the job and tie it to our HelloWorldJob class
+            JobDetail job = JobBuilder.newJob(HelloWorldJob.class)
                     .withIdentity("job1", "group1")
                     .build();
 
