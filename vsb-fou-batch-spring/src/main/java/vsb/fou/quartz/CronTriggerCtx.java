@@ -20,7 +20,7 @@ public class CronTriggerCtx {
     public CronTriggerFactoryBean quartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(runMeJob);
-        bean.setCronExpression("0/5 * * * * ?");
+        bean.setCronExpression("0/2 * * * * ?");
         return bean;
     }
 
