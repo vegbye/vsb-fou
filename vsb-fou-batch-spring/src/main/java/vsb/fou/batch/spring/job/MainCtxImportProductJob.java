@@ -18,7 +18,7 @@ import vsb.fou.batch.spring.job.domain.Product;
 @Configuration
 @ComponentScan("vsb.fou.batch.spring.job")
 @ImportResource("classpath:/import-products-job.xml")
-public class MainCtxSpringBatchJobs {
+public class MainCtxImportProductJob {
 
     @Value("${vsb-fou-batch-spring.target.file}")
     private String targetFile;

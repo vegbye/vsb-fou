@@ -12,7 +12,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vsb.fou.batch.spring.job.MainCtxSpringBatchJobs;
+import vsb.fou.batch.spring.job.MainCtxImportProductJob;
 import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 
 import java.util.UUID;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class, MainCtxSpringBatchJobs.class})
+@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class, MainCtxImportProductJob.class})
 public class ImportProductsBatchTest {
 
     @Autowired
