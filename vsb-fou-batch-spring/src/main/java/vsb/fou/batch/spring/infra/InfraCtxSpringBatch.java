@@ -28,7 +28,9 @@ public class InfraCtxSpringBatch {
     @Autowired
     private JobRegistry jobRegistry;
 
-
+    /**
+     * Denne MÅ vi ha for at Spring Batch Admin skal finne jobbene som er i denne spring-ctx slik at de er launchable.
+     */
     @Bean
     public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor() {
         JobRegistryBeanPostProcessor bean = new JobRegistryBeanPostProcessor();
