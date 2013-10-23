@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.batch.spring.job.MainCtxSpringBatchJobs;
 import vsb.fou.batch.spring.job.dao.ProductDao;
 import vsb.fou.batch.spring.job.domain.Product;
-import vsb.fou.batch.spring.web.MainCtxSpringBatch;
+import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 
 import java.math.BigDecimal;
 
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatch.class, MainCtxSpringBatchJobs.class})
+@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class, MainCtxSpringBatchJobs.class})
 public class ProductDaoTest {
 
     @Autowired

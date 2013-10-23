@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = "vsb.fou.batch.spring.web", excludeFilters = {@ComponentScan.Filter(InfraConfig.class)})
-public class MainCtxSpringBatch {
+public class MainCtxSpringBatchWeb {
 
     @Autowired
     private DataSource dataSource;

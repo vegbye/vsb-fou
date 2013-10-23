@@ -2,7 +2,7 @@ package vsb.fou.batch.spring;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import vsb.fou.batch.spring.web.MainCtxSpringBatch;
+import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 
 /**
  * @author Vegard S. Bye
@@ -13,6 +13,6 @@ public class MainCtxSpringBatchTest {
     public void testAppCtx() {
         new AnnotationConfigApplicationContext(
                 MockCtxSpringBatch.class,
-                MainCtxSpringBatch.class);
+                MainCtxSpringBatchWeb.class);
     }
 }
