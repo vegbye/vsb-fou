@@ -1,4 +1,4 @@
-package vsb.fou.quartz;
+package vsb.fou.batch.spring.quartz;
 
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import vsb.fou.quartz.CronTriggerCtx;
+import vsb.fou.quartz.JobDetailCtx;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -17,9 +19,9 @@ import java.io.IOException;
  * @author Vegard S. Bye
  */
 @Configuration
-@ComponentScan("vsb.fou.quartz")
+@ComponentScan("vsb.fou.batch.spring.quartz")
 @Import({JobDetailCtx.class, CronTriggerCtx.class})
-public class MainCtxSpringQuartz {
+public class MainCtxSpringBatchQuartz {
 
     @Resource
     private JobDetail runMeJob;
