@@ -15,7 +15,7 @@
         <step id="decompress" next="readWriteProducts">
             <tasklet ref="decompressTasklet"/>
         </step>
-        <step id="readWriteProducts">
+        <step id="readWriteProducts" next="cleanup">
             <tasklet>
                 <chunk reader="productReader" writer="productWriter" commit-interval="100" skip-limit="5">
                     <skippable-exception-classes>
@@ -23,6 +23,9 @@
                     </skippable-exception-classes>
                 </chunk>
             </tasklet>
+        </step>
+        <step id="cleanup">
+            <tasklet ref="cleanUpTasklet"/>
         </step>
     </job>
 

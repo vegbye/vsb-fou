@@ -10,7 +10,6 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import vsb.fou.batch.spring.job.dao.ProductDao;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,7 +23,7 @@ import java.util.zip.ZipInputStream;
 @Component
 public class DecompressTasklet implements Tasklet {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DecompressTasklet.class);
     @Value("${vsb-fou-batch-spring.input.file}")
     private String inputFile;
     @Value("${vsb-fou-batch-spring.target.file}")
@@ -32,6 +31,11 @@ public class DecompressTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        Long jobExecutionId = chunkContext.getStepContext().getStepExecution().getJobExecutionId();
+        Long stepId = chunkContext.getStepContext().getStepExecution().getId();
+        Long jobInstanceId = chunkContext.getStepContext().getStepExecution().getJobExecution().getJobInstance().getId();
+        Object id = chunkContext.getStepContext().getJobParameters().get("ID");
+        LOGGER.info("ID:" + id + " jobExecutionId:" + jobExecutionId + " stepId:" + stepId + " jobInstanceId:" + jobInstanceId);
         LOGGER.info("inputFile:" + inputFile);
         ClassPathResource inputResource = new ClassPathResource(inputFile);
         ZipInputStream zis = new ZipInputStream(
