@@ -9,6 +9,8 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import vsb.fou.common.InfraConfig;
 
 import javax.sql.DataSource;
 
@@ -16,7 +18,12 @@ import javax.sql.DataSource;
  * @author Vegard S. Bye
  */
 @Configuration
-public class MainSpringBatchAdminCtx {
+@ImportResource({
+        "classpath:/META-INF/spring/batch/bootstrap/manager/jmx-context.xml",
+        "classpath:/META-INF/spring/batch/bootstrap/integration/*.xml"
+})
+@InfraConfig
+public class MainCtxSpringBatchAdmin {
 
     @Autowired
     private JobLauncher jobLauncher;
