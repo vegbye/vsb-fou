@@ -1,10 +1,12 @@
 package vsb.fou.batch.spring.quartz;
 
+import org.springframework.batch.core.configuration.JobLocator;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,15 +16,18 @@ import java.util.Map;
 @Configuration
 public class JobDetailCtx {
 
-    @Resource
-    private VsbQuartzJob vsbQuartzJob;
+    @Autowired
+    private JobLocator jobLocator;
+    @Autowired
+    private JobLauncher jobLauncher;
 
     @Bean
-    public JobDetailFactoryBean vsbQuartzJob() {
+    public JobDetailFactoryBean springBatchQuartzJob() {
         JobDetailFactoryBean bean = new JobDetailFactoryBean();
-        bean.setJobClass(VsbQuartzJob.class);
+        bean.setJobClass(SpringBatchQuartzJob.class);
         Map<String, Object> map = new HashMap<>();
-        map.put("vsbQuartzJob", vsbQuartzJob);
+        map.put("jobLocator", jobLocator);
+        map.put("jobLauncher", jobLauncher);
         bean.setJobDataAsMap(map);
         bean.setDurability(true);
         return bean;

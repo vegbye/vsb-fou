@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.infra;
 
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.repository.JobRepository;

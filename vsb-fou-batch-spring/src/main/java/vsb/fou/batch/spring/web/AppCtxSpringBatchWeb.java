@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import vsb.fou.batch.spring.infra.InfraCtxSpringBatch;
 import vsb.fou.batch.spring.job.MainCtxImportProductJob;
+import vsb.fou.batch.spring.quartz.MainCtxSpringBatchQuartz;
 import vsb.fou.batch.spring.springbatchadmin.MainCtxSpringBatchAdmin;
 import vsb.fou.common.InfraConfig;
-import vsb.fou.quartz.MainCtxQuartz;
 
 /**
  * @author Vegard S. Bye
@@ -16,7 +16,7 @@ import vsb.fou.quartz.MainCtxQuartz;
         MainCtxImportProductJob.class,
         InfraCtxSpringBatch.class,
         MainCtxSpringBatchWeb.class,
-        MainCtxQuartz.class,
+        MainCtxSpringBatchQuartz.class,
         MainCtxSpringBatchAdmin.class
 })
 @InfraConfig

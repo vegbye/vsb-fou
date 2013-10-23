@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import vsb.fou.quartz.CronTriggerCtx;
-import vsb.fou.quartz.JobDetailCtx;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -24,7 +22,7 @@ import java.io.IOException;
 public class MainCtxSpringBatchQuartz {
 
     @Resource
-    private JobDetail runMeJob;
+    private JobDetail springBatchQuartzJob;
     @Resource
     private CronTrigger quartzCronTrigger;
 
@@ -32,7 +30,7 @@ public class MainCtxSpringBatchQuartz {
     public SchedulerFactoryBean quartzScheduler() throws IOException {
         SchedulerFactoryBean bean = new SchedulerFactoryBean();
         bean.setConfigLocation(new ClassPathResource("/quartz.properties"));
-        bean.setJobDetails(new JobDetail[]{runMeJob});
+        bean.setJobDetails(new JobDetail[]{springBatchQuartzJob});
         bean.setTriggers(new Trigger[]{quartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);

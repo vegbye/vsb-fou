@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.job;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vsb.fou.batch.spring.job.MainCtxImportProductJob;
+import vsb.fou.batch.spring.infra.TestCtxSpringBatch;
 import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 
 import java.util.UUID;

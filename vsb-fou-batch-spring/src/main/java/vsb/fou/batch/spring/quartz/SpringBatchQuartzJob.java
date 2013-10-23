@@ -1,7 +1,6 @@
 package vsb.fou.batch.spring.quartz;
 
 import org.quartz.JobExecutionContext;
-import org.springframework.batch.core.JobExecutionException;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.JobLocator;
@@ -12,34 +11,35 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class VsbQuartzJob extends QuartzJobBean {
+public class SpringBatchQuartzJob extends QuartzJobBean {
 
     private static final String JOB_NAME = "jobName";
-
     private JobLocator jobLocator;
-
     private JobLauncher jobLauncher;
 
+    @SuppressWarnings("UnusedDeclaration")
     public void setJobLocator(JobLocator jobLocator) {
         this.jobLocator = jobLocator;
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public void setJobLauncher(JobLauncher jobLauncher) {
         this.jobLauncher = jobLauncher;
     }
 
-    @SuppressWarnings("unchecked")
     protected void executeInternal(JobExecutionContext context) {
 
-        Map<String, Object> jobDataMap = context.getMergedJobDataMap();
-
-        String jobName = (String) jobDataMap.get(JOB_NAME);
-
-        JobParameters jobParameters = getJobParametersFromJobMap(jobDataMap);
-
         try {
+            System.out.println("0");
+            Map<String, Object> jobDataMap = context.getMergedJobDataMap();
+            System.out.println("1:" + jobDataMap);
+            String jobName = (String) jobDataMap.get(JOB_NAME);
+            System.out.println("2:" + jobName);
+            JobParameters jobParameters = getJobParametersFromJobMap(jobDataMap);
+            System.out.println("3:" + jobParameters);
             jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
-        } catch (JobExecutionException e) {
+            System.out.println("4");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
