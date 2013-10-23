@@ -1,11 +1,8 @@
 package vsb.fou.batch.spring.infra;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.springframework.batch.core.configuration.JobRegistry;
-import org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor;
 import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -24,19 +21,6 @@ import javax.sql.DataSource;
 @Configuration
 @InfraConfig
 public class InfraCtxSpringBatch {
-
-    @Autowired
-    private JobRegistry jobRegistry;
-
-    /**
-     * Denne MÅ vi ha for at Spring Batch Admin skal finne jobbene som er i denne spring-ctx slik at de er launchable.
-     */
-    @Bean
-    public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor() {
-        JobRegistryBeanPostProcessor bean = new JobRegistryBeanPostProcessor();
-        bean.setJobRegistry(jobRegistry);
-        return bean;
-    }
 
     /**
      * H2 oppretter en database på disk med de angitte brukernavn/passord om den ikke eksisterer.

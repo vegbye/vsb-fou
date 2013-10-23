@@ -1,6 +1,7 @@
 package vsb.fou.batch.spring.web;
 
 import org.springframework.batch.core.configuration.JobRegistry;
+import org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor;
 import org.springframework.batch.core.configuration.support.MapJobRegistry;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -50,6 +51,16 @@ public class MainCtxSpringBatchWeb {
         bean.setJobRegistry(jobRegistry());
         bean.setJobExplorer(jobExplorer);
         bean.setJobRepository(jobRepository);
+        return bean;
+    }
+
+    /**
+     * Denne MÅ vi ha for at Spring Batch Admin skal finne jobbene som er i denne spring-ctx slik at de er launchable.
+     */
+    @Bean
+    public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor() {
+        JobRegistryBeanPostProcessor bean = new JobRegistryBeanPostProcessor();
+        bean.setJobRegistry(jobRegistry());
         return bean;
     }
 
