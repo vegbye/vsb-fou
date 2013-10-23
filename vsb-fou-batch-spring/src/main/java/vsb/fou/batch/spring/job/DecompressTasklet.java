@@ -10,7 +10,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import vsb.fou.batch.spring.dao.ProductDao;
+import vsb.fou.batch.spring.job.dao.ProductDao;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

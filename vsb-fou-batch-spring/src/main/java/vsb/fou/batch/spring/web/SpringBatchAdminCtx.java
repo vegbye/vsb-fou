@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.web;
 
 import org.springframework.batch.admin.service.SimpleJobServiceFactoryBean;
 import org.springframework.batch.admin.web.resources.DefaultResourceService;

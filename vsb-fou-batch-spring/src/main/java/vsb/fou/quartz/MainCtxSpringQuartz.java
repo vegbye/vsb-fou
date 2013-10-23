@@ -6,6 +6,7 @@ import org.quartz.Trigger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
@@ -17,19 +18,20 @@ import java.io.IOException;
  */
 @Configuration
 @ComponentScan("vsb.fou.quartz")
+@Import({JobDetailCtx.class, CronTriggerCtx.class})
 public class MainCtxSpringQuartz {
 
     @Resource
     private JobDetail runMeJob;
     @Resource
-    private CronTrigger cronTrigger;
+    private CronTrigger quartzCronTrigger;
 
     @Bean
-    public SchedulerFactoryBean scheduler() throws IOException {
+    public SchedulerFactoryBean quartzScheduler() throws IOException {
         SchedulerFactoryBean bean = new SchedulerFactoryBean();
         bean.setConfigLocation(new ClassPathResource("/quartz.properties"));
         bean.setJobDetails(new JobDetail[]{runMeJob});
-        bean.setTriggers(new Trigger[]{cronTrigger});
+        bean.setTriggers(new Trigger[]{quartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);
         return bean;

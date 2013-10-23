@@ -1,10 +1,11 @@
-package vsb.fou.batch.spring;
+package vsb.fou.batch.spring.web;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.batch.core.configuration.JobRegistry;
-import org.springframework.batch.core.configuration.support.MapJobRegistry;
+import org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor;
 import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -12,6 +13,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
 import org.springframework.jdbc.support.incrementer.H2SequenceMaxValueIncrementer;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.transaction.PlatformTransactionManager;
 import vsb.fou.common.InfraConfig;
 
@@ -23,6 +25,29 @@ import javax.sql.DataSource;
 @Configuration
 @InfraConfig
 public class InfraCtxSpringBatch {
+
+    @Autowired
+    private JobRegistry jobRegistry;
+
+    @Bean
+    public H2SequenceMaxValueIncrementer incrementerParent() {
+        H2SequenceMaxValueIncrementer bean = new H2SequenceMaxValueIncrementer();
+        bean.setDataSource(dataSource());
+        bean.setIncrementerName("ID");
+        return bean;
+    }
+
+    @Bean
+    public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor() {
+        JobRegistryBeanPostProcessor bean = new JobRegistryBeanPostProcessor();
+        bean.setJobRegistry(jobRegistry);
+        return bean;
+    }
+
+    @Bean
+    public DefaultLobHandler lobHandler() {
+        return new DefaultLobHandler();
+    }
 
     /**
      * H2 oppretter en database på disk med de angitte brukernavn/passord om den ikke eksisterer.
@@ -48,11 +73,6 @@ public class InfraCtxSpringBatch {
         bean.setDataSource(dataSource());
         bean.setTransactionManager(transactionManager());
         return bean;
-    }
-
-    @Bean
-    public JobRegistry jobRegistry() {
-        return new MapJobRegistry();
     }
 
     @Bean

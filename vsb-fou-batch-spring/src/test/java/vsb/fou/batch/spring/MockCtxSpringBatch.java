@@ -1,6 +1,6 @@
 package vsb.fou.batch.spring;
 
-import org.mockito.Mockito;
+import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,8 @@ import vsb.fou.common.InfraConfig;
 
 import javax.sql.DataSource;
 
+import static org.mockito.Mockito.mock;
+
 /**
  * @author Vegard S. Bye
  */
@@ -19,27 +21,32 @@ import javax.sql.DataSource;
 public class MockCtxSpringBatch {
 
     @Bean
+    public JobExplorer jobExplorer() {
+        return mock(JobExplorer.class);
+    }
+
+    @Bean
     public TaskExecutor taskExecutor() {
-        return Mockito.mock(TaskExecutor.class);
+        return mock(TaskExecutor.class);
     }
 
     @Bean
     public DataSource dataSource() {
-        return Mockito.mock(DataSource.class);
+        return mock(DataSource.class);
     }
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return Mockito.mock(PlatformTransactionManager.class);
+        return mock(PlatformTransactionManager.class);
     }
 
     @Bean
     public JobRepository jobRepository() {
-        return Mockito.mock(JobRepository.class);
+        return mock(JobRepository.class);
     }
 
     @Bean
     public AbstractSequenceMaxValueIncrementer productSequence() {
-        return Mockito.mock(AbstractSequenceMaxValueIncrementer.class);
+        return mock(AbstractSequenceMaxValueIncrementer.class);
     }
 }

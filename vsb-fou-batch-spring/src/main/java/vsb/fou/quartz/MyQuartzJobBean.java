@@ -15,7 +15,7 @@ public class MyQuartzJobBean extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-        LOGGER.info("ok:" + context);
+        LOGGER.info("context:" + context);
         runMeTask.printMe();
     }
 

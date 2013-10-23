@@ -1,5 +1,6 @@
 package vsb.fou.batch.spring;
 
+import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,5 +50,12 @@ public class TestCtxSpringBatch {
     @Bean
     public TaskExecutor taskExecutor() {
         return new SyncTaskExecutor();
+    }
+
+    @Bean
+    public JobExplorerFactoryBean jobExplorer() {
+        JobExplorerFactoryBean bean = new JobExplorerFactoryBean();
+        bean.setDataSource(dataSource());
+        return bean;
     }
 }

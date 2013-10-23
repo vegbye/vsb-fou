@@ -17,7 +17,7 @@ public class CronTriggerCtx {
     private JobDetail runMeJob;
 
     @Bean
-    public CronTriggerFactoryBean cronTrigger() {
+    public CronTriggerFactoryBean quartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(runMeJob);
         bean.setCronExpression("0/5 * * * * ?");

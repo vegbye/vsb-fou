@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.dao;
+package vsb.fou.batch.spring.job.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
 import org.springframework.stereotype.Repository;
-import vsb.fou.batch.spring.domain.Product;
+import vsb.fou.batch.spring.job.domain.Product;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
