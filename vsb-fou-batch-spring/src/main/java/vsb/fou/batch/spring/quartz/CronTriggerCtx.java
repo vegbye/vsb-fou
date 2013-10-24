@@ -1,5 +1,6 @@
 package vsb.fou.batch.spring.quartz;
 
+import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ public class CronTriggerCtx {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(vsbQuartzJob);
         bean.setCronExpression("0/10 * * * * ?");
+        bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }
 

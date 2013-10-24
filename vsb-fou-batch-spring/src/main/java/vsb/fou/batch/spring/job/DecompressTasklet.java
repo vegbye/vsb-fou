@@ -1,6 +1,7 @@
 package vsb.fou.batch.spring.job;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.StepContribution;
@@ -31,6 +32,9 @@ public class DecompressTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+        String randomTall = RandomStringUtils.randomAlphanumeric(10);
+        chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().putString("randomTall", randomTall);
+        LOGGER.info("randomTall:" + randomTall);
         Long jobExecutionId = chunkContext.getStepContext().getStepExecution().getJobExecutionId();
         Long stepId = chunkContext.getStepContext().getStepExecution().getId();
         Long jobInstanceId = chunkContext.getStepContext().getStepExecution().getJobExecution().getJobInstance().getId();

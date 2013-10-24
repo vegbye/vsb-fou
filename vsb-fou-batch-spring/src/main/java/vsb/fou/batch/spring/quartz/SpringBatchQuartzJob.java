@@ -1,5 +1,6 @@
 package vsb.fou.batch.spring.quartz;
 
+import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,6 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class SpringBatchQuartzJob extends QuartzJobBean {
@@ -33,7 +33,7 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
 
     protected void executeInternal(JobExecutionContext context) {
         try {
-            Map<String, Object> jobDataMap = context.getMergedJobDataMap();
+            JobDataMap jobDataMap = context.getMergedJobDataMap();
             LOGGER.info("JobDataMap fra context:");
             for (Entry<String, Object> entry : jobDataMap.entrySet()) {
                 LOGGER.info(entry.getKey() + " => " + entry.getValue());
@@ -50,7 +50,7 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
     }
 
     //get params from jobDataAsMap property, job-quartz.xml
-    private JobParameters getJobParametersFromJobMap(Map<String, Object> jobDataMap) {
+    private JobParameters getJobParametersFromJobMap(JobDataMap jobDataMap) {
 
         JobParametersBuilder builder = new JobParametersBuilder();
 
