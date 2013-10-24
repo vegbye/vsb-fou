@@ -3,6 +3,8 @@ package vsb.fou.batch.spring.quartz;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -19,6 +21,7 @@ import java.io.IOException;
 @InfraConfig
 public class InfraCtxSpringBatchQuartz {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(InfraCtxSpringBatchQuartz.class);
     @Resource
     private JobDetail importProductsQuartzJob;
     @Resource
@@ -27,7 +30,9 @@ public class InfraCtxSpringBatchQuartz {
     @Bean
     public SchedulerFactoryBean quartzScheduler() throws IOException {
         SchedulerFactoryBean bean = new SchedulerFactoryBean();
-        bean.setConfigLocation(new ClassPathResource("/quartz.properties"));
+        ClassPathResource resource = new ClassPathResource("/quartz.properties");
+        LOGGER.info("Bruker quartz konfig fil:" + resource.getURL());
+        bean.setConfigLocation(resource);
         bean.setJobDetails(new JobDetail[]{importProductsQuartzJob});
         bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger});
         bean.setAutoStartup(true);
