@@ -16,12 +16,23 @@ public class CronTriggerCtx {
 
     @Resource
     private JobDetail importProductsQuartzJob;
+    @Resource
+    private JobDetail helloQuartzJob;
+
+    @Bean
+    public CronTriggerFactoryBean helloQuartzCronTrigger() {
+        CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
+        bean.setJobDetail(helloQuartzJob);
+        bean.setCronExpression("0/3 * * * * ?");
+        bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
+        return bean;
+    }
 
     @Bean
     public CronTriggerFactoryBean importProductsQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(importProductsQuartzJob);
-        bean.setCronExpression("0/10 * * * * ?");
+        bean.setCronExpression("0/4 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }

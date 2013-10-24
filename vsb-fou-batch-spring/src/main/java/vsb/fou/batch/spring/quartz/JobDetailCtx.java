@@ -4,11 +4,11 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.JobLocator;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,9 +22,23 @@ public class JobDetailCtx {
     private JobLocator jobLocator;
     @Autowired
     private JobLauncher jobLauncher;
-    @Autowired
-    @Qualifier("importProductsJob")
-    private Job job;
+    @Resource
+    private Job importProductsJob;
+    @Resource
+    private Job helloJob;
+
+    @Bean
+    public JobDetailFactoryBean helloQuartzJob() {
+        JobDetailFactoryBean bean = new JobDetailFactoryBean();
+        bean.setJobClass(SpringBatchQuartzJob.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("jobLocator", jobLocator);
+        map.put("jobLauncher", jobLauncher);
+        map.put(SpringBatchQuartzJob.JOB_NAME, helloJob.getName());
+        bean.setJobDataAsMap(map);
+        bean.setDurability(true);
+        return bean;
+    }
 
     @Bean
     public JobDetailFactoryBean importProductsQuartzJob() {
@@ -33,7 +47,7 @@ public class JobDetailCtx {
         Map<String, Object> map = new HashMap<>();
         map.put("jobLocator", jobLocator);
         map.put("jobLauncher", jobLauncher);
-        map.put(SpringBatchQuartzJob.JOB_NAME, job.getName());
+        map.put(SpringBatchQuartzJob.JOB_NAME, importProductsJob.getName());
         bean.setJobDataAsMap(map);
         bean.setDurability(true);
         return bean;

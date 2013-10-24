@@ -8,20 +8,22 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
  * @author Vegard S. Bye
  */
 @Component
 public class SpringSchedulingLauncher {
 
-    @Autowired
-    private Job job;
+    @Resource
+    private Job importProductsJob;
     @Autowired
     private JobLauncher jobLauncher;
 
     public void launch() throws Exception {
         JobParameters jobParams = createJobParameters();
-        jobLauncher.run(job, jobParams);
+        jobLauncher.run(importProductsJob, jobParams);
     }
 
     private JobParameters createJobParameters() {
