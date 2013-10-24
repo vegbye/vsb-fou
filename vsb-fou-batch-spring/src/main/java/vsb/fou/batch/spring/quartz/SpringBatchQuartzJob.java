@@ -13,6 +13,7 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.util.Date;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 public class SpringBatchQuartzJob extends QuartzJobBean {
 
@@ -72,7 +73,7 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
         }
 
         //need unique job parameter to rerun the completed job
-        builder.addDate("run date", new Date());
+        builder.addString("ID", UUID.randomUUID().toString());
 
         return builder.toJobParameters();
 
