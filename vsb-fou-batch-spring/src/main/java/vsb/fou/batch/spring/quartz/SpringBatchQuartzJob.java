@@ -1,6 +1,9 @@
 package vsb.fou.batch.spring.quartz;
 
 import org.quartz.JobExecutionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.JobLocator;
@@ -13,7 +16,8 @@ import java.util.Map.Entry;
 
 public class SpringBatchQuartzJob extends QuartzJobBean {
 
-    private static final String JOB_NAME = "jobName";
+    public static final String JOB_NAME = "jobName";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringBatchQuartzJob.class);
     private JobLocator jobLocator;
     private JobLauncher jobLauncher;
 
@@ -28,17 +32,18 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
     }
 
     protected void executeInternal(JobExecutionContext context) {
-
         try {
-            System.out.println("0");
             Map<String, Object> jobDataMap = context.getMergedJobDataMap();
-            System.out.println("1:" + jobDataMap);
+            LOGGER.info("JobDataMap fra context:");
+            for (Entry<String, Object> entry : jobDataMap.entrySet()) {
+                LOGGER.info(entry.getKey() + " => " + entry.getValue());
+            }
             String jobName = (String) jobDataMap.get(JOB_NAME);
-            System.out.println("2:" + jobName);
+            LOGGER.info("jobName:" + jobName);
             JobParameters jobParameters = getJobParametersFromJobMap(jobDataMap);
-            System.out.println("3:" + jobParameters);
-            jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
-            System.out.println("4");
+            LOGGER.info("JobParameters:" + jobParameters);
+            JobExecution jobExecution = jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+            LOGGER.info("JobExecution.status:" + jobExecution.getStatus());
         } catch (Exception e) {
             e.printStackTrace();
         }

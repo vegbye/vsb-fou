@@ -3,6 +3,7 @@ package vsb.fou.batch.spring.web;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import vsb.fou.batch.spring.infra.MockCtxSpringBatch;
+import vsb.fou.batch.spring.job.MainCtxImportProductJob;
 import vsb.fou.batch.spring.quartz.MainCtxSpringBatchQuartz;
 
 /**
@@ -15,6 +16,7 @@ public class MainCtxSpringBatchWebTest {
         new AnnotationConfigApplicationContext(
                 MockCtxSpringBatch.class,
                 MainCtxSpringBatchQuartz.class,
+                MainCtxImportProductJob.class,
                 MainCtxSpringBatchWeb.class);
     }
 }
