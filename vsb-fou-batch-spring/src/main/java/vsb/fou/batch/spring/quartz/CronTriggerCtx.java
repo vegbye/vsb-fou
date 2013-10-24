@@ -15,12 +15,12 @@ import javax.annotation.Resource;
 public class CronTriggerCtx {
 
     @Resource
-    private JobDetail vsbQuartzJob;
+    private JobDetail importProductsQuartzJob;
 
     @Bean
-    public CronTriggerFactoryBean quartzCronTrigger() {
+    public CronTriggerFactoryBean importProductsQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
-        bean.setJobDetail(vsbQuartzJob);
+        bean.setJobDetail(importProductsQuartzJob);
         bean.setCronExpression("0/10 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;

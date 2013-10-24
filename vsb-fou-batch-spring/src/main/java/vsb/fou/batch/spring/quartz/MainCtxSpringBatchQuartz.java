@@ -22,16 +22,16 @@ import java.io.IOException;
 public class MainCtxSpringBatchQuartz {
 
     @Resource
-    private JobDetail springBatchQuartzJob;
+    private JobDetail importProductsQuartzJob;
     @Resource
-    private CronTrigger quartzCronTrigger;
+    private CronTrigger importProductsQuartzCronTrigger;
 
     @Bean
     public SchedulerFactoryBean quartzScheduler() throws IOException {
         SchedulerFactoryBean bean = new SchedulerFactoryBean();
         bean.setConfigLocation(new ClassPathResource("/quartz.properties"));
-        bean.setJobDetails(new JobDetail[]{springBatchQuartzJob});
-        bean.setTriggers(new Trigger[]{quartzCronTrigger});
+        bean.setJobDetails(new JobDetail[]{importProductsQuartzJob});
+        bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);
         return bean;

@@ -27,7 +27,7 @@ public class JobDetailCtx {
     private Job job;
 
     @Bean
-    public JobDetailFactoryBean springBatchQuartzJob() {
+    public JobDetailFactoryBean importProductsQuartzJob() {
         JobDetailFactoryBean bean = new JobDetailFactoryBean();
         bean.setJobClass(SpringBatchQuartzJob.class);
         Map<String, Object> map = new HashMap<>();
