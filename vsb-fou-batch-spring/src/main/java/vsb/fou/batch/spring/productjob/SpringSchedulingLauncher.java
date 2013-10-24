@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.batch.core.Job;

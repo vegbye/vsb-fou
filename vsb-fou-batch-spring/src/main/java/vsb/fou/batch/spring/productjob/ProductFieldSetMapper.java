@@ -1,11 +1,11 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
-import vsb.fou.batch.spring.job.domain.Product;
+import vsb.fou.batch.spring.productjob.domain.Product;
 
 import java.util.Arrays;
 

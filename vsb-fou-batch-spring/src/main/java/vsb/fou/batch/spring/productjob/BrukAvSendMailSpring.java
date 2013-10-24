@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;

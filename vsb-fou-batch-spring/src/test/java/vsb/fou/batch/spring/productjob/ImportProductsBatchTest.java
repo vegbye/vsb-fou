@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.junit.Test;

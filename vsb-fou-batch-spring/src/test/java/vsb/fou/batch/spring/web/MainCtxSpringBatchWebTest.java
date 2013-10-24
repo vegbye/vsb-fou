@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import vsb.fou.batch.spring.infra.MockCtxSpringBatch;
 import vsb.fou.batch.spring.infra.TestCtxSpringBatchQuartz;
-import vsb.fou.batch.spring.job.MainCtxImportProductJob;
+import vsb.fou.batch.spring.productjob.MainCtxImportProductJob;
 import vsb.fou.batch.spring.quartz.MainCtxSpringBatchQuartz;
 
 /**

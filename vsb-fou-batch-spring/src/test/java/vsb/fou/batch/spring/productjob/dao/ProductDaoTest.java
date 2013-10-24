@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job.dao;
+package vsb.fou.batch.spring.productjob.dao;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import vsb.fou.batch.spring.infra.TestCtxSpringBatch;
-import vsb.fou.batch.spring.job.MainCtxImportProductJob;
-import vsb.fou.batch.spring.job.domain.Product;
+import vsb.fou.batch.spring.productjob.MainCtxImportProductJob;
+import vsb.fou.batch.spring.productjob.domain.Product;
 import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 
 import java.math.BigDecimal;

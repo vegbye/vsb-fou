@@ -1,8 +1,8 @@
-package vsb.fou.batch.spring.job.dao;
+package vsb.fou.batch.spring.productjob.dao;
 
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.MappingSqlQuery;
-import vsb.fou.batch.spring.job.domain.Product;
+import vsb.fou.batch.spring.productjob.domain.Product;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;

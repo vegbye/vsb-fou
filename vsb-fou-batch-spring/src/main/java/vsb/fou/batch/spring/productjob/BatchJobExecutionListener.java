@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

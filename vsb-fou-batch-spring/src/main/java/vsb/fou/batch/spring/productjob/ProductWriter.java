@@ -1,10 +1,10 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import vsb.fou.batch.spring.job.dao.ProductDao;
-import vsb.fou.batch.spring.job.domain.Product;
+import vsb.fou.batch.spring.productjob.dao.ProductDao;
+import vsb.fou.batch.spring.productjob.domain.Product;
 
 import java.util.List;
 

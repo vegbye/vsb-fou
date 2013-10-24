@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job;
+package vsb.fou.batch.spring.productjob;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
@@ -10,13 +10,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.FileSystemResource;
-import vsb.fou.batch.spring.job.domain.Product;
+import vsb.fou.batch.spring.productjob.domain.Product;
 
 /**
  * @author Vegard S. Bye
  */
 @Configuration
-@ComponentScan("vsb.fou.batch.spring.job")
+@ComponentScan("vsb.fou.batch.spring.productjob")
 @ImportResource("classpath:/import-products-job.xml")
 public class MainCtxImportProductJob {
 

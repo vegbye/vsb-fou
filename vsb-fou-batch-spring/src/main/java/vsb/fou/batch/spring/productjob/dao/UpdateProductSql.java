@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.job.dao;
+package vsb.fou.batch.spring.productjob.dao;
 
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.SqlUpdate;
