@@ -14,6 +14,7 @@ import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
 import java.math.BigDecimal;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -32,12 +33,18 @@ public class ProductDaoTest {
         product.setName("produkt navnet");
         product.setDescription("beskrivelsen");
         product.setPrice(new BigDecimal("123456.789"));
-        int id = productDao.updateProduct(product);
+        int id = productDao.insertOrUpdateProduct(product);
         Product insertedProduct = productDao.getProduct(id);
         assertThat(insertedProduct.getId(), is(id));
         assertThat(insertedProduct.getName(), is(product.getName()));
         assertThat(insertedProduct.getDescription(), is(product.getDescription()));
         assertThat(insertedProduct.getPrice(), is(product.getPrice()));
+
+        int id2 = productDao.insertOrUpdateProduct(product);
+        assertThat(id2, not(id));
+        product.setId(id2);
+        int id3 = productDao.insertOrUpdateProduct(product);
+        assertThat(id3, is(id2));
     }
 
     @Test
@@ -46,7 +53,7 @@ public class ProductDaoTest {
         product.setName("produkt navnet");
         product.setDescription("beskrivelsen");
         product.setPrice(new BigDecimal("123456.789"));
-        int id = productDao.updateProduct(product);
+        int id = productDao.insertOrUpdateProduct(product);
 
         productDao.deleteProduct(id);
 

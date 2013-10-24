@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
 import org.springframework.stereotype.Repository;
 import vsb.fou.batch.spring.job.domain.Product;
@@ -12,7 +13,9 @@ import vsb.fou.batch.spring.job.domain.Product;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Vegard S. Bye
@@ -28,10 +31,42 @@ public class ProductDao {
     @Autowired
     public AbstractSequenceMaxValueIncrementer productSequence;
     private JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert insertProduct;
+    private UpdateProductSql updateProduct;
 
     @Autowired
-    public void setDataSource(DataSource ds) {
-        this.jdbcTemplate = new JdbcTemplate(ds);
+    public void setDataSource(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+        insertProduct = new SimpleJdbcInsert(dataSource)
+                .withSchemaName("VSB")
+                .withTableName("PRODUCT");
+        updateProduct = new UpdateProductSql(dataSource);
+    }
+
+    public int insertOrUpdateProduct(Product product) {
+        if (product.getId() == null) {
+            return insertProduct(product);
+        } else {
+            return updateProduct(product);
+        }
+    }
+
+    private int updateProduct(Product product) {
+        updateProduct.execute(product.getId(), product.getName(), product.getDescription(), product.getPrice());
+        return product.getId();
+    }
+
+    private int insertProduct(Product product) {
+        Map<String, Object> parameters = new HashMap<>();
+        int id = productSequence.nextIntValue();
+        parameters.put("ID", id);
+        parameters.put("NAME", product.getName());
+        parameters.put("DESCRIPTION", product.getDescription());
+        parameters.put("PRICE", product.getPrice());
+
+        insertProduct.execute(parameters);
+        LOGGER.info("Oppdatert database tabell PRODUCT for id:" + id);
+        return id;
     }
 
     public Product getProduct(int id) {
@@ -60,26 +95,5 @@ public class ProductDao {
     public void deleteProduct(int id) {
         jdbcTemplate.update(DELETE_PRODUCT, new String[]{Integer.toString(id)});
         LOGGER.info("Slettet produkt fra tabell med id:" + id);
-    }
-
-    public int updateProduct(Product product) {
-        int id;
-        if (product.getId() != null) {
-            jdbcTemplate.update(
-                    UPDATE_PRODUCT,
-                    product.getName(), product.getDescription(),
-                    product.getPrice(), product.getId()
-            );
-            id = product.getId();
-        } else {
-            id = productSequence.nextIntValue();
-            jdbcTemplate.update(
-                    INSERT_PRODUCT,
-                    id, product.getName(),
-                    product.getDescription(), product.getPrice()
-            );
-        }
-        LOGGER.info("Oppdatert database tabell PRODUCT for id:" + id);
-        return id;
     }
 }

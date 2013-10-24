@@ -19,7 +19,7 @@ public class ProductWriter implements ItemWriter<Product> {
 
     public void write(List<? extends Product> items) throws Exception {
         for (Product item : items) {
-            productDao.updateProduct(item);
+            productDao.insertOrUpdateProduct(item);
         }
     }
 }

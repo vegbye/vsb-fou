@@ -11,6 +11,9 @@
     <!--</task:scheduled-tasks>-->
 
     <job id="importProductsJob" xmlns="http://www.springframework.org/schema/batch">
+        <listeners>
+            <listener ref="batchJobExecutionListener"/>
+        </listeners>
         <step id="decompress" next="readWriteProducts">
             <tasklet ref="decompressTasklet"/>
         </step>
