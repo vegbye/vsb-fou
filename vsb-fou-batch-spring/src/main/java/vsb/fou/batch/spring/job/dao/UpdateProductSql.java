@@ -22,9 +22,7 @@ public class UpdateProductSql extends SqlUpdate {
         compile();
     }
 
-    public int execute(int id, String name, String description, BigDecimal price) {
+    public int updateProduct(int id, String name, String description, BigDecimal price) {
         return update(id, name, description, price);
     }
-
-
 }

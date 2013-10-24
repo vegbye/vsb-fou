@@ -29,10 +29,7 @@ public class ProductDaoTest {
 
     @Test
     public void test_insert() throws Exception {
-        Product product = new Product();
-        product.setName("produkt navnet");
-        product.setDescription("beskrivelsen");
-        product.setPrice(new BigDecimal("123456.789"));
+        Product product = createProduct();
         int id = productDao.insertOrUpdateProduct(product);
         Product insertedProduct = productDao.getProduct(id);
         assertThat(insertedProduct.getId(), is(id));
@@ -40,19 +37,24 @@ public class ProductDaoTest {
         assertThat(insertedProduct.getDescription(), is(product.getDescription()));
         assertThat(insertedProduct.getPrice(), is(product.getPrice()));
 
-        int id2 = productDao.insertOrUpdateProduct(product);
+        int id2 = productDao.insertOrUpdateProduct(createProduct());
         assertThat(id2, not(id));
         product.setId(id2);
         int id3 = productDao.insertOrUpdateProduct(product);
         assertThat(id3, is(id2));
     }
 
-    @Test
-    public void test_delete() throws Exception {
+    private Product createProduct() {
         Product product = new Product();
         product.setName("produkt navnet");
         product.setDescription("beskrivelsen");
         product.setPrice(new BigDecimal("123456.789"));
+        return product;
+    }
+
+    @Test
+    public void test_delete() throws Exception {
+        Product product = createProduct();
         int id = productDao.insertOrUpdateProduct(product);
 
         productDao.deleteProduct(id);
