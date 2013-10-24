@@ -23,7 +23,7 @@ public class CronTriggerCtx {
     public CronTriggerFactoryBean helloQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(helloQuartzJob);
-        bean.setCronExpression("0/3 * * * * ?");
+        bean.setCronExpression("0/2 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }
