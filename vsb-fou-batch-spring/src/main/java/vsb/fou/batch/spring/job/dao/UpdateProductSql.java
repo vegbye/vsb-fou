@@ -14,7 +14,7 @@ public class UpdateProductSql extends SqlUpdate {
 
     public UpdateProductSql(DataSource dataSource) {
         setDataSource(dataSource);
-        setSql("UPDATE VSB.PRODUCT set " + "NAME=?, DESCRIPTION=?, PRICE=? WHERE ID=?");
+        setSql("UPDATE VSB.PRODUCT set NAME=?, DESCRIPTION=?, PRICE=? WHERE ID=?");
         declareParameter(new SqlParameter("ID", Types.INTEGER));
         declareParameter(new SqlParameter("NAME", Types.VARCHAR));
         declareParameter(new SqlParameter("DESCRIPTION", Types.VARCHAR));

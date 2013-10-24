@@ -24,8 +24,6 @@ import java.util.Map;
 public class ProductDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductDao.class);
-    private static final String INSERT_PRODUCT = "INSERT INTO VSB.PRODUCT " + "(ID,NAME,DESCRIPTION,PRICE) values(?,?,?,?)";
-    private static final String UPDATE_PRODUCT = "UPDATE VSB.PRODUCT set " + "NAME=?, DESCRIPTION=?, PRICE=? WHERE ID=?";
     private static final String SELECT_PRODUCT = "SELECT * FROM VSB.PRODUCT WHERE ID=?";
     private static final String DELETE_PRODUCT = "DELETE FROM VSB.PRODUCT WHERE ID=?";
     @Autowired
