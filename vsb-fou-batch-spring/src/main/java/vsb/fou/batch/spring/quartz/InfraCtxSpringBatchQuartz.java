@@ -41,8 +41,8 @@ public class InfraCtxSpringBatchQuartz {
         ClassPathResource resource = new ClassPathResource("/quartz.properties");
         LOGGER.info("Bruker quartz konfig fil:" + resource.getURL());
         bean.setConfigLocation(resource);
-        bean.setJobDetails(new JobDetail[]{/*importProductsQuartzJob, */helloQuartzJob, heiQuartzJobb});
-        bean.setTriggers(new Trigger[]{/*importProductsQuartzCronTrigger, */helloQuartzCronTrigger, heiQuartzCronTrigger});
+        bean.setJobDetails(new JobDetail[]{importProductsQuartzJob, helloQuartzJob, heiQuartzJobb});
+        bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger, helloQuartzCronTrigger, heiQuartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);
         return bean;

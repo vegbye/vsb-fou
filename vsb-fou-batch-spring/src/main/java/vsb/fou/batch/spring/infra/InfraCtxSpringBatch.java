@@ -47,8 +47,11 @@ public class InfraCtxSpringBatch {
         JobRepositoryFactoryBean bean = new JobRepositoryFactoryBean();
         bean.setDataSource(dataSource());
         // TODO: sett incrementer og db type?
-        //bean.setDatabaseType("H2");
+        bean.setDatabaseType("H2");
         bean.setTransactionManager(transactionManager());
+//        bean.setIsolationLevelForCreate("ISOLATION_READ_UNCOMMITTED");
+//        bean.setIsolationLevelForCreate("ISOLATION_REPEATABLE_READ");
+        bean.setIsolationLevelForCreate("ISOLATION_SERIALIZABLE");
         return bean;
     }
 

@@ -25,7 +25,7 @@ public class CronTriggerCtx {
     public CronTriggerFactoryBean heiQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(heiQuartzJobb);
-        bean.setCronExpression("0/2 * * * * ?");
+        bean.setCronExpression("0/5 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }
@@ -34,7 +34,7 @@ public class CronTriggerCtx {
     public CronTriggerFactoryBean helloQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(helloQuartzJob);
-        bean.setCronExpression("0/2 * * * * ?");
+        bean.setCronExpression("0/7 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }
@@ -43,7 +43,7 @@ public class CronTriggerCtx {
     public CronTriggerFactoryBean importProductsQuartzCronTrigger() {
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(importProductsQuartzJob);
-        bean.setCronExpression("0/4 * * * * ?");
+        bean.setCronExpression("0/12 * * * * ?");
         bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
         return bean;
     }
