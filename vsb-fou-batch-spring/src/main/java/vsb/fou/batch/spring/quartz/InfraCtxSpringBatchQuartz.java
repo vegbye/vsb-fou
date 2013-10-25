@@ -22,14 +22,18 @@ import java.io.IOException;
 public class InfraCtxSpringBatchQuartz {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InfraCtxSpringBatchQuartz.class);
-    @Resource
+    @Resource(name = "importProductsQuartzJob")
     private JobDetail importProductsQuartzJob;
-    @Resource
+    @Resource(name = "importProductsQuartzCronTrigger")
     private CronTrigger importProductsQuartzCronTrigger;
-    @Resource
+    @Resource(name = "helloQuartzJob")
     private JobDetail helloQuartzJob;
-    @Resource
+    @Resource(name = "helloQuartzCronTrigger")
     private CronTrigger helloQuartzCronTrigger;
+    @Resource(name = "helloQuartzJob")
+    private JobDetail heiQuartzJobb;
+    @Resource(name = "heiQuartzCronTrigger")
+    private CronTrigger heiQuartzCronTrigger;
 
     @Bean
     public SchedulerFactoryBean quartzScheduler() throws IOException {
@@ -37,8 +41,8 @@ public class InfraCtxSpringBatchQuartz {
         ClassPathResource resource = new ClassPathResource("/quartz.properties");
         LOGGER.info("Bruker quartz konfig fil:" + resource.getURL());
         bean.setConfigLocation(resource);
-        bean.setJobDetails(new JobDetail[]{importProductsQuartzJob, helloQuartzJob});
-        bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger, helloQuartzCronTrigger});
+        bean.setJobDetails(new JobDetail[]{/*importProductsQuartzJob, */helloQuartzJob, heiQuartzJobb});
+        bean.setTriggers(new Trigger[]{/*importProductsQuartzCronTrigger, */helloQuartzCronTrigger, heiQuartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);
         return bean;

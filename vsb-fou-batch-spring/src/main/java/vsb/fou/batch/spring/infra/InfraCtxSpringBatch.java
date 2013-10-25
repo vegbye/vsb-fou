@@ -32,6 +32,8 @@ public class InfraCtxSpringBatch {
         dataSource.setUrl("jdbc:h2:~/db/vsb/vsb-fou-batch-spring");
         dataSource.setUsername("vsb");
         dataSource.setPassword("vsb");
+        dataSource.setInitialSize(10);
+        dataSource.setMaxActive(20);
         return dataSource;
     }
 

@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class, MainCtxImportProductJob.class})
+@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class})
 public class ImportProductsBatchTest {
 
     @Autowired

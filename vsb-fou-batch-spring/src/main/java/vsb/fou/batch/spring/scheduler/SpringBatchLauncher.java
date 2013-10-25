@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.productjob;
+package vsb.fou.batch.spring.scheduler;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.batch.core.Job;
@@ -14,21 +14,34 @@ import javax.annotation.Resource;
  * @author Vegard S. Bye
  */
 @Component
-public class SpringSchedulingLauncher {
+public class SpringBatchLauncher {
 
-    @Resource
+    @Resource(name = "importProductsJob")
     private Job importProductsJob;
+    @Resource(name = "helloJob")
+    private Job helloJob;
+    @Resource(name = "heiJobb")
+    private Job heiJobb;
     @Autowired
     private JobLauncher jobLauncher;
 
-    public void launch() throws Exception {
+    public void launchImportProductsJob() throws Exception {
         JobParameters jobParams = createJobParameters();
         jobLauncher.run(importProductsJob, jobParams);
     }
 
-    private JobParameters createJobParameters() {
-        String id = RandomStringUtils.randomAlphanumeric(10);
-        return new JobParametersBuilder().addString("ID", id).toJobParameters();
+    public void launchHelloJob() throws Exception {
+        JobParameters jobParams = createJobParameters();
+        jobLauncher.run(helloJob, jobParams);
     }
 
+    public void launchHeiJobb() throws Exception {
+        JobParameters jobParams = createJobParameters();
+        jobLauncher.run(heiJobb, jobParams);
+    }
+
+    private JobParameters createJobParameters() {
+        String id = RandomStringUtils.randomAlphanumeric(20);
+        return new JobParametersBuilder().addString("ID", id).toJobParameters();
+    }
 }

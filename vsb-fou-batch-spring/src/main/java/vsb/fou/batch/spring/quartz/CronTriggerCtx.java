@@ -18,6 +18,17 @@ public class CronTriggerCtx {
     private JobDetail importProductsQuartzJob;
     @Resource
     private JobDetail helloQuartzJob;
+    @Resource
+    private JobDetail heiQuartzJobb;
+
+    @Bean
+    public CronTriggerFactoryBean heiQuartzCronTrigger() {
+        CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
+        bean.setJobDetail(heiQuartzJobb);
+        bean.setCronExpression("0/2 * * * * ?");
+        bean.setMisfireInstruction(CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING);
+        return bean;
+    }
 
     @Bean
     public CronTriggerFactoryBean helloQuartzCronTrigger() {

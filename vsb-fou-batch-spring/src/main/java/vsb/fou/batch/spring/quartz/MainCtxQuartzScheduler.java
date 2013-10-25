@@ -11,5 +11,5 @@ import vsb.fou.common.InfraConfig;
 @Configuration
 @ComponentScan(basePackages = "vsb.fou.batch.spring.quartz", excludeFilters = {@ComponentScan.Filter(InfraConfig.class)})
 @Import({JobDetailCtx.class, CronTriggerCtx.class})
-public class MainCtxSpringBatchQuartz {
+public class MainCtxQuartzScheduler {
 }

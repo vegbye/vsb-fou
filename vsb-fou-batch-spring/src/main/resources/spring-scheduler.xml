@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                              http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+    <task:scheduler id="scheduler" pool-size="20"/>
+
+    <task:scheduled-tasks scheduler="scheduler">
+        <task:scheduled ref="springBatchLauncher" method="launchImportProductsJob" initial-delay="2000" fixed-delay="10000"/>
+        <task:scheduled ref="springBatchLauncher" method="launchHelloJob" initial-delay="2000" fixed-delay="7000"/>
+        <task:scheduled ref="springBatchLauncher" method="launchHeiJobb" initial-delay="2000" fixed-delay="4000"/>
+    </task:scheduled-tasks>
+
+
+</beans>

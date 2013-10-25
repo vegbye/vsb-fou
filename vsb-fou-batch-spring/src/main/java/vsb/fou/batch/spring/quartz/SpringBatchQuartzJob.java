@@ -33,6 +33,7 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
     }
 
     protected void executeInternal(JobExecutionContext context) {
+        LOGGER.info("Starter.");
         try {
             JobDataMap jobDataMap = context.getMergedJobDataMap();
             LOGGER.info("JobDataMap fra context:");
@@ -45,8 +46,9 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
             LOGGER.info("JobParameters:" + jobParameters);
             JobExecution jobExecution = jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
             LOGGER.info("JobExecution.status:" + jobExecution.getStatus());
+            LOGGER.info("FERDIG.");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.warn("FEIL:" + e);
         }
     }
 

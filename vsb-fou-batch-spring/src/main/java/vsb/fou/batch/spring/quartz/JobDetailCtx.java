@@ -22,10 +22,25 @@ public class JobDetailCtx {
     private JobLocator jobLocator;
     @Autowired
     private JobLauncher jobLauncher;
-    @Resource
+    @Resource(name = "importProductsJob")
     private Job importProductsJob;
-    @Resource
+    @Resource(name = "helloJob")
     private Job helloJob;
+    @Resource(name = "heiJobb")
+    private Job heiJobb;
+
+    @Bean
+    public JobDetailFactoryBean heiQuartzJobb() {
+        JobDetailFactoryBean bean = new JobDetailFactoryBean();
+        bean.setJobClass(SpringBatchQuartzJob.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("jobLocator", jobLocator);
+        map.put("jobLauncher", jobLauncher);
+        map.put(SpringBatchQuartzJob.JOB_NAME, heiJobb.getName());
+        bean.setJobDataAsMap(map);
+        bean.setDurability(true);
+        return bean;
+    }
 
     @Bean
     public JobDetailFactoryBean helloQuartzJob() {

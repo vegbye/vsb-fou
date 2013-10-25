@@ -30,6 +30,10 @@ public class TestCtxSpringBatchQuartz {
     private JobDetail helloQuartzJob;
     @Resource
     private CronTrigger helloQuartzCronTrigger;
+    @Resource
+    private JobDetail heiQuartzJobb;
+    @Resource
+    private CronTrigger heiQuartzCronTrigger;
 
     @Bean
     public SchedulerFactoryBean quartzScheduler() throws IOException {
@@ -37,8 +41,8 @@ public class TestCtxSpringBatchQuartz {
         ClassPathResource resource = new ClassPathResource("/quartz-test.properties");
         LOGGER.info("Bruker quartz konfig fil:" + resource.getURL());
         bean.setConfigLocation(resource);
-        bean.setJobDetails(new JobDetail[]{importProductsQuartzJob, helloQuartzJob});
-        bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger, helloQuartzCronTrigger});
+        bean.setJobDetails(new JobDetail[]{importProductsQuartzJob, helloQuartzJob, heiQuartzJobb});
+        bean.setTriggers(new Trigger[]{importProductsQuartzCronTrigger, helloQuartzCronTrigger, heiQuartzCronTrigger});
         bean.setAutoStartup(true);
         bean.setStartupDelay(2);
         return bean;
