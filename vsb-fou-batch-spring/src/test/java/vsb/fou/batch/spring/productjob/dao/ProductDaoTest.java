@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import vsb.fou.batch.spring.common.MainCtxSpringBatchCommon;
 import vsb.fou.batch.spring.infra.TestCtxSpringBatch;
 import vsb.fou.batch.spring.productjob.domain.Product;
 import vsb.fou.batch.spring.web.MainCtxSpringBatchWeb;
@@ -20,7 +21,7 @@ import static org.junit.Assert.assertThat;
  * @author Vegard S. Bye
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class})
+@ContextConfiguration(classes = {MainCtxSpringBatchCommon.class, TestCtxSpringBatch.class, MainCtxSpringBatchWeb.class})
 public class ProductDaoTest {
 
     @Autowired

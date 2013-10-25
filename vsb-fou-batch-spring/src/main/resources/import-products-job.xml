@@ -4,7 +4,7 @@
                             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-    <job id="importProductsJob" xmlns="http://www.springframework.org/schema/batch">
+    <job id="importProductsJob" incrementer="vsbJobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
         <listeners>
             <listener ref="batchJobExecutionListener"/>
         </listeners>

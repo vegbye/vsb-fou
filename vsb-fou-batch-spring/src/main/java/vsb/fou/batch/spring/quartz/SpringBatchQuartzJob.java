@@ -10,10 +10,10 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.JobLocator;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import vsb.fou.batch.spring.common.VsbJobParametersIncrementer;
 
 import java.util.Date;
 import java.util.Map.Entry;
-import java.util.UUID;
 
 public class SpringBatchQuartzJob extends QuartzJobBean {
 
@@ -75,7 +75,7 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
         }
 
         //need unique job parameter to rerun the completed job
-        builder.addString("ID", UUID.randomUUID().toString());
+        builder.addString(VsbJobParametersIncrementer.ID, VsbJobParametersIncrementer.generateNextId());
 
         return builder.toJobParameters();
 

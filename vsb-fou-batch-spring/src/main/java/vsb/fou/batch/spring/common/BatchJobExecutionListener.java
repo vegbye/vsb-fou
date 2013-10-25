@@ -1,10 +1,13 @@
-package vsb.fou.batch.spring.productjob;
+package vsb.fou.batch.spring.common;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author Vegard S. Bye
@@ -13,6 +16,17 @@ import org.springframework.stereotype.Component;
 public class BatchJobExecutionListener implements JobExecutionListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BatchJobExecutionListener.class);
+
+    private static String getRootCauseStackTrace(List<Throwable> throwables) {
+        StringBuilder sb = new StringBuilder();
+        for (Throwable t : throwables) {
+            String[] rootCauseStackTrace = ExceptionUtils.getRootCauseStackTrace(t);
+            for (String s : rootCauseStackTrace) {
+                sb.append(s).append("\n");
+            }
+        }
+        return sb.toString().trim();
+    }
 
     @Override
     public void beforeJob(JobExecution jobExecution) {
@@ -28,7 +42,8 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         Long jobInstanceId = jobExecution.getJobInstance().getId();
         Long jobExecutionId = jobExecution.getId();
         if (jobExecution.getStatus().isUnsuccessful()) {
-            LOGGER.info("FAILED! jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId);
+            String stackTrace = getRootCauseStackTrace(jobExecution.getAllFailureExceptions());
+            LOGGER.error("FAILED! jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + "\n" + stackTrace);
         } else {
             LOGGER.info("SUCCESS! jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId);
         }
