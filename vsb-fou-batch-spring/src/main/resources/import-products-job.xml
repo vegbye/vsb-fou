@@ -4,10 +4,8 @@
                             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-    <job id="importProductsJob" incrementer="vsbJobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
-        <listeners>
-            <listener ref="batchJobExecutionListener"/>
-        </listeners>
+    <job id="importProductsJob" parent="parentJob" incrementer="vsbJobParametersIncrementer"
+         xmlns="http://www.springframework.org/schema/batch">
         <step id="decompress" next="readWriteProducts">
             <tasklet ref="decompressTasklet"/>
         </step>

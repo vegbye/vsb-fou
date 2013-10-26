@@ -4,10 +4,8 @@
                             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-    <job id="heiJobb" incrementer="vsbJobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
-        <listeners>
-            <listener ref="batchJobExecutionListener"/>
-        </listeners>
+    <job id="heiJobb" parent="parentJob" incrementer="vsbJobParametersIncrementer"
+         xmlns="http://www.springframework.org/schema/batch">
         <step id="hei">
             <tasklet ref="heiTasklet"/>
         </step>

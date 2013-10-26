@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,6 +31,7 @@ import javax.sql.DataSource;
  * @author Vegard S. Bye
  */
 @Import({MainCtxSpringBatchCommon.class, MainCtxHelloJob.class, MainCtxHeiJobb.class, MainCtxImportProductJob.class})
+@ImportResource("classpath:/parent-job.xml")
 @Configuration
 @ComponentScan(basePackages = "vsb.fou.batch.spring.web", excludeFilters = {@ComponentScan.Filter(InfraConfig.class)})
 public class MainCtxSpringBatchWeb {

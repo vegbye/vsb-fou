@@ -4,11 +4,11 @@
                             http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
 
-    <job id="helloJob" parent="parentJob" incrementer="vsbJobParametersIncrementer"
+    <job id="parentJob" abstract="true" incrementer="vsbJobParametersIncrementer"
          xmlns="http://www.springframework.org/schema/batch">
-        <step id="hello">
-            <tasklet ref="helloTasklet"/>
-        </step>
+        <listeners>
+            <listener ref="batchJobExecutionListener"/>
+        </listeners>
     </job>
 
 </beans>

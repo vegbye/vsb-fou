@@ -50,6 +50,7 @@ public class JobDetailCtx {
         map.put("jobLocator", jobLocator);
         map.put("jobLauncher", jobLauncher);
         map.put(SpringBatchQuartzJob.JOB_NAME, helloJob.getName());
+        map.put("smoketest", "true");
         bean.setJobDataAsMap(map);
         bean.setDurability(true);
         return bean;
