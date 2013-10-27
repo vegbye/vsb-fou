@@ -33,7 +33,7 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         String jobName = jobExecution.getJobInstance().getJobName();
         Long jobInstanceId = jobExecution.getJobInstance().getId();
         Long jobExecutionId = jobExecution.getId();
-        LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId);
+        LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + " JobParameters:" + jobExecution.getJobInstance().getJobParameters());
         try {
             if ("true".equalsIgnoreCase(jobExecution.getJobInstance().getJobParameters().getString("smoketest", "false"))) {
                 jobExecution.stop();

@@ -1,12 +1,12 @@
 package vsb.fou.batch.spring.scheduler;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vsb.fou.batch.spring.common.VsbJobParametersIncrementer;
 
 import javax.annotation.Resource;
 
@@ -41,7 +41,7 @@ public class SpringBatchLauncher {
     }
 
     private JobParameters createJobParameters() {
-        String id = RandomStringUtils.randomAlphanumeric(20);
-        return new JobParametersBuilder().addString("ID", id).toJobParameters();
+        String nextId = VsbJobParametersIncrementer.generateNextId();
+        return new JobParametersBuilder().addString("ID", nextId).toJobParameters();
     }
 }
