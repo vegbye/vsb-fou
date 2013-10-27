@@ -1,6 +1,5 @@
 package vsb.fou.batch.spring.quartz;
 
-import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.JobLocator;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,48 +21,37 @@ public class JobDetailCtx {
     private JobLocator jobLocator;
     @Autowired
     private JobLauncher jobLauncher;
-    @Resource(name = "importProductsJob")
-    private Job importProductsJob;
-    @Resource(name = "helloJob")
-    private Job helloJob;
-    @Resource(name = "heiJobb")
-    private Job heiJobb;
+    @Resource
+    private JobLauncher syncJobLauncher;
 
     @Bean
     public JobDetailFactoryBean heiQuartzJobb() {
-        JobDetailFactoryBean bean = new JobDetailFactoryBean();
-        bean.setJobClass(SpringBatchQuartzJob.class);
-        Map<String, Object> map = new HashMap<>();
-        map.put("jobLocator", jobLocator);
-        map.put("jobLauncher", jobLauncher);
-        map.put(SpringBatchQuartzJob.JOB_NAME, heiJobb.getName());
-        bean.setJobDataAsMap(map);
-        bean.setDurability(true);
-        return bean;
+        return getJobDetailFactoryBean("heiJobb", false);
     }
 
     @Bean
     public JobDetailFactoryBean helloQuartzJob() {
-        JobDetailFactoryBean bean = new JobDetailFactoryBean();
-        bean.setJobClass(SpringBatchQuartzJob.class);
-        Map<String, Object> map = new HashMap<>();
-        map.put("jobLocator", jobLocator);
-        map.put("jobLauncher", jobLauncher);
-        map.put(SpringBatchQuartzJob.JOB_NAME, helloJob.getName());
-        map.put("smoketest", "true");
-        bean.setJobDataAsMap(map);
-        bean.setDurability(true);
-        return bean;
+        return getJobDetailFactoryBean("helloJob", true);
     }
 
     @Bean
     public JobDetailFactoryBean importProductsQuartzJob() {
+        return getJobDetailFactoryBean("importProductsJob", false);
+    }
+
+    private JobDetailFactoryBean getJobDetailFactoryBean(String jobName, boolean smoketest) {
         JobDetailFactoryBean bean = new JobDetailFactoryBean();
         bean.setJobClass(SpringBatchQuartzJob.class);
         Map<String, Object> map = new HashMap<>();
         map.put("jobLocator", jobLocator);
         map.put("jobLauncher", jobLauncher);
-        map.put(SpringBatchQuartzJob.JOB_NAME, importProductsJob.getName());
+        map.put("syncJobLauncher", syncJobLauncher);
+        map.put(SpringBatchQuartzJob.JOB_NAME, jobName);
+        if (smoketest) {
+            map.put("smoketest", "true");
+        } else {
+            map.put("smoketest", "false");
+        }
         bean.setJobDataAsMap(map);
         bean.setDurability(true);
         return bean;

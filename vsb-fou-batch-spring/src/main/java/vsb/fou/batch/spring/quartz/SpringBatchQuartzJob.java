@@ -21,6 +21,11 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringBatchQuartzJob.class);
     private JobLocator jobLocator;
     private JobLauncher jobLauncher;
+    private JobLauncher syncJobLauncher;
+
+    public void setSyncJobLauncher(JobLauncher syncJobLauncher) {
+        this.syncJobLauncher = syncJobLauncher;
+    }
 
     @SuppressWarnings("UnusedDeclaration")
     public void setJobLocator(JobLocator jobLocator) {
@@ -33,20 +38,22 @@ public class SpringBatchQuartzJob extends QuartzJobBean {
     }
 
     protected void executeInternal(JobExecutionContext context) {
-        LOGGER.info("Starter.");
         try {
             JobDataMap jobDataMap = context.getMergedJobDataMap();
-            LOGGER.info("JobDataMap fra context:");
             for (Entry<String, Object> entry : jobDataMap.entrySet()) {
                 LOGGER.info(entry.getKey() + " => " + entry.getValue());
             }
             String jobName = (String) jobDataMap.get(JOB_NAME);
-            LOGGER.info("jobName:" + jobName);
+            LOGGER.info("JobDataMap fra context:");
             JobParameters jobParameters = getJobParametersFromJobMap(jobDataMap);
-            LOGGER.info("JobParameters:" + jobParameters);
-            JobExecution jobExecution = jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
-            LOGGER.info("JobExecution.status:" + jobExecution.getStatus());
-            LOGGER.info("FERDIG.");
+            LOGGER.info("STARTER. jobName:" + jobName + " JobParameters:" + jobParameters);
+            JobExecution jobExecution;
+            if ("true".equalsIgnoreCase(jobParameters.getString("smoketest"))) {
+                jobExecution = syncJobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+            } else {
+                jobExecution = jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+            }
+            LOGGER.info("FERDIG. JobExecution.status:" + jobExecution.getStatus());
         } catch (Exception e) {
             LOGGER.warn("FEIL:" + e);
         }

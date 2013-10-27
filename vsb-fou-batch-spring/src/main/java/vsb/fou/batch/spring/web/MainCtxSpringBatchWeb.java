@@ -25,6 +25,7 @@ import vsb.fou.batch.spring.hellojob.MainCtxHelloJob;
 import vsb.fou.batch.spring.productjob.MainCtxImportProductJob;
 import vsb.fou.common.InfraConfig;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
@@ -40,8 +41,10 @@ public class MainCtxSpringBatchWeb {
     private DataSource dataSource;
     @Autowired
     private JobRepository jobRepository;
-    @Autowired
+    @Resource
     private TaskExecutor taskExecutor;
+    @Resource
+    private TaskExecutor syncTaskExecutor;
     @Autowired
     private JobExplorer jobExplorer;
 
@@ -82,6 +85,14 @@ public class MainCtxSpringBatchWeb {
         SimpleJobLauncher bean = new SimpleJobLauncher();
         bean.setJobRepository(jobRepository);
         bean.setTaskExecutor(taskExecutor);
+        return bean;
+    }
+
+    @Bean
+    public JobLauncher syncJobLauncher() {
+        SimpleJobLauncher bean = new SimpleJobLauncher();
+        bean.setJobRepository(jobRepository);
+        bean.setTaskExecutor(syncTaskExecutor);
         return bean;
     }
 

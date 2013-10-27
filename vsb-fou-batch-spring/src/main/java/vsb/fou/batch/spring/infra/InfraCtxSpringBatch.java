@@ -6,6 +6,7 @@ import org.springframework.batch.core.repository.support.JobRepositoryFactoryBea
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.SyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.support.incrementer.AbstractSequenceMaxValueIncrementer;
@@ -72,5 +73,10 @@ public class InfraCtxSpringBatch {
         SimpleAsyncTaskExecutor bean = new SimpleAsyncTaskExecutor();
         bean.setConcurrencyLimit(-1);
         return bean;
+    }
+
+    @Bean
+    public TaskExecutor syncTaskExecutor() {
+        return new SyncTaskExecutor();
     }
 }
