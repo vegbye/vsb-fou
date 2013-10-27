@@ -7,10 +7,18 @@
     <task:scheduler id="scheduler" pool-size="20"/>
 
     <task:scheduled-tasks scheduler="scheduler">
-        <task:scheduled ref="springBatchLauncher" method="launchImportProductsJob" initial-delay="2000"
+        <task:scheduled ref="springBatchLauncher"
+                        method="launchImportProductsJob"
+                        initial-delay="2000"
                         fixed-delay="10000"/>
-        <task:scheduled ref="springBatchLauncher" method="launchHelloJob" initial-delay="2000" cron="0/7 * * * * ?"/>
-        <task:scheduled ref="springBatchLauncher" method="launchHeiJobb" initial-delay="2000" fixed-delay="4000"/>
+        <task:scheduled ref="springBatchLauncher"
+                        method="launchHelloJob"
+                        initial-delay="2000"
+                        cron="0/7 * * * * ?"/>
+        <task:scheduled ref="springBatchLauncher"
+                        method="launchHeiJobb"
+                        initial-delay="2000"
+                        fixed-delay="4000"/>
     </task:scheduled-tasks>
 
 

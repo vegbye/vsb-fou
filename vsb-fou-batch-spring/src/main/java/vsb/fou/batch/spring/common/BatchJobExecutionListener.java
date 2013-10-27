@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,9 +34,10 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         String jobName = jobExecution.getJobInstance().getJobName();
         Long jobInstanceId = jobExecution.getJobInstance().getId();
         Long jobExecutionId = jobExecution.getId();
-        LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + " JobParameters:" + jobExecution.getJobInstance().getJobParameters());
+        JobParameters jobParameters = jobExecution.getJobInstance().getJobParameters();
+        LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + " JobParameters:" + jobParameters);
         try {
-            if ("true".equalsIgnoreCase(jobExecution.getJobInstance().getJobParameters().getString("smoketest", "false"))) {
+            if ("true".equalsIgnoreCase(jobParameters.getString("smoketest", "false"))) {
                 jobExecution.stop();
             }
         } catch (Exception e) {
