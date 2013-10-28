@@ -3,6 +3,8 @@ package vsb.fou.batch.spring.common;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.BatchStatus;
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.JobParameters;
@@ -37,12 +39,17 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         JobParameters jobParameters = jobExecution.getJobInstance().getJobParameters();
         LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + " JobParameters:" + jobParameters);
         try {
-            if ("true".equalsIgnoreCase(jobParameters.getString("smoketest", "false"))) {
+            if (isSmoketest(jobExecution)) {
                 jobExecution.stop();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isSmoketest(JobExecution jobExecution) {
+        JobParameters jobParameters = jobExecution.getJobInstance().getJobParameters();
+        return "true".equalsIgnoreCase(jobParameters.getString("smoketest", "false"));
     }
 
     @Override
@@ -51,16 +58,23 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         Long jobInstanceId = jobExecution.getJobInstance().getId();
         Long jobExecutionId = jobExecution.getId();
         LOGGER.info("-------------- jobExecution.getAllFailureExceptions():" + jobExecution.getAllFailureExceptions());
+        boolean smoketest = isSmoketest(jobExecution);
         if (jobExecution.getStatus().isUnsuccessful()) {
             String stackTrace = getRootCauseStackTrace(jobExecution.getAllFailureExceptions());
             LOGGER.error("FAILED! jobb:" + jobName
+                    + " Smoketest:" + smoketest
                     + " jobInstanceId:" + jobInstanceId
                     + " jobExecutionId:" + jobExecutionId
                     + " Status:" + jobExecution.getStatus()
                     + " ExitStatus:" + jobExecution.getExitStatus()
                     + "\n" + stackTrace);
         } else {
+            if (jobExecution.getStatus() == BatchStatus.STOPPED && smoketest) {
+                jobExecution.setStatus(BatchStatus.COMPLETED);
+                jobExecution.setExitStatus(ExitStatus.COMPLETED);
+            }
             LOGGER.info("SUCCESS! jobb:" + jobName
+                    + " Smoketest:" + smoketest
                     + " jobInstanceId:" + jobInstanceId
                     + " jobExecutionId:" + jobExecutionId
                     + " Status:" + jobExecution.getStatus()
