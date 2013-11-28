@@ -7,9 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Vegard S. Bye
- */
 @Configuration
 @ComponentScan("vsb.fou.rest.spring.client")
 public class MainCtxResearchClient {

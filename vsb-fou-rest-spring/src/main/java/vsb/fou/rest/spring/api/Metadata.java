@@ -1,8 +1,5 @@
 package vsb.fou.rest.spring.api;
 
-/**
- * @author Vegard S. Bye
- */
 public class Metadata {
 
     private String messageId;

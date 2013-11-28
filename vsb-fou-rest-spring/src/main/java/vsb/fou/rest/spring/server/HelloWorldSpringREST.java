@@ -14,9 +14,6 @@ import vsb.fou.rest.spring.api.Metadata;
 
 import java.util.Date;
 
-/**
- * @author Vegard S. Bye
- */
 @Controller
 @RequestMapping("/research")
 public class HelloWorldSpringREST {

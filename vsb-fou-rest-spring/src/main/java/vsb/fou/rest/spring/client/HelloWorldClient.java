@@ -8,9 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import vsb.fou.rest.spring.api.HelloWorldRequest;
 import vsb.fou.rest.spring.api.HelloWorldResponse;
 
-/**
- * @author Vegard S. Bye
- */
 @Service
 public class HelloWorldClient {
 
