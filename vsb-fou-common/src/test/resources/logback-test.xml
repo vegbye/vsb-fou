@@ -11,7 +11,7 @@
             <Pattern>###%d{ISO8601}### [%-5p] T[%-26thread] L[%-28c{0}]: %m%n</Pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
+            <level>OFF</level>
         </filter>
     </appender>
 
