@@ -12,32 +12,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${vsb.fou.jdk.version}</source>
-                    <target>${vsb.fou.jdk.version}</target>
-                    <meminitial>128m</meminitial>
-                    <maxmem>1024m</maxmem>
-                    <fork>false</fork>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
                 <executions>
                     <execution>
                         <goals>
