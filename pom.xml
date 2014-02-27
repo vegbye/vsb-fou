@@ -159,6 +159,11 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <!-- ================ test 3. party deps ================ -->
         <dependency>
             <groupId>junit</groupId>
