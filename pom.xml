@@ -18,6 +18,7 @@
         <module>vsb-fou-rest-jersey</module>
         <module>vsb-fou-rest-spring</module>
         <module>vsb-fou-ws-cxf</module>
+        <module>vsb-fou-ws-spring</module>
         <module>vsb-fou-kladd</module>
     </modules>
 
