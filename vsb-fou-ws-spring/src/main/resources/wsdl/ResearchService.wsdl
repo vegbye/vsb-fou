@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:tns="http://service.fou.vsb/2013/08/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://service.fou.vsb/2013/08/">
+
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://service.fou.vsb/2013/08/"
+                        schemaLocation="../xsd/ResearchService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="PingSoapIn">
+        <wsdl:part name="request" element="tns:PingRequest"/>
+    </wsdl:message>
+    <wsdl:message name="PingSoapOut">
+        <wsdl:part name="response" element="tns:PingResponse"/>
+    </wsdl:message>
+
+
+    <wsdl:portType name="ResearchPortType">
+        <wsdl:operation name="Ping">
+            <wsdl:input message="tns:PingSoapIn"/>
+            <wsdl:output message="tns:PingSoapOut"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="ResearchBinding" type="tns:ResearchPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="Ping">
+            <soap:operation soapAction="Ping"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+    </wsdl:binding>
+
+    <wsdl:service name="ResearchService">
+        <wsdl:port name="ResearchServicePort" binding="tns:ResearchBinding">
+            <!-- svcutil.exe krever at location er fylt ut -->
+            <soap:address location="http://localhost:8080/vsb-fou/ping-mock"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
