@@ -35,6 +35,9 @@
                                     <extraarg>-xjc-Xbg</extraarg>
                                     <extraarg>-xjc-mark-generated</extraarg>
                                     <extraarg>-xjc-Xts</extraarg>
+                                    <extraarg>-xjc-Xdv</extraarg>
+                                    <!-- denne gir nullpointer ??? -->
+                                    <!--extraarg>-xjc-Xbug671</extraarg-->
                                 </extraargs>
                                 <noAddressBinding>true</noAddressBinding>
                             </defaultOptions>
@@ -59,6 +62,16 @@
                     <dependency>
                         <groupId>org.apache.cxf.xjcplugins</groupId>
                         <artifactId>cxf-xjc-ts</artifactId>
+                        <version>2.7.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf.xjcplugins</groupId>
+                        <artifactId>cxf-xjc-bug671</artifactId>
+                        <version>2.7.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf.xjcplugins</groupId>
+                        <artifactId>cxf-xjc-dv</artifactId>
                         <version>2.7.0</version>
                     </dependency>
                 </dependencies>
