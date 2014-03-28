@@ -1,6 +1,7 @@
 package vsb.fou.rest.jersey.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author Vegard S. Bye
  */
 @Path("/helloworld")
+@Component
 public class HelloWorldJerseyREST {
 
     private static int counter = 0;

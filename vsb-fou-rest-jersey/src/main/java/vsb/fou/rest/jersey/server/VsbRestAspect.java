@@ -51,6 +51,7 @@ public class VsbRestAspect {
 
     @Around("publicMethod() && pathAnnotatedClass()")
     public Object aroundExeute(ProceedingJoinPoint jp) throws Throwable {
+        System.out.println("--------------- jp = " + jp);
         Object[] args = jp.getArgs();
         MethodSignature signature = (MethodSignature) jp.getSignature();
         String[] parameterNames = signature.getParameterNames();
