@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * NB! MÅ være @Compononet ikke @Service for at jersey-spring integration skal funke.
+ *
  * @author Vegard S. Bye
  */
 @Path("/helloworld")
@@ -29,7 +31,7 @@ public class HelloWorldJerseyREST {
 
     private static int counter = 0;
     /**
-     * NB! MÅ være @Autowired ikke @Autowired !?
+     * NB! MÅ være @Autowired ikke @Resource for at jersey-spring integration skal funke.
      */
     @Autowired
     private HelloWorldService helloWorldService;
