@@ -20,6 +20,8 @@
         <module>vsb-fou-ws-cxf</module>
         <module>vsb-fou-ws-spring</module>
         <module>vsb-fou-kladd</module>
+
+        <module>vsb-fou-stepscope</module>
     </modules>
 
     <properties>
