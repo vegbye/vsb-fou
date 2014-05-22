@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Import;
 import vsb.fou.batch.spring.infra.InfraCtxSpringBatch;
 import vsb.fou.batch.spring.quartz.InfraCtxSpringBatchQuartz;
 import vsb.fou.batch.spring.quartz.MainCtxQuartzScheduler;
-import vsb.fou.batch.spring.springbatchadmin.MainCtxSpringBatchAdmin;
 import vsb.fou.common.InfraConfig;
 
 /**
@@ -17,8 +16,7 @@ import vsb.fou.common.InfraConfig;
         MainCtxQuartzScheduler.class,
 //        MainCtxSpringScheduler.class,
         InfraCtxSpringBatch.class,
-        MainCtxSpringBatchWeb.class,
-        MainCtxSpringBatchAdmin.class
+        MainCtxSpringBatchWeb.class
 })
 @InfraConfig
 public class AppCtxSpringBatchWeb {

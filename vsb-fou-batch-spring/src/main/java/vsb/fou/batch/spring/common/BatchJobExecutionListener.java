@@ -36,7 +36,7 @@ public class BatchJobExecutionListener implements JobExecutionListener {
         String jobName = jobExecution.getJobInstance().getJobName();
         Long jobInstanceId = jobExecution.getJobInstance().getId();
         Long jobExecutionId = jobExecution.getId();
-        JobParameters jobParameters = jobExecution.getJobInstance().getJobParameters();
+        JobParameters jobParameters = jobExecution.getJobParameters();
         LOGGER.info("Starter jobb:" + jobName + " jobInstanceId:" + jobInstanceId + " jobExecutionId:" + jobExecutionId + " " +
                 "JobParameters:" + jobParameters);
         if (isSmoketest(jobExecution)) {
@@ -45,7 +45,7 @@ public class BatchJobExecutionListener implements JobExecutionListener {
     }
 
     private boolean isSmoketest(JobExecution jobExecution) {
-        JobParameters jobParameters = jobExecution.getJobInstance().getJobParameters();
+        JobParameters jobParameters = jobExecution.getJobParameters();
         return Boolean.TRUE.toString().equalsIgnoreCase(jobParameters.getString("smoketest", "false"));
     }
 

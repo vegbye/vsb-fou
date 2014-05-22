@@ -1,6 +1,6 @@
 package vsb.fou.batch.spring.productjob;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
@@ -56,7 +56,7 @@ public class ImportProductsBatchTest {
     private String printBatchFailures(JobExecution jobExecution) {
         StringBuilder sb = new StringBuilder();
         for (Throwable t : jobExecution.getAllFailureExceptions()) {
-            sb.append(ExceptionUtils.getFullStackTrace(t));
+            sb.append(ExceptionUtils.getStackTrace(t));
             sb.append(" ");
         }
         return sb.toString();
