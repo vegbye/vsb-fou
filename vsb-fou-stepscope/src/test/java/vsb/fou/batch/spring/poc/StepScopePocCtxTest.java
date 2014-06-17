@@ -30,6 +30,5 @@ public class StepScopePocCtxTest {
         Object stepScopedReader = ctx.getBean("stepScopedReader");
         assertThat(stepScopedReader, notNullValue());
         assertThat(ctx.getBean("minJobb"), notNullValue());
-        assertThat(ctx.getBean("mittAspekt"), notNullValue());
     }
 }

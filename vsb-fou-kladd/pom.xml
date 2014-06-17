@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -11,55 +11,6 @@
         <artifactId>vsb-fou</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <slf4j.version>1.7.6</slf4j.version>
-        <logback.version>1.1.1</logback.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${vsb.fou.jdk.version}</source>
-                    <target>${vsb.fou.jdk.version}</target>
-                    <compilerArgument>-Xlint:none</compilerArgument>
-                    <compilerArguments>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </compilerArguments>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <argLine>-Xms128m -Xmx1024m</argLine>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencies>
         <!-- ================ main deps ================ -->
