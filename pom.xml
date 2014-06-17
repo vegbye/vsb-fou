@@ -149,7 +149,7 @@
                                 </property>
                                 <property>
                                     <name>javax.xml.accessExternalSchema</name>
-                                    <value>file</value>
+                                    <value>file,http</value>
                                 </property>
                             </properties>
                         </configuration>
