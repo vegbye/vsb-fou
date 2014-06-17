@@ -1,6 +1,6 @@
 package vsb.fou.batch.spring.infra;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +34,6 @@ public class InfraCtxSpringBatch {
         dataSource.setUsername("vsb");
         dataSource.setPassword("vsb");
         dataSource.setInitialSize(10);
-        dataSource.setMaxActive(20);
         return dataSource;
     }
 
