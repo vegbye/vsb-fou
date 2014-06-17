@@ -14,7 +14,7 @@
     </parent>
 
     <properties>
-        <cxf.version>2.7.10</cxf.version>
+        <cxf.version>3.0.0</cxf.version>
     </properties>
 
     <build>
@@ -34,6 +34,7 @@
                                     <extraarg>-xjc-Xcollection-setter-injector</extraarg>
                                     <extraarg>-xjc-enableIntrospection</extraarg>
                                     <extraarg>-xjc-mark-generated</extraarg>
+                                    <extraarg>-verbose</extraarg>
                                 </extraargs>
                                 <noAddressBinding>true</noAddressBinding>
                             </defaultOptions>
@@ -46,9 +47,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>net.java.dev.vcc.thirdparty</groupId>
+                        <groupId>org.jvnet.jaxb2-commons</groupId>
                         <artifactId>collection-setter-injector</artifactId>
-                        <version>0.5.0-1</version>
+                        <version>1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -73,6 +74,11 @@
         <!-- ================ main 3. party deps ================ -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
             <version>${cxf.version}</version>
         </dependency>
@@ -80,16 +86,6 @@
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
             <version>${cxf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf.xjc-utils</groupId>
-            <artifactId>cxf-xjc-runtime</artifactId>
-            <version>2.7.0</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -120,6 +116,10 @@
             <artifactId>spring-web</artifactId>
         </dependency>
         <!-- ================ provided deps ================ -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
         <!-- ================ test 3. party deps ================ -->
         <dependency>
             <groupId>org.springframework</groupId>

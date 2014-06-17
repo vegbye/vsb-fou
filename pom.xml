@@ -131,6 +131,31 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>file.encoding</name>
+                                    <value>${project.build.sourceEncoding}</value>
+                                </property>
+                                <property>
+                                    <name>javax.xml.accessExternalSchema</name>
+                                    <value>file</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -322,8 +347,12 @@
                                 <phase>install</phase>
                                 <configuration>
                                     <target>
-                                        <copy file="${project.build.directory}/${project.build.finalName}.war"
-                                              tofile="${jetty.home.dir}/webapps/${project.artifactId}.war"/>
+                                        <copy verbose="true" todir="${jetty.home.dir}/webapps">
+                                            <fileset dir="${project.build.directory}">
+                                                <include name="*.war"/>
+                                            </fileset>
+                                            <globmapper from="${project.build.finalName}.war" to="${project.artifactId}.war"/>
+                                        </copy>
                                     </target>
                                 </configuration>
                                 <goals>
