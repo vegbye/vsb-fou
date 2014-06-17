@@ -47,9 +47,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.jvnet.jaxb2-commons</groupId>
+                        <groupId>net.java.dev.vcc.thirdparty</groupId>
                         <artifactId>collection-setter-injector</artifactId>
-                        <version>1.0</version>
+                        <version>0.5.0-1</version>
                     </dependency>
                 </dependencies>
             </plugin>
