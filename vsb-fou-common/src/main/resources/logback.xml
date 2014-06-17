@@ -25,8 +25,8 @@
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.apache.cxf" level="INFO"/>
 
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT"/>
+    <root level="INFO">
+    <appender-ref ref="STDOUT"/>
     </root>
 
 </configuration>
