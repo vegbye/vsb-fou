@@ -3,7 +3,7 @@ package vsb.fou.ws.cxf.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import vsb.fou.service._2013._08.PingRequest;
 import vsb.fou.service._2013._08.PingResponse;
 import vsb.fou.service._2013._08.ResearchPortType;
@@ -14,7 +14,7 @@ import javax.jws.WebService;
  * @author Vegard S. Bye
  */
 @WebService
-@Service
+@Component
 public class HelloWorldCxfWS implements ResearchPortType {
 
     private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("REQUEST." + HelloWorldCxfWS.class.getSimpleName());

@@ -14,7 +14,6 @@ import java.util.List;
 
 import static org.kohsuke.args4j.ExampleMode.ALL;
 
-@SuppressWarnings("unused")
 public class VsbArsg4j {
 
     @Option(name = "-r", usage = "recursively run something")
