@@ -10,22 +10,28 @@
     <description>Bygge pom for VSB FoU</description>
 
     <modules>
-        <module>vsb-fou-batch-spring</module>
         <module>vsb-fou-common</module>
+
+        <module>vsb-fou-kladd</module>
+
+        <module>vsb-fou-batch-spring</module>
+        <module>vsb-fou-stepscope</module>
+
         <module>vsb-fou-db-h2</module>
         <module>vsb-fou-db-hsqldb</module>
+
         <module>vsb-fou-jms-activemq</module>
+
         <module>vsb-fou-rest-jersey</module>
         <module>vsb-fou-rest-spring</module>
+
         <module>vsb-fou-ws-cxf</module>
         <module>vsb-fou-ws-spring</module>
-        <module>vsb-fou-kladd</module>
-        <module>vsb-fou-stepscope</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>1.8</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <spring.version>4.0.5.RELEASE</spring.version>
         <spring-batch.version>3.0.0.RELEASE</spring-batch.version>
