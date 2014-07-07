@@ -31,7 +31,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.8</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <spring.version>4.0.5.RELEASE</spring.version>
         <spring-batch.version>3.0.0.RELEASE</spring-batch.version>
