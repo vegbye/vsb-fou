@@ -195,6 +195,7 @@
                             <target>
                                 <echo message="git.commitsCount: ${git.commitsCount}"/>
                                 <echo message="git.revision: ${git.revision}"/>
+                                <echo message="git.shortRevision: ${git.shortRevision}"/>
                                 <echo message="git.branch: ${git.branch}"/>
                                 <echo message="git.tag: ${git.tag}"/>
                                 <echo message="git.buildnumber: ${git.buildnumber}"/>
