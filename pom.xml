@@ -111,6 +111,13 @@
                         </goals>
                         <configuration>
                             <rules>
+                                <bannedDependencies>
+                                    <searchTransitive>true</searchTransitive>
+                                    <excludes>
+                                        <exclude>commons-logging:commons-logging</exclude>
+                                        <exclude>log4j:log4j</exclude>
+                                    </excludes>
+                                </bannedDependencies>
                                 <requirePluginVersions>
                                     <message>Vegard sine regler.</message>
                                     <banLatest>true</banLatest>
@@ -119,7 +126,7 @@
                                     <phases>validate,clean,install,deploy,site</phases>
                                 </requirePluginVersions>
                                 <requireMavenVersion>
-                                    <version>3.0</version>
+                                    <version>3.1.0</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${vsb.fou.jdk.version}</version>
@@ -204,7 +211,18 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+            <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.3.2</version>
             </dependency>
@@ -223,6 +241,17 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>3.1.0</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>2.0.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
