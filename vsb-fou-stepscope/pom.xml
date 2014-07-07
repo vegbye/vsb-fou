@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>vsb.fou</groupId>
-        <artifactId>vsb-fou</artifactId>
+        <artifactId>vsb-fou-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
