@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <description>Bygge pom for min FoU</description>
+    <description>Bygge pom for VSB FoU</description>
 
     <modules>
         <module>vsb-fou-batch-spring</module>
@@ -20,7 +20,6 @@
         <module>vsb-fou-ws-cxf</module>
         <module>vsb-fou-ws-spring</module>
         <module>vsb-fou-kladd</module>
-
         <module>vsb-fou-stepscope</module>
     </modules>
 
