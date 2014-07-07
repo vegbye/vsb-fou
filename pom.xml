@@ -184,7 +184,7 @@
                     <doCheck>false</doCheck>
                     <doUpdate>false</doUpdate>
                     <getRevisionOnlyOnce>false</getRevisionOnlyOnce>
-                    <shortRevisionLength>10</shortRevisionLength>
+                    <shortRevisionLength>5</shortRevisionLength>
                 </configuration>
             </plugin>
             <plugin>
