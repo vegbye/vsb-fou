@@ -424,7 +424,8 @@
                                             <fileset dir="${project.build.directory}">
                                                 <include name="*.war"/>
                                             </fileset>
-                                            <globmapper from="${project.build.finalName}.war" to="${project.artifactId}.war"/>
+                                            <globmapper from="${project.build.finalName}.war"
+                                                        to="${project.artifactId}.war"/>
                                         </copy>
                                     </target>
                                 </configuration>
