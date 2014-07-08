@@ -131,7 +131,7 @@
                                     <phases>validate,clean,install,deploy,site</phases>
                                 </requirePluginVersions>
                                 <requireMavenVersion>
-                                    <version>3.1.0</version>
+                                    <version>3.0.5</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>${vsb.fou.jdk.version}</version>
