@@ -8,7 +8,7 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>###%d{ISO8601}### [%-5p] T[%-26thread] L[%-28c{0}]: %m%n</Pattern>
+            <Pattern>###%d{ISO8601}### [%-5p] [%-20thread] [%-30c{0}]: %m%n</Pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>

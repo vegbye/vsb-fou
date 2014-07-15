@@ -29,6 +29,6 @@ public class StepScopePocCtxTest {
     public void testAppCtx() {
         Object stepScopedReader = ctx.getBean("stepScopedReader");
         assertThat(stepScopedReader, notNullValue());
-        assertThat(ctx.getBean("minJobb"), notNullValue());
+        assertThat(ctx.getBean("vsbStepScopedJobb"), notNullValue());
     }
 }

@@ -1,5 +1,7 @@
 package vsb.fou.batch.spring.poc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -14,7 +16,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 
 @Configuration
-public class MinJobbCtx {
+public class VsbStepScopedJobCtx {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(VsbStepScopedJobCtx.class);
 
     @Resource
     private JobBuilderFactory jobBuilderFactory;
@@ -22,8 +26,9 @@ public class MinJobbCtx {
     private StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job minJobb() {
-        return jobBuilderFactory.get("minJobb")
+    public Job vsbStepScopedJobb() {
+        LOGGER.info("Lager vsbStepScopedJobb");
+        return jobBuilderFactory.get("vsbStepScopedJobb")
                 .start(tulleStep())
                 .build();
     }
