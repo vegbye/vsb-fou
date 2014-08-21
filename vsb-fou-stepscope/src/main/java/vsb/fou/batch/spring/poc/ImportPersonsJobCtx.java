@@ -32,6 +32,9 @@ public class ImportPersonsJobCtx {
 
             @Override
             public Person read() {
+                if (index >= persons.size()) {
+                    return null;
+                }
                 Person person = persons.get(index);
                 index++;
                 LOGGER.info("Leste: " + person);

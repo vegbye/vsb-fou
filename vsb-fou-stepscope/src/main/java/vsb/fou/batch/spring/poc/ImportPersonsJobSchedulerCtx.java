@@ -22,11 +22,14 @@ public class ImportPersonsJobSchedulerCtx {
     @Resource
     private Job importPersonsJob;
 
-    @Scheduled(fixedRate = 30 * 1000L)
+    @Scheduled(fixedRate = 10 * 1000L)
     public void importPersons() {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", new Date().toString());
         try {
             JobParameters params = builder.toJobParameters();
+            System.out.println("+------------------------------------------");
+            System.out.println("| Starter importPersonsJob, med params: " + params);
+            System.out.println("+------------------------------------------");
             LOGGER.info("Starter importPersonsJob, med params: " + params);
             jobLauncher.run(importPersonsJob, params);
         } catch (Exception e) {
