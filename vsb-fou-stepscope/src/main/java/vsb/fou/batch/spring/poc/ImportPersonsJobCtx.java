@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class ImportPersonJobCtx {
+public class ImportPersonsJobCtx {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImportPersonJobCtx.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImportPersonsJobCtx.class);
 
     @Bean
     public ItemReader<Person> personReader() {
