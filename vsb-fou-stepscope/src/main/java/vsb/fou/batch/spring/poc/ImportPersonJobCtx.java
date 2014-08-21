@@ -2,6 +2,11 @@ package vsb.fou.batch.spring.poc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -53,24 +58,26 @@ public class ImportPersonJobCtx {
         };
     }
 
-//    @Bean
-//    public Job importUserJob(JobBuilderFactory jobs, Step s1) {
-//        return jobs.get("importUserJob")
-//                .incrementer(new RunIdIncrementer())
-//                .flow(s1)
-//                .end()
-//                .build();
-//    }
-//
-//    @Bean
-//    public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader<Person> reader,
-//                      ItemWriter<Person> writer, ItemProcessor<Person, Person> processor) {
-//        return stepBuilderFactory.get("step1")
-//                .<Person, Person>chunk(10)
-//                .reader(reader)
-//                .processor(processor)
-//                .writer(writer)
-//                .build();
-//    }
+    @Bean
+    public Job importPersonsJob(JobBuilderFactory jobs, Step importPersonsStep) {
+        return jobs.get("importPersonsJob")
+                .incrementer(new RunIdIncrementer())
+                .flow(importPersonsStep)
+                .end()
+                .build();
+    }
+
+    @Bean
+    public Step importPersonsStep(StepBuilderFactory stepBuilderFactory,
+                                  ItemReader<Person> personReader,
+                                  ItemWriter<Person> personWriter,
+                                  ItemProcessor<Person, Person> personProcessor) {
+        return stepBuilderFactory.get("importPersonsStep")
+                .<Person, Person>chunk(10)
+                .reader(personReader)
+                .processor(personProcessor)
+                .writer(personWriter)
+                .build();
+    }
 
 }
