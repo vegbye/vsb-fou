@@ -26,21 +26,7 @@ public class ImportPersonsJobCtx {
         final List<Person> persons = new ArrayList<>();
         persons.add(new Person("Vegard", "Bye"));
         persons.add(new Person("Sally", "Saadi"));
-
-        return new ItemReader<Person>() {
-            private int index = 0;
-
-            @Override
-            public Person read() {
-                if (index >= persons.size()) {
-                    return null;
-                }
-                Person person = persons.get(index);
-                index++;
-                LOGGER.info("Leste: " + person);
-                return person;
-            }
-        };
+        return new PersonReader(persons);
     }
 
     @Bean
@@ -51,7 +37,6 @@ public class ImportPersonsJobCtx {
     @Bean
     public ItemWriter<Person> personWriter() {
         return new ItemWriter<Person>() {
-
             @Override
             public void write(List<? extends Person> items) throws Exception {
                 for (Person p : items) {
