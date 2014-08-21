@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -16,8 +14,6 @@ import static org.junit.Assert.assertThat;
 /**
  * @author Vegard S. Bye
  */
-@Transactional
-@TransactionConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {StepScopePocCtx.class})
 public class StepScopePocCtxTest {
@@ -27,8 +23,6 @@ public class StepScopePocCtxTest {
 
     @Test
     public void testAppCtx() {
-        Object stepScopedReader = ctx.getBean("stepScopedReader");
-        assertThat(stepScopedReader, notNullValue());
-        assertThat(ctx.getBean("vsbStepScopedJobb"), notNullValue());
+        assertThat(ctx, notNullValue());
     }
 }
