@@ -8,11 +8,13 @@ import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.item.ItemReader;
 
+import java.util.Date;
 import java.util.List;
 
 public class PersonReader implements ItemReader<Person>, StepExecutionListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImportPersonsJobCtx.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PersonReader.class);
+    private final String createdDate = new Date().toString();
     private final List<Person> persons;
     private int index = 0;
 
@@ -24,11 +26,12 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
     @Override
     public Person read() {
         if (index >= persons.size()) {
+            index = 0;
             return null;
         }
         Person person = persons.get(index);
         index++;
-        LOGGER.info("Leste: " + person);
+        LOGGER.info(createdDate + " Leste: " + person);
         return person;
     }
 

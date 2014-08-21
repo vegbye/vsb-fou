@@ -1,11 +1,10 @@
 package vsb.fou.batch.spring.poc;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
@@ -19,8 +18,7 @@ import java.util.List;
 @Configuration
 public class ImportPersonsJobCtx {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImportPersonsJobCtx.class);
-
+    @StepScope
     @Bean
     public ItemReader<Person> personReader() {
         final List<Person> persons = new ArrayList<>();
@@ -36,14 +34,7 @@ public class ImportPersonsJobCtx {
 
     @Bean
     public ItemWriter<Person> personWriter() {
-        return new ItemWriter<Person>() {
-            @Override
-            public void write(List<? extends Person> items) throws Exception {
-                for (Person p : items) {
-                    LOGGER.info("Skriver: " + p);
-                }
-            }
-        };
+        return new PersonWriter();
     }
 
     @Bean

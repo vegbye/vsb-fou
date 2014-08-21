@@ -22,7 +22,7 @@ public class ImportPersonsJobSchedulerCtx {
     @Resource
     private Job importPersonsJob;
 
-    @Scheduled(fixedRate = 10 * 1000L)
+    @Scheduled(fixedRate = 5 * 1000L)
     public void importPersons() {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", new Date().toString());
         try {
