@@ -40,12 +40,14 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
     public void beforeStep(StepExecution stepExecution) {
         JobParameters jobParameters = stepExecution.getJobParameters();
         LOGGER.info("   --- beforeStep ---   " + jobParameters);
+        System.out.println("   --- beforeStep ---   " + jobParameters);
     }
 
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
         JobParameters jobParameters = stepExecution.getJobParameters();
         LOGGER.info("   --- afterStep ---   " + jobParameters);
+        System.out.println("   --- afterStep ---   " + jobParameters);
         return ExitStatus.COMPLETED;
     }
 }
