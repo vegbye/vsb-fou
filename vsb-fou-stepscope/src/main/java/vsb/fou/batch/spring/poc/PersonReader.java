@@ -22,7 +22,6 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
         this.persons = persons;
     }
 
-
     @Override
     public Person read() {
         if (index >= persons.size()) {
