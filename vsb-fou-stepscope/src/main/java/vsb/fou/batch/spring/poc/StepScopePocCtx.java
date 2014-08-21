@@ -23,6 +23,7 @@ public class StepScopePocCtx {
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder.setType(EmbeddedDatabaseType.H2)
+                .setName("vsbStepScopeTestDb")
                 .addScript("/org/springframework/batch/core/schema-h2.sql")
                 .build();
     }
