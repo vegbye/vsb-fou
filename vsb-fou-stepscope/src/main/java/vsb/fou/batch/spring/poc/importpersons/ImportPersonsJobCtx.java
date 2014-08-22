@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.poc;
+package vsb.fou.batch.spring.poc.importpersons;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

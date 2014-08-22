@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.poc;
+package vsb.fou.batch.spring.poc.importpersons;
 
 public class Person {
 

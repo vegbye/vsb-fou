@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.poc;
+package vsb.fou.batch.spring.poc.importpersons;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
