@@ -27,5 +27,6 @@ public class StepScopePocCtxTest {
     public void testAppCtx() {
         assertThat(ctx, notNullValue());
         assertThat(ctx.getBean("importPersonsJob"), instanceOf(Job.class));
+        assertThat(ctx.getBean("helloStepScopeJob"), instanceOf(Job.class));
     }
 }

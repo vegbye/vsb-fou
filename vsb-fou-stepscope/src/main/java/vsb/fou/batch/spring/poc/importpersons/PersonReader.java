@@ -8,13 +8,14 @@ import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.item.ItemReader;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PersonReader implements ItemReader<Person>, StepExecutionListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonReader.class);
-    private final String createdDate = new Date().toString();
+    private final String createdDate = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
     private final List<Person> persons;
     private int index = 0;
 

@@ -1,4 +1,4 @@
-package vsb.fou.batch.spring.poc.importpersons;
+package vsb.fou.batch.spring.poc.hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,27 +14,27 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Configuration
-public class ImportPersonsJobSchedulerCtx {
+public class HelloJobSchedulerCtx {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImportPersonsJobSchedulerCtx.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloJobSchedulerCtx.class);
 
     @Resource
     private JobLauncher jobLauncher;
     @Resource
-    private Job importPersonsJob;
+    private Job helloStepScopeJob;
 
-    @Scheduled(fixedRate = 15 * 1000L)
-    public void importPersons() {
+    @Scheduled(fixedRate = 5 * 1000L)
+    public void helloStep() {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
         try {
             JobParameters params = builder.toJobParameters();
             System.out.println("+------------------------------------------");
-            System.out.println("| Starter importPersonsJob, med params: " + params);
+            System.out.println("| Starter helloStepScopeJob, med params: " + params);
             System.out.println("+------------------------------------------");
-            LOGGER.info("Starter importPersonsJob, med params: " + params);
-            jobLauncher.run(importPersonsJob, params);
+            LOGGER.info("Starter helloStepScopeJob, med params: " + params);
+            jobLauncher.run(helloStepScopeJob, params);
         } catch (Exception e) {
-            LOGGER.error("ImportPersonsJobb feilet!", e);
+            LOGGER.error("helloJob feilet!", e);
         }
     }
 
