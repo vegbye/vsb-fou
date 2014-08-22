@@ -13,10 +13,13 @@ import org.springframework.context.annotation.Configuration;
 public class HelloJobCtx {
 
     @Bean
-    public Job helloStepScopeJob(JobBuilderFactory jobs, Step helloStep) {
+    public Job helloStepScopeJob(JobBuilderFactory jobs,
+                                 Step helloStep,
+                                 Step helloStepScope) {
         return jobs.get("helloStepScopeJob")
                 .incrementer(new RunIdIncrementer())
                 .flow(helloStep)
+                .next(helloStepScope)
                 .end()
                 .build();
     }
@@ -26,6 +29,15 @@ public class HelloJobCtx {
                           Tasklet helloTasklet) {
         return stepBuilderFactory.get("helloStep")
                 .tasklet(helloTasklet)
+                .build();
+    }
+
+    @Bean
+    //@StepScope
+    public Step helloStepScope(StepBuilderFactory stepBuilderFactory,
+                               Tasklet helloStepTasklet) {
+        return stepBuilderFactory.get("helloStepScope")
+                .tasklet(helloStepTasklet)
                 .build();
     }
 

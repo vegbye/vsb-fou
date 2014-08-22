@@ -22,7 +22,7 @@ public class HelloTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
         Map<String, Object> jobParameters = chunkContext.getStepContext().getJobParameters();
-        LOGGER.info("   --- Hello! ---   " + createdDate + "   ---   " + jobParameters);
+        LOGGER.info("STEP - createdDate: " + createdDate + "   ---   " + jobParameters);
         return RepeatStatus.FINISHED;
     }
 }
