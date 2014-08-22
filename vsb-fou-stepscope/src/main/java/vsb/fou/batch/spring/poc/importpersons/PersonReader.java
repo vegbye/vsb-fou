@@ -13,6 +13,7 @@ import vsb.fou.batch.spring.poc.util.TimeStamp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @StepScope
@@ -21,7 +22,7 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonReader.class);
     private final String createdDate = TimeStamp.getTstamp();
     private final List<Person> persons;
-    private int index = 0;
+    private AtomicInteger index = new AtomicInteger(0);
 
     public PersonReader() {
         persons = new ArrayList<>();
@@ -31,12 +32,11 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
 
     @Override
     public Person read() {
-        if (index >= persons.size()) {
-            index = 0;
+        if (index.get() >= persons.size()) {
+            index.set(0);
             return null;
         }
-        Person person = persons.get(index);
-        index++;
+        Person person = persons.get(index.getAndAdd(1));
         LOGGER.info(createdDate + " Leste: " + person);
         return person;
     }
