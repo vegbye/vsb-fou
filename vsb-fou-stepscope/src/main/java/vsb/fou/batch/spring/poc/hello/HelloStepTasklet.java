@@ -8,9 +8,8 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
+import vsb.fou.batch.spring.poc.util.TimeStamp;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Component
@@ -19,7 +18,7 @@ public class HelloStepTasklet implements Tasklet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloStepTasklet.class);
 
-    private final String createdDate = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
+    private final String createdDate = TimeStamp.getTstamp();
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {

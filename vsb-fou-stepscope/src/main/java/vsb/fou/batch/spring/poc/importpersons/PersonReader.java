@@ -9,9 +9,8 @@ import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
+import vsb.fou.batch.spring.poc.util.TimeStamp;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
 public class PersonReader implements ItemReader<Person>, StepExecutionListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonReader.class);
-    private final String createdDate = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
+    private final String createdDate = TimeStamp.getTstamp();
     private final List<Person> persons;
     private int index = 0;
 

@@ -8,10 +8,9 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
+import vsb.fou.batch.spring.poc.util.TimeStamp;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class ImportPersonsJobSchedulerCtx {
@@ -25,7 +24,7 @@ public class ImportPersonsJobSchedulerCtx {
 
     @Scheduled(fixedRate = 15 * 1000L)
     public void importPersons() {
-        JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+        JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", TimeStamp.getTstamp());
         try {
             JobParameters params = builder.toJobParameters();
             System.out.println("+------------------------------------------");
