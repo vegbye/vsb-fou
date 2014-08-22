@@ -27,9 +27,6 @@ public class HelloJobSchedulerCtx {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", TimeStamp.getTstamp());
         try {
             JobParameters params = builder.toJobParameters();
-            System.out.println("+------------------------------------------");
-            System.out.println("| Starter helloStepScopeJob, med params: " + params);
-            System.out.println("+------------------------------------------");
             LOGGER.info("Starter helloStepScopeJob, med params: " + params);
             jobLauncher.run(helloStepScopeJob, params);
         } catch (Exception e) {

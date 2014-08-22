@@ -27,9 +27,6 @@ public class ImportPersonsJobSchedulerCtx {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", TimeStamp.getTstamp());
         try {
             JobParameters params = builder.toJobParameters();
-            System.out.println("+------------------------------------------");
-            System.out.println("| Starter importPersonsJob, med params: " + params);
-            System.out.println("+------------------------------------------");
             LOGGER.info("Starter importPersonsJob, med params: " + params);
             jobLauncher.run(importPersonsJob, params);
         } catch (Exception e) {
