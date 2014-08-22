@@ -33,7 +33,6 @@ public class HelloJobCtx {
     }
 
     @Bean
-    //@StepScope
     public Step helloStepScope(StepBuilderFactory stepBuilderFactory,
                                Tasklet helloStepTasklet) {
         return stepBuilderFactory.get("helloStepScope")

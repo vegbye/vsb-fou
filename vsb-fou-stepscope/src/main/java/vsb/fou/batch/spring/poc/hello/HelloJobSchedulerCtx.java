@@ -23,7 +23,7 @@ public class HelloJobSchedulerCtx {
     @Resource
     private Job helloStepScopeJob;
 
-    @Scheduled(fixedRate = 5 * 1000L)
+    @Scheduled(fixedRate = 15 * 1000L)
     public void helloStep() {
         JobParametersBuilder builder = new JobParametersBuilder().addString("timestamp", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
         try {

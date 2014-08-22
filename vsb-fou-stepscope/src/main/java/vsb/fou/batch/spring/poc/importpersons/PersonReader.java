@@ -6,12 +6,17 @@ import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@StepScope
 public class PersonReader implements ItemReader<Person>, StepExecutionListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonReader.class);
@@ -19,8 +24,10 @@ public class PersonReader implements ItemReader<Person>, StepExecutionListener {
     private final List<Person> persons;
     private int index = 0;
 
-    public PersonReader(List<Person> persons) {
-        this.persons = persons;
+    public PersonReader() {
+        persons = new ArrayList<>();
+        persons.add(new Person("Vegard", "Bye"));
+        persons.add(new Person("Sally", "Saadi"));
     }
 
     @Override

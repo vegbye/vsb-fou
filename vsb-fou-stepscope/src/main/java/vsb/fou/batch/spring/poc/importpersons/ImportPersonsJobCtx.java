@@ -4,7 +4,6 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
@@ -12,20 +11,8 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Configuration
 public class ImportPersonsJobCtx {
-
-    @StepScope
-    @Bean
-    public ItemReader<Person> personReader() {
-        final List<Person> persons = new ArrayList<>();
-        persons.add(new Person("Vegard", "Bye"));
-        persons.add(new Person("Sally", "Saadi"));
-        return new PersonReader(persons);
-    }
 
     @Bean
     public ItemProcessor<Person, Person> personProcessor() {
