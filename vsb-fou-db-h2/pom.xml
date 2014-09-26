@@ -29,7 +29,11 @@
         </dependency>
         <!-- ================ main 3. party deps ================ -->
         <dependency>
-            <groupId>com.h2database</groupId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+        <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
         <dependency>

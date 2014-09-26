@@ -1,10 +1,11 @@
 package vsb.fou.db.h2;
 
-import org.h2.jdbcx.JdbcConnectionPool;
-import org.h2.jdbcx.JdbcDataSource;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
@@ -12,10 +13,13 @@ import javax.sql.DataSource;
 @ComponentScan("vsb.fou.db.h2")
 public class TestCtxDatabaseH2 {
 
-    @Bean(destroyMethod = "dispose")
+    @Bean
     public DataSource dataSource() {
-        JdbcDataSource targetDataSource = new JdbcDataSource();
-        targetDataSource.setURL("jdbc:h2:mem:");
-        return JdbcConnectionPool.create(targetDataSource);
+        return new EmbeddedDatabaseBuilder()
+                .setName("h2-inmem-db-" + RandomStringUtils.randomNumeric(1000))
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("classpath:/create-employee.sql")
+                .addScript("classpath:/insert-employee.sql")
+                .build();
     }
 }
