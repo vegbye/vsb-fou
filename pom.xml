@@ -172,6 +172,8 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <!--<parallel>classes</parallel>-->
+                            <!--<useUnlimitedThreads>true</useUnlimitedThreads>-->
                             <runOrder>alphabetical</runOrder>
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <includes>
