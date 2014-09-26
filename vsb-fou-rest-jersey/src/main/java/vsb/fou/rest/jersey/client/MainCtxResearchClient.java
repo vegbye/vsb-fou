@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import vsb.fou.common.JulToSlf4jConfig;
 import vsb.fou.rest.jersey.common.VsbLoggingFilter;
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
@@ -18,6 +18,10 @@ import javax.ws.rs.client.ClientBuilder;
 @Configuration
 @ComponentScan("vsb.fou.rest.jersey.client")
 public class MainCtxResearchClient {
+
+    static {
+        JulToSlf4jConfig.bridgeJulToSlf4j();
+    }
 
     @Bean
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
@@ -32,9 +36,4 @@ public class MainCtxResearchClient {
         return ClientBuilder.newClient().register(new JacksonFeature()).register(new VsbLoggingFilter());
     }
 
-    @PostConstruct
-    public void bridgeJulToSlf4j() {
-        org.slf4j.bridge.SLF4JBridgeHandler.removeHandlersForRootLogger();
-        org.slf4j.bridge.SLF4JBridgeHandler.install();
-    }
 }

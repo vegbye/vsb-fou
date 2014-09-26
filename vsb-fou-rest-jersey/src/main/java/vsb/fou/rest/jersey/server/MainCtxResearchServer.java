@@ -3,6 +3,7 @@ package vsb.fou.rest.jersey.server;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import vsb.fou.common.JulToSlf4jConfig;
 
 import javax.annotation.PostConstruct;
 
@@ -14,10 +15,8 @@ import javax.annotation.PostConstruct;
 @EnableAspectJAutoProxy
 public class MainCtxResearchServer {
 
-    @PostConstruct
-    public void bridgeJulToSlf4j() {
-        org.slf4j.bridge.SLF4JBridgeHandler.removeHandlersForRootLogger();
-        org.slf4j.bridge.SLF4JBridgeHandler.install();
+    static {
+        JulToSlf4jConfig.bridgeJulToSlf4j();
     }
 
     @PostConstruct

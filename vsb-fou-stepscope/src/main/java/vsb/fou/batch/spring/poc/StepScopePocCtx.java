@@ -8,8 +8,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import vsb.fou.common.JulToSlf4jConfig;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Configuration
@@ -18,6 +18,10 @@ import javax.sql.DataSource;
 @EnableBatchProcessing
 @EnableScheduling
 public class StepScopePocCtx {
+
+    static {
+        JulToSlf4jConfig.bridgeJulToSlf4j();
+    }
 
     @Bean(destroyMethod = "shutdown")
     public DataSource dataSource() {
@@ -28,9 +32,4 @@ public class StepScopePocCtx {
                 .build();
     }
 
-    @PostConstruct
-    public void bridgeJulToSlf4j() {
-        org.slf4j.bridge.SLF4JBridgeHandler.removeHandlersForRootLogger();
-        org.slf4j.bridge.SLF4JBridgeHandler.install();
-    }
 }
