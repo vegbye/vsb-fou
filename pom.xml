@@ -31,7 +31,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vsb.fou.jdk.version>1.8</vsb.fou.jdk.version>
+        <!--BuildHive har kun stoette for 1.7 -->
+        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
         <!-- lib versjoner -->
         <spring.version>4.1.0.RELEASE</spring.version>
         <spring-batch.version>3.0.1.RELEASE</spring-batch.version>
@@ -47,8 +48,7 @@
         <jackson.version>2.4.2</jackson.version>
         <cxf.version>3.0.1</cxf.version>
 
-        <!--<jetty.version>9.1.5.v20140505</jetty.version>-->
-        <jetty.version>9.2.2.v20140723</jetty.version>
+        <jetty.version>9.1.5.v20140505</jetty.version>
         <jetty.port>9010</jetty.port>
         <jetty.stop-port>9011</jetty.stop-port>
     </properties>
