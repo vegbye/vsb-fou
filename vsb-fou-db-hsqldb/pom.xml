@@ -30,6 +30,10 @@
         <!-- ================ main 3. party deps ================ -->
         <dependency>
             <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
         </dependency>
         <dependency>

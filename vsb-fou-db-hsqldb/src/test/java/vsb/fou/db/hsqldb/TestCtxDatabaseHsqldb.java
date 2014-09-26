@@ -1,9 +1,11 @@
 package vsb.fou.db.hsqldb;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
@@ -13,9 +15,9 @@ public class TestCtxDatabaseHsqldb {
 
     @Bean
     public DataSource dataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-        dataSource.setUrl("jdbc:hsqldb:mem:mydb");
-        return dataSource;
+        return new EmbeddedDatabaseBuilder()
+                .setName("hsql-inmem-db-" + RandomStringUtils.randomNumeric(1000))
+                .setType(EmbeddedDatabaseType.HSQL)
+                .build();
     }
 }
