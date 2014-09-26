@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import vsb.fou.service._2013._08.PingRequest;
 import vsb.fou.service._2013._08.PingResponse;
 import vsb.fou.service._2013._08.ResearchPortType;
@@ -20,10 +21,11 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
-@Ignore("Krever jetty+failsafe")
-public class ResearchServiceClientTest {
+@WebAppConfiguration
+@Ignore
+public class ResearchServiceClientIT {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResearchServiceClientTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResearchServiceClientIT.class);
     @Autowired
     private ResearchPortType researchClient;
 

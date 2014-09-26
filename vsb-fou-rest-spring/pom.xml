@@ -13,6 +13,20 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <jetty.port>9020</jetty.port>
+        <jetty.stop-port>9021</jetty.stop-port>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <!-- ================ main deps ================ -->
         <dependency>

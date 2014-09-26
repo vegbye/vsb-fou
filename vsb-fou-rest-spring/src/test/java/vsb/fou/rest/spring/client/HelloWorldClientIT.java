@@ -23,10 +23,10 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
-@Ignore("Krever jetty+failsafe")
-public class HelloWorldClientTest {
+@Ignore
+public class HelloWorldClientIT {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientIT.class);
     @Autowired
     private HelloWorldClient helloWorldClient;
 
