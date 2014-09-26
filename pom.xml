@@ -48,8 +48,6 @@
         <jackson.version>2.4.2</jackson.version>
         <cxf.version>3.0.1</cxf.version>
 
-        <!--<jetty.version>9.1.5.v20140505</jetty.version>-->
-        <!--<jetty.version>9.2.2.v20140723</jetty.version>-->
         <jetty.version>9.2.3.v20140905</jetty.version>
         <jetty.port>9010</jetty.port>
         <jetty.stop-port>9011</jetty.stop-port>
