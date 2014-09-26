@@ -48,7 +48,9 @@
         <jackson.version>2.4.2</jackson.version>
         <cxf.version>3.0.1</cxf.version>
 
-        <jetty.version>9.1.5.v20140505</jetty.version>
+        <!--<jetty.version>9.1.5.v20140505</jetty.version>-->
+        <!--<jetty.version>9.2.2.v20140723</jetty.version>-->
+        <jetty.version>9.2.3.v20140905</jetty.version>
         <jetty.port>9010</jetty.port>
         <jetty.stop-port>9011</jetty.stop-port>
     </properties>
@@ -67,24 +69,22 @@
                             <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
                         </webApp>
                         <stopPort>${jetty.stop-port}</stopPort>
-                        <stopKey>vsb-stop-jetty</stopKey>
+                        <stopKey>vsb-stop-jetty-${project.artifactId}</stopKey>
+                        <stopWait>10</stopWait>
                         <httpConnector>
                             <port>${jetty.port}</port>
                             <idleTimeout>60000</idleTimeout>
                         </httpConnector>
                         <useTestClasspath>true</useTestClasspath>
+                        <scanIntervalSeconds>0</scanIntervalSeconds>
                     </configuration>
                     <executions>
                         <execution>
                             <id>start-jetty</id>
                             <phase>pre-integration-test</phase>
                             <goals>
-                                <goal>run</goal>
+                                <goal>start</goal>
                             </goals>
-                            <configuration>
-                                <scanIntervalSeconds>0</scanIntervalSeconds>
-                                <daemon>true</daemon>
-                            </configuration>
                         </execution>
                         <execution>
                             <id>stop-jetty</id>
