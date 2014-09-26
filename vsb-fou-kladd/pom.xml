@@ -31,13 +31,6 @@
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
-            <version>1.9</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -50,23 +43,18 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.5</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.3</version>
         </dependency>
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock</artifactId>
-            <version>2.6.0</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.perf4j</groupId>
             <artifactId>perf4j</artifactId>
-            <version>0.9.16</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -108,34 +96,18 @@
         <dependency>
             <groupId>net.sf.beanlib</groupId>
             <artifactId>beanlib</artifactId>
-            <version>5.0.2beta</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>net.sf.beanlib</groupId>
             <artifactId>beanlib-hibernate</artifactId>
-            <version>5.0.2beta</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.martiansoftware</groupId>
             <artifactId>jsap</artifactId>
-            <version>2.1</version>
         </dependency>
         <dependency>
             <groupId>args4j</groupId>
             <artifactId>args4j</artifactId>
-            <version>2.0.25</version>
         </dependency>
     </dependencies>
 </project>

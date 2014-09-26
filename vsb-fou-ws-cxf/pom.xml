@@ -14,7 +14,6 @@
     </parent>
 
     <properties>
-        <cxf.version>3.0.0</cxf.version>
         <jetty.port>9040</jetty.port>
         <jetty.stop-port>9041</jetty.stop-port>
     </properties>
@@ -81,17 +80,14 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-core</artifactId>
-            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
