@@ -1,18 +1,23 @@
 package vsb.fou.kladd.diverse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Method;
 
 public class BrukAvDynamicProxy {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BrukAvDynamicProxy.class);
 
     public static void main(String[] args) throws Throwable {
         MyService myService = new MyService();
         MyDynamicProxy myDynamicProxy = new MyDynamicProxy(myService);
         Method method = MyService.class.getMethod("doIt");
         Object invoke = myDynamicProxy.invoke(myService, method, null);
-        System.out.println("invoke = " + invoke);
+        LOGGER.info("invoke = " + invoke);
 
         MyDynamicProxy obj = (MyDynamicProxy) new MyFactory().create();
-        System.out.println("obj = " + obj);
+        LOGGER.info("obj = " + obj);
 //        obj.doIt();
     }
 
@@ -33,18 +38,18 @@ public class BrukAvDynamicProxy {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            System.out.println("MyDynamicProxy.invoke() - start");
+            LOGGER.info("MyDynamicProxy.invoke() - start");
             try {
                 return method.invoke(this.proxy, args);
             } finally {
-                System.out.println("MyDynamicProxy.invoke() - slutt");
+                LOGGER.info("MyDynamicProxy.invoke() - slutt");
             }
         }
     }
 
     static class MyService {
         public void doIt() {
-            System.out.println("MyService.doIt()");
+            LOGGER.info("MyService.doIt()");
         }
     }
 }

@@ -1,5 +1,7 @@
 package vsb.fou.kladd.executor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Callable;
@@ -9,6 +11,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class BrukAvSpringTaskExecutor {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BrukAvSpringTaskExecutor.class);
 
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -23,6 +27,6 @@ public class BrukAvSpringTaskExecutor {
         });
 
         String s = future.get(100, TimeUnit.MILLISECONDS);
-        System.out.println("s = " + s);
+        LOGGER.info("s = " + s);
     }
 }

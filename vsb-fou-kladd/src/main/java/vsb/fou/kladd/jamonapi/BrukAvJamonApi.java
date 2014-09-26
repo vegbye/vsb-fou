@@ -13,7 +13,6 @@ public class BrukAvJamonApi {
         // mon.stop();
         //
         // }
-        // System.out.println(mon); // toString() method called
     }
 
 }

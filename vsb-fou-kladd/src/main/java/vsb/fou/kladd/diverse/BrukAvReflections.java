@@ -1,5 +1,8 @@
 package vsb.fou.kladd.diverse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Method;
 
 /**
@@ -7,9 +10,11 @@ import java.lang.reflect.Method;
  */
 public class BrukAvReflections {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BrukAvReflections.class);
+
     public static void main(String[] args) {
         Method enclosingMethod = BrukAvReflections.class.getEnclosingMethod();
-        System.out.println("enclosingMethod = " + enclosingMethod);
+        LOGGER.info("enclosingMethod = " + enclosingMethod);
         new BrukAvReflections().doIt();
     }
 
@@ -17,11 +22,11 @@ public class BrukAvReflections {
         class Local {
         }
         Method enclosingMethod = Local.class.getEnclosingMethod();
-        System.out.println("enclosingMethod = " + enclosingMethod);
-        System.out.println("enclosingMethod = " + enclosingMethod.getDeclaringClass());
+        LOGGER.info("enclosingMethod = " + enclosingMethod);
+        LOGGER.info("enclosingMethod = " + enclosingMethod.getDeclaringClass());
 
-        System.out.println("assignableFrom = " + CharSequence.class.isAssignableFrom("hei".getClass()));
+        LOGGER.info("assignableFrom = " + CharSequence.class.isAssignableFrom("hei".getClass()));
         Object entity = new Object();
-        System.out.println("assignableFrom = " + CharSequence.class.isAssignableFrom(entity.getClass()));
+        LOGGER.info("assignableFrom = " + CharSequence.class.isAssignableFrom(entity.getClass()));
     }
 }

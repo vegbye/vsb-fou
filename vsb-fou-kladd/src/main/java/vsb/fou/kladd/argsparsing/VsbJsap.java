@@ -5,19 +5,23 @@ import com.martiansoftware.jsap.JSAP;
 import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import com.martiansoftware.jsap.Switch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VsbJsap {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(VsbJsap.class);
 
     public static void main(String[] args) throws Exception {
 
         JSAPResult result = setupArgumentParsing(args);
 
         String fomdato = result.getString("fomdato");
-        System.out.println(fomdato);
+        LOGGER.info(fomdato);
         String tildato = result.getString("tildato");
-        System.out.println(tildato);
+        LOGGER.info(tildato);
         boolean kallTjeneste = result.getBoolean("kallTjeneste");
-        System.out.println(kallTjeneste);
+        LOGGER.info("Kall:" + kallTjeneste);
     }
 
     private static JSAPResult setupArgumentParsing(final String[] args) throws JSAPException {

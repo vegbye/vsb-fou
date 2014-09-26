@@ -1,6 +1,11 @@
 package vsb.fou.kladd.autoboxing;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class AutoBoxingAvTallOver128 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutoBoxingAvTallOver128.class);
 
     public static void main(String[] args) {
 
@@ -8,11 +13,11 @@ public class AutoBoxingAvTallOver128 {
             Integer gg = new Integer(i);
             Integer kk = new Integer(i);
             if (gg != kk) {
-                System.out.println(gg + "!=" + kk);
+                LOGGER.info(gg + "!=" + kk);
             }
 
             if ((gg + 1) == (kk + 1)) {
-                System.out.println(gg + "+1==1+" + kk);
+                LOGGER.info(gg + "+1==1+" + kk);
             }
 
         }
@@ -26,6 +31,6 @@ public class AutoBoxingAvTallOver128 {
                 throw new IllegalStateException("H��� !?�#%�%&: g: " + g + " k: " + k);
             }
         }
-        System.out.println("ok");
+        LOGGER.info("ok");
     }
 }

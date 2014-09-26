@@ -2,10 +2,13 @@ package vsb.fou.kladd.diverse;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BrukAvReflectionToString {
 
     public static final String KEY = "APP-KEY";
+    private static final Logger LOGGER = LoggerFactory.getLogger(BrukAvReflectionToString.class);
     private Integer id;
     private String name;
     private String description;
@@ -24,7 +27,7 @@ public class BrukAvReflectionToString {
     public static void main(String[] args) {
         BrukAvReflectionToString demo =
                 new BrukAvReflectionToString(1, "MANU", "Manchester United", "Alex");
-        System.out.println("Demo = " + demo);
+        LOGGER.info("Demo = " + demo);
     }
 
     @Override

@@ -7,6 +7,8 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.spi.BooleanOptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.List;
 import static org.kohsuke.args4j.ExampleMode.ALL;
 
 public class VsbArsg4j {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(VsbArsg4j.class);
 
     @Option(name = "-r", usage = "recursively run something")
     private boolean recursive;
@@ -42,7 +46,7 @@ public class VsbArsg4j {
     public static void main(String[] args) {
         VsbArsg4j vsbArsg4j = new VsbArsg4j();
         vsbArsg4j.doMain(args);
-        System.out.println(vsbArsg4j);
+        LOGGER.info("Args:" + vsbArsg4j);
     }
 
     public void doMain(String[] args) {

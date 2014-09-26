@@ -2,8 +2,12 @@ package vsb.fou.kladd.diverse;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Klokke {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Klokke.class);
 
     private final String msg;
     private final long startTid;
@@ -37,9 +41,9 @@ public class Klokke {
     }
 
     public void print() {
-        System.out.println("hei");
-        System.out.println("\n\n##################");
-        System.out.println(this);
-        System.out.println("\n\n##################");
+        LOGGER.info("hei");
+        LOGGER.info("\n\n##################");
+        LOGGER.info("this:" + this);
+        LOGGER.info("\n\n##################");
     }
 }

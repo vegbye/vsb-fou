@@ -13,25 +13,25 @@ import java.util.List;
 @SuppressWarnings({"unchecked", "unused", "null"})
 public class VsbKladdeBokMain {
 
-    private static final Logger log = Logger.getLogger(VsbKladdeBokMain.class);
+    private static final Logger LOGGER = Logger.getLogger(VsbKladdeBokMain.class);
 
     public static void main(String[] args) throws Exception {
 
-        log.info("start...");
+        LOGGER.info("start...");
 
         // old();
         // old2();
         // old3();
 
         // Integer nummer = (Integer) finnNummer();
-        // log.info("nummer ? " + nummer);
+        // LOGGER.info("nummer ? " + nummer);
         // printNummer(nummer);
 
-        log.info("end");
+        LOGGER.info("end");
     }
 
     private static void printNummer(int nummer) {
-        log.info("nummeret er ? " + nummer);
+        LOGGER.info("nummeret er ? " + nummer);
     }
 
     private static Object finnNummer() {
@@ -42,9 +42,9 @@ public class VsbKladdeBokMain {
         GregorianCalendar cal = new GregorianCalendar();
 
         DateFormatUtils.format(cal, "yyyy-MM-dd");
-        log.info(DateFormatUtils.format(cal, "yyyy-MM-dd"));
+        LOGGER.info(DateFormatUtils.format(cal, "yyyy-MM-dd"));
         cal = null;
-        log.info(DateFormatUtils.format(cal, "yyyy-MM-dd"));
+        LOGGER.info(DateFormatUtils.format(cal, "yyyy-MM-dd"));
     }
 
     private static void old2() {
@@ -53,50 +53,50 @@ public class VsbKladdeBokMain {
         liste.add(null);
 
         Collections.sort(liste, new NullComparator());
-        log.info(liste);
+        LOGGER.info(liste);
 
         Integer fem = 5;
         Long femLong = 5L;
         boolean like = fem.equals(femLong.intValue());
-        System.out.println("Like ? " + like);
+        LOGGER.info("Like ? " + like);
         boolean like2 = femLong.equals(fem.longValue());
-        System.out.println("Like2 ? " + like2);
+        LOGGER.info("Like2 ? " + like2);
 
         VsbEnum a = null;
         VsbEnum b = null;
         boolean likeNullEnums = (a == b);
-        System.out.println("Like enums ? " + likeNullEnums);
+        LOGGER.info("Like enums ? " + likeNullEnums);
 
         VsbDataB bb = new VsbDataB();
         bb.setSS("ss");
         bb.setKK(1);
         VsbDataB clone = bb.clone();
-        log.info("clone ? " + clone);
+        LOGGER.info("clone ? " + clone);
     }
 
     private static void old() {
         boolean equals = VsbEnum.START.equals(null);
-        System.out.println("enum equals ? " + equals);
+        LOGGER.info("enum equals ? " + equals);
 
         VsbMyClass vsbMyClass = new VsbMyClass();
         VsbMyClass.Indre indre = vsbMyClass.new Indre();
-        log.info(indre);
+        LOGGER.info(indre);
 
         VsbMyClass.IndreStatisk indreStatisk = new VsbMyClass.IndreStatisk();
-        log.info(indreStatisk);
+        LOGGER.info(indreStatisk);
 
         kanCasteFraNull();
 
         for (int i = 0; i < 100; i++) {
-            log.info("5 digit ? " + make5digitNumbers());
+            LOGGER.info("5 digit ? " + make5digitNumbers());
         }
 
         boolean like = "null".equals(null);
-        log.info("like? " + like);
+        LOGGER.info("like? " + like);
         like = ObjectUtils.equals("null", null);
-        log.info("like? " + like);
+        LOGGER.info("like? " + like);
         like = ObjectUtils.equals(null, null);
-        log.info("like? " + like);
+        LOGGER.info("like? " + like);
     }
 
     private static int make5digitNumbers() {
@@ -105,7 +105,7 @@ public class VsbKladdeBokMain {
 
     private static void kanCasteFraNull() {
         Integer i = (Integer) m();
-        log.info("int: " + i);
+        LOGGER.info("int: " + i);
     }
 
     private static Number m() {

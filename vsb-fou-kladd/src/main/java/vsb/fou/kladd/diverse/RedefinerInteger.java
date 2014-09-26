@@ -1,8 +1,21 @@
 package vsb.fou.kladd.diverse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 
 public class RedefinerInteger {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedefinerInteger.class);
+
+    public static void main(String[] args) {
+        new RedefinerInteger().munge();
+
+        Integer a = 2;
+        Integer b = 3;
+        LOGGER.info("a + b = " + a + b);
+    }
 
     public void munge() {
         try {
@@ -24,13 +37,5 @@ public class RedefinerInteger {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        new RedefinerInteger().munge();
-
-        Integer a = 2;
-        Integer b = 3;
-        System.out.println(a + b);
     }
 }

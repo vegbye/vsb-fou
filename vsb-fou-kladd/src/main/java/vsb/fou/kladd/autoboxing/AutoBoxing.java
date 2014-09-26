@@ -1,22 +1,27 @@
 package vsb.fou.kladd.autoboxing;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AutoBoxing {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutoBoxing.class);
+
     public AutoBoxing() {
 
         Integer j = 4;
-        System.out.println("4 == " + j + " er " + (4 == j));
+        LOGGER.info("4 == " + j + " er " + (4 == j));
         Integer k = 4;
         j = 4;
-        System.out.println(k + " == " + j + " er " + (k == j));
+        LOGGER.info(k + " == " + j + " er " + (k == j));
 
         for (int i = 1; i < 100000; i <<= 1) {
             j = i;
             k = i;
-            System.out.println(k + " == " + j + " er " + (k == j)); // oppf�rer seg normalt til 128
+            LOGGER.info(k + " == " + j + " er " + (k == j)); // oppf�rer seg normalt til 128
             if (k != j) {
                 break;
             }
@@ -25,7 +30,7 @@ public class AutoBoxing {
         Integer p = 0;
         Integer q = p;
         for (int i = 0; i < 3; ++i) {
-            System.out.println("i p q = " + i + " " + p + " " + q);
+            LOGGER.info("i p q = " + i + " " + p + " " + q);
             p++; // peker p p� noe annet eller ??? er dette samme som p = new Integer(p.intValue() + 1)
         }
 
@@ -41,14 +46,14 @@ public class AutoBoxing {
         li.add(null);
         try {
             for (Integer i : li) {
-                System.out.println("i = " + i);
+                LOGGER.info("i = " + i);
             }
 
             for (int i : li) {
-                System.out.println("i = " + i);
+                LOGGER.info("i = " + i);
             }
         } catch (NullPointerException e) {
-            System.out.println(e);
+            LOGGER.info("NPE!", e);
         }
     }
 
