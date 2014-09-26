@@ -15,8 +15,8 @@
 
     <properties>
         <cxf.version>3.0.0</cxf.version>
-        <jetty.port>9020</jetty.port>
-        <jetty.stop-port>9021</jetty.stop-port>
+        <jetty.port>9040</jetty.port>
+        <jetty.stop-port>9041</jetty.stop-port>
     </properties>
 
     <build>
