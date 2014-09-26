@@ -1,6 +1,8 @@
 package vsb.fou.db.h2;
 
 import org.h2.tools.DeleteDbFiles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class HelloWorldH2 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldH2.class);
 
     /**
      * Called when ran from command line.
@@ -31,7 +35,7 @@ public class HelloWorldH2 {
         ResultSet rs;
         rs = stat.executeQuery("select * from test");
         while (rs.next()) {
-            System.out.println(rs.getString("name"));
+            LOGGER.info(rs.getString("name"));
         }
         stat.close();
         conn.close();

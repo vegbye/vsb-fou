@@ -21,6 +21,8 @@ import java.util.Map;
 @Service
 public class VsbRestAspect {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(VsbRestAspect.class);
+
     private static final Logger ERROR_LOGGER = LoggerFactory.getLogger("ERROR." + VsbRestAspect.class.getSimpleName());
     private static final Logger REQUEST_LOGGER = LoggerFactory.getLogger("TRANSACTION.REQUEST." + VsbRestAspect.class.getSimpleName());
     private static final Logger RESPONSE_LOGGER = LoggerFactory.getLogger("TRANSACTION.RESPONSE." + VsbRestAspect.class.getSimpleName());
@@ -51,7 +53,7 @@ public class VsbRestAspect {
 
     @Around("publicMethod() && pathAnnotatedClass()")
     public Object aroundExeute(ProceedingJoinPoint jp) throws Throwable {
-        System.out.println("--------------- jp = " + jp);
+        LOGGER.info("--------------- jp = " + jp);
         Object[] args = jp.getArgs();
         MethodSignature signature = (MethodSignature) jp.getSignature();
         String[] parameterNames = signature.getParameterNames();

@@ -1,21 +1,25 @@
 package vsb.fou.kladd.generics.merkelig;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertTrue;
 
 public class MerkeligGenericsTest {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MerkeligGenericsTest.class);
+
     @Test
     public void test_merkelig_generics_oppfoersel() {
         MerkeligInterface konkretKlasse = new KonkretKlasse();
-        System.out.println(konkretKlasse);
+        LOGGER.info("Klasse:" + konkretKlasse);
         MerkeligInterface kopi = konkretKlasse.lagKopi();
-        System.out.println(kopi);
+        LOGGER.info("Kopi:" + kopi);
         MerkeligInterface kopi2 = kopier(konkretKlasse);
-        System.out.println(kopi2);
+        LOGGER.info("Kopi2:" + kopi2);
         MerkeligInterface kopi3 = kopier2(konkretKlasse);
-        System.out.println(kopi3);
+        LOGGER.info("Kopi3:" + kopi3);
 
         assertTrue(kopi != konkretKlasse);
         assertTrue(kopi2 != konkretKlasse);

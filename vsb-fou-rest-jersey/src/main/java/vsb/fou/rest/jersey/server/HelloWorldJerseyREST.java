@@ -1,5 +1,7 @@
 package vsb.fou.rest.jersey.server;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
@@ -29,6 +31,7 @@ import java.util.List;
 @Component
 public class HelloWorldJerseyREST {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldJerseyREST.class);
     private static int counter = 0;
     /**
      * NB! MÅ være @Autowired ikke @Resource for at jersey-spring integration skal funke.
@@ -38,7 +41,7 @@ public class HelloWorldJerseyREST {
 
     public HelloWorldJerseyREST() {
         counter++;
-        System.out.println("----------> counter = " + counter);
+        LOGGER.info("----------> counter = " + counter);
     }
 
     @GET
