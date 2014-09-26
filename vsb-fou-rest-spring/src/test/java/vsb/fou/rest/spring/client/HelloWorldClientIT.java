@@ -1,6 +1,5 @@
 package vsb.fou.rest.spring.client;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -23,7 +22,6 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
-@Ignore
 public class HelloWorldClientIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientIT.class);
