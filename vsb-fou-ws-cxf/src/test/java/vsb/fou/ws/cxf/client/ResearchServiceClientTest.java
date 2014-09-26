@@ -1,14 +1,13 @@
 package vsb.fou.ws.cxf.client;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 import vsb.fou.service._2013._08.PingRequest;
 import vsb.fou.service._2013._08.PingResponse;
 import vsb.fou.service._2013._08.ResearchPortType;
@@ -21,7 +20,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
-@Category(DemandsRunningJettyServerTestCategory.class)
+@Ignore("Krever jetty+failsafe")
 public class ResearchServiceClientTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResearchServiceClientTest.class);

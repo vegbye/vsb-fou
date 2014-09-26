@@ -1,14 +1,13 @@
 package vsb.fou.rest.jersey.client;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import vsb.fou.common.DemandsRunningJettyServerTestCategory;
 import vsb.fou.rest.jersey.api.HelloWorldRequest;
 import vsb.fou.rest.jersey.api.HelloWorldResponse;
 import vsb.fou.rest.jersey.api.Metadata;
@@ -27,7 +26,7 @@ import static org.junit.Assert.fail;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
-@Category(DemandsRunningJettyServerTestCategory.class)
+@Ignore("Krever jetty+failsafe")
 public class HelloWorldClientTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientTest.class);
