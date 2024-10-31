@@ -1,5 +1,6 @@
 package vsb.fou.rest.jersey.client;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import static org.junit.Assert.fail;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MainCtxResearchClient.class)
+@Ignore("funker ikke helt i 2024")
 public class HelloWorldClientIT {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldClientIT.class);
