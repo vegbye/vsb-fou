@@ -2,8 +2,8 @@ package vsb.fou.rest.jersey.api;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Vegard S. Bye

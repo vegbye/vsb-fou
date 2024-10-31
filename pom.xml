@@ -32,9 +32,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--BuildHive har kun stoette for 1.7 -->
-        <vsb.fou.jdk.version>1.7</vsb.fou.jdk.version>
+        <vsb.fou.jdk.version>11</vsb.fou.jdk.version>
         <!-- lib versjoner -->
-        <spring.version>4.1.0.RELEASE</spring.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
         <spring-batch.version>3.0.1.RELEASE</spring-batch.version>
         <quartz.version>2.2.1</quartz.version>
         <logback.version>1.1.2</logback.version>
